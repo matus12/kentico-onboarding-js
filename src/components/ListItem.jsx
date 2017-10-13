@@ -11,14 +11,18 @@ export class ListItem extends PureComponent {
   }
 
   handleSave() {
-    this.setState({ text2: this.state.text });
-    this.setState({ editable: false });
+    this.setState({
+      text2: this.state.text,
+      editable: false,
+    });
     this.props.actionEdit(this.state.text);
     this.props.handleEditableState(false);
   }
   handleCancel() {
-    this.setState({ text: this.state.text2 });
-    this.setState({ editable: false });
+    this.setState({
+      text: this.state.text2,
+      editable: false,
+    });
     this.props.handleEditableState(false);
   }
   handleChange(event) {

@@ -26,10 +26,12 @@ export class ItemList extends PureComponent {
   }
   handleAdd() {
     const newValues = [...this.state.values];
-    newValues.push([this.state.inputValue, false]);
-    this.setState({
-      values: newValues,
-      inputValue: '' });
+    if (this.state.inputValue !== '') {
+      newValues.push([this.state.inputValue, false]);
+      this.setState({
+        values: newValues,
+        inputValue: '' });
+    }
   }
   handleDelete(index) {
     const newArray = this.state.values.filter((value, i) => i !== index);
