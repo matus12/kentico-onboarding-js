@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { ListItem } from './ListItem';
 import PropTypes from 'prop-types';
+const Guid = require('guid');
 
 export class ItemList extends PureComponent {
   constructor(props) {
@@ -11,13 +12,7 @@ export class ItemList extends PureComponent {
     };
   }
   guid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
+    return Guid.create().value;
   }
   handleChange(event) {
     this.setState({
