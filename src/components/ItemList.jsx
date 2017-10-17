@@ -20,9 +20,8 @@ export class ItemList extends PureComponent {
     });
   }
   handleAdd() {
-    const newValues = [...this.state.values];
     if (this.state.inputValue !== '') {
-      newValues.push({ text: this.state.inputValue, isEdited: false });
+      const newValues = [...this.state.values, { text: this.state.inputValue, isEdited: false }];
       this.setState({
         values: newValues,
         inputValue: '' });
