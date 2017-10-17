@@ -8,12 +8,16 @@ export class ItemList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      values: props.values.map((val) => ({ text: val, isEdited: false })),
+      values: props.values.map((val) => ({ text: val, textBackup: val, isEdited: false })),
       inputValue: '',
     };
   }
   guid() {
     return Guid.create().value;
+  }
+  keepNotSavedTextYet(index, editedText) {
+    const newArray = [...this.state.values];
+    newArray[index].text = editedText;
   }
   handleChangeOfInputText(value) {
     this.setState({
@@ -22,7 +26,7 @@ export class ItemList extends PureComponent {
   }
   handleAdd(value) {
     if (value !== '') {
-      const newValues = [...this.state.values, { text: value, isEdited: false }];
+      const newValues = [...this.state.values, { text: value, textBackup: value, isEdited: false }];
       this.setState({
         values: newValues,
         inputValue: '' });
@@ -34,9 +38,17 @@ export class ItemList extends PureComponent {
       values: newArray,
     });
   }
-  handleEditText(index, text) {
+  handleSaveText(index, text) {
     const newArray = [...this.state.values];
     newArray[index].text = text;
+    newArray[index].textBackup = text;
+    this.setState({
+      values: newArray,
+    });
+  }
+  handleCancel(index) {
+    const newArray = [...this.state.values];
+    newArray[index].text = this.state.values[index].textBackup;
     this.setState({
       values: newArray,
     });
@@ -54,8 +66,10 @@ export class ItemList extends PureComponent {
         {this.state.values.map((val, index) => <ListItem
           key={this.guid()} editable={val.isEdited} text={val.text}
           actionDelete={() => this.handleDelete(index)}
-          onItemEdited={(text) => this.handleEditText(index, text)}
+          onItemSaved={(text) => this.handleSaveText(index, text)}
           handleEditableState={(editable) => this.handleEditableState(index, editable)}
+          keepNotSavedText={(editedText) => this.keepNotSavedTextYet(index, editedText)}
+          handleCancel={() => this.handleCancel(index)}
         />)}
         <Add
           value={this.state.inputText}

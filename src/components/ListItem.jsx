@@ -15,7 +15,7 @@ export class ListItem extends PureComponent {
       textBackup: this.state.text,
       editable: false,
     });
-    this.props.onItemEdited(this.state.text);
+    this.props.onItemSaved(this.state.text);
     this.props.handleEditableState(false);
   }
   handleCancel() {
@@ -23,10 +23,12 @@ export class ListItem extends PureComponent {
       text: this.state.textBackup,
       editable: false,
     });
+    this.props.handleCancel();
     this.props.handleEditableState(false);
   }
   handleChange(event) {
     this.setState({ text: event.target.value });
+    this.props.keepNotSavedText(event.target.value);
   }
   handleClick() {
     this.setState({ editable: true });
