@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-
 import { ListItem } from './ListItem';
+import PropTypes from 'prop-types';
 
 export class ItemList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      values: props.values.map((val) => [val, false]),
+      values: props.values.map((val) => ({ text: val, isEdited: false })),
       inputValue: '',
     };
   }
@@ -27,7 +27,7 @@ export class ItemList extends PureComponent {
   handleAdd() {
     const newValues = [...this.state.values];
     if (this.state.inputValue !== '') {
-      newValues.push([this.state.inputValue, false]);
+      newValues.push({ text: this.state.inputValue, isEdited: false });
       this.setState({
         values: newValues,
         inputValue: '' });
@@ -41,14 +41,14 @@ export class ItemList extends PureComponent {
   }
   handleEditText(index, text) {
     const newArray = [...this.state.values];
-    newArray[index][0] = text;
+    newArray[index].text = text;
     this.setState({
       values: newArray,
     });
   }
   handleEditableState(index, editable) {
     const newValues = [...this.state.values];
-    newValues[index][1] = editable;
+    newValues[index].isEdited = editable;
     this.setState({
       values: newValues,
     });
@@ -56,7 +56,7 @@ export class ItemList extends PureComponent {
   render() {
     return (
       <ul className="list-group">
-        {this.state.values.map((val, index) => <ListItem key={this.guid()} editable={val[1]} text={val[0]} actionDelete={() => this.handleDelete(index)} actionEdit={(text) => this.handleEditText(index, text)} handleEditableState={(editable) => this.handleEditableState(index, editable)} />)}
+        {this.state.values.map((val, index) => <ListItem key={this.guid()} editable={val.isEdited} text={val.text} actionDelete={() => this.handleDelete(index)} actionEdit={(text) => this.handleEditText(index, text)} handleEditableState={(editable) => this.handleEditableState(index, editable)} />)}
         <li className="list-group-item">
           <div className="col-xs-4">
             <input className="form-control" value={this.state.inputValue} onChange={(event) => this.handleChange(event)} />
@@ -67,3 +67,4 @@ export class ItemList extends PureComponent {
     );
   }
 }
+
