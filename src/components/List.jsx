@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import assignment from './../../assignment.gif';
 
 import { TsComponent } from './TsComponent.tsx';
 import { ItemList } from './ItemList';

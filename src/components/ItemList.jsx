@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ListItem } from './ListItem';
+import { Add } from './Add';
 import PropTypes from 'prop-types';
 const Guid = require('guid');
 
@@ -14,14 +15,14 @@ export class ItemList extends PureComponent {
   guid() {
     return Guid.create().value;
   }
-  handleChangeOfInputText(event) {
+  handleChangeOfInputText(value) {
     this.setState({
-      inputValue: event.target.value,
+      inputValue: value,
     });
   }
-  handleAdd() {
-    if (this.state.inputValue !== '') {
-      const newValues = [...this.state.values, { text: this.state.inputValue, isEdited: false }];
+  handleAdd(value) {
+    if (value !== '') {
+      const newValues = [...this.state.values, { text: value, isEdited: false }];
       this.setState({
         values: newValues,
         inputValue: '' });
@@ -50,15 +51,18 @@ export class ItemList extends PureComponent {
   render() {
     return (
       <ul className="list-group">
-        {this.state.values.map((val, index) => <ListItem key={this.guid()} editable={val.isEdited} text={val.text} actionDelete={() => this.handleDelete(index)} actionEdit={(text) => this.handleEditText(index, text)} handleEditableState={(editable) => this.handleEditableState(index, editable)} />)}
-        <li className="list-group-item">
-          <div className="col-xs-4">
-            <input className="form-control" value={this.state.inputValue} onChange={(event) => this.handleChangeOfInputText(event)} />
-          </div>
-          <button type="button" className="btn btn-light" onClick={() => this.handleAdd()}>Add</button>
-        </li>
+        {this.state.values.map((val, index) => <ListItem
+          key={this.guid()} editable={val.isEdited} text={val.text}
+          actionDelete={() => this.handleDelete(index)}
+          onItemEdited={(text) => this.handleEditText(index, text)}
+          handleEditableState={(editable) => this.handleEditableState(index, editable)}
+        />)}
+        <Add
+          value={this.state.inputText}
+          handleOnChange={(value) => this.handleChangeOfInputText(value)}
+          handleAdd={(value) => this.handleAdd(value)}
+        />
       </ul>
     );
   }
 }
-
