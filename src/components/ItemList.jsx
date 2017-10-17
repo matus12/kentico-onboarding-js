@@ -80,3 +80,7 @@ export class ItemList extends PureComponent {
     );
   }
 }
+
+ItemList.propTypes = {
+  values: PropTypes.array,
+};

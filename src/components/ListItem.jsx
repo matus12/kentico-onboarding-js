@@ -1,28 +1,18 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export class ListItem extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      editable: props.editable,
       text: props.text,
-      textBackup: props.text,
     };
   }
-
   handleSave() {
-    this.setState({
-      textBackup: this.state.text,
-      editable: false,
-    });
     this.props.onItemSaved(this.state.text);
     this.props.handleEditableState(false);
   }
   handleCancel() {
-    this.setState({
-      text: this.state.textBackup,
-      editable: false,
-    });
     this.props.handleCancel();
     this.props.handleEditableState(false);
   }
@@ -31,13 +21,12 @@ export class ListItem extends PureComponent {
     this.props.keepNotSavedText(event.target.value);
   }
   handleClick() {
-    this.setState({ editable: true });
     this.props.handleEditableState(true);
   }
   render() {
     return (
       <li className="list-group-item">
-        {(this.state.editable) ?
+        {(this.props.editable) ?
           <div>
             <div className="col-xs-4">
               <input className="form-control" value={this.state.text} onChange={(event) => this.handleChange(event)} />
@@ -51,3 +40,11 @@ export class ListItem extends PureComponent {
     );
   }
 }
+
+ListItem.propTypes = {
+  text: PropTypes.string,
+  onItemSaved: PropTypes.func,
+  handleEditableState: PropTypes.func,
+  keepNotSavedText: PropTypes.func,
+  actionDelete: PropTypes.func,
+};
