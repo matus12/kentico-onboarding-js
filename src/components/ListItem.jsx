@@ -9,6 +9,9 @@ export class ListItem extends PureComponent {
       textBackup: props.text,
     };
   }
+  handleDelete = () => {
+    this.props.actionDelete(this.props.index);
+  }
   handleSave = () => {
     this.setState({
       textBackup: this.state.text,
@@ -39,7 +42,7 @@ export class ListItem extends PureComponent {
             </div>
             <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
             <button type="button" className="btn btn-light" onClick={this.handleCancel}>Cancel</button>
-            <button type="button" className="btn btn-danger" onClick={() => this.props.actionDelete(this.props.index)}>Delete</button>
+            <button type="button" className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
           </div> :
           <div onClick={this.handleClick}>{this.state.text}</div>}
       </li>
