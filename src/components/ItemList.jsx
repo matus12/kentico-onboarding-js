@@ -6,75 +6,71 @@ const Guid = require('guid');
 
 export class ItemList extends PureComponent {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
-      values: props.values.map((val) => ({ text: val, textBackup: val, isEdited: false })),
+      values: props.values.map((val) => ({ id: this.generateID(), text: val, textBackup: val, isEdited: false })),
       inputValue: '',
     };
   }
-  guid() {
+  generateID = () => {
     return Guid.create().value;
-  }
-  keepNotSavedTextYet(index, editedText) {
-    const newArray = [...this.state.values];
-    newArray[index].text = editedText;
-  }
-  handleChangeOfInputText(value) {
+  };
+  handleChangeOfInputText = (value) => {
     this.setState({
       inputValue: value,
     });
-  }
-  handleAdd(value) {
+  };
+  handleAdd = (value) => {
     if (value !== '') {
-      const newValues = [...this.state.values, { text: value, textBackup: value, isEdited: false }];
+      const newValues = [...this.state.values, { id: this.generateID(), text: value, textBackup: value, isEdited: false }];
       this.setState({
         values: newValues,
         inputValue: '' });
     }
-  }
-  handleDelete(index) {
+  };
+  handleDelete = (index) => {
     const newArray = this.state.values.filter((value, i) => i !== index);
     this.setState({
       values: newArray,
     });
-  }
-  handleSaveText(index, text) {
+  };
+  handleSaveText = (index, text) => {
     const newArray = [...this.state.values];
     newArray[index].text = text;
     newArray[index].textBackup = text;
     this.setState({
       values: newArray,
     });
-  }
-  handleCancel(index) {
+  };
+  handleCancel = (index) => {
     const newArray = [...this.state.values];
     newArray[index].text = this.state.values[index].textBackup;
     this.setState({
       values: newArray,
     });
-  }
-  handleEditableState(index, editable) {
+  };
+  handleEditableState = (index, editable) => {
     const newValues = [...this.state.values];
     newValues[index].isEdited = editable;
     this.setState({
       values: newValues,
     });
-  }
+  };
   render() {
     return (
       <ul className="list-group">
-        {this.state.values.map((val, index) => <ListItem
-          key={this.guid()} editable={val.isEdited} text={val.text}
-          actionDelete={() => this.handleDelete(index)}
-          onItemSaved={(text) => this.handleSaveText(index, text)}
-          handleEditableState={(editable) => this.handleEditableState(index, editable)}
-          keepNotSavedText={(editedText) => this.keepNotSavedTextYet(index, editedText)}
-          handleCancel={() => this.handleCancel(index)}
-        />)}
+        {this.state.values.map((val, index) =>
+          <ListItem
+            key={val.id} editable={val.isEdited} text={val.text} index={index}
+            actionDelete={this.handleDelete}
+            onItemSaved={this.handleSaveText}
+            handleEditableState={this.handleEditableState}
+            handleCancel={this.handleCancel}
+          />)}
         <Add
           value={this.state.inputText}
-          handleOnChange={(value) => this.handleChangeOfInputText(value)}
-          handleAdd={(value) => this.handleAdd(value)}
+          handleOnChange={this.handleChangeOfInputText}
+          handleAdd={this.handleAdd}
         />
       </ul>
     );
@@ -82,5 +78,5 @@ export class ItemList extends PureComponent {
 }
 
 ItemList.propTypes = {
-  values: PropTypes.array,
+  values: PropTypes.array.isRequired,
 };

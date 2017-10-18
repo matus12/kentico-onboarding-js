@@ -6,45 +6,51 @@ export class ListItem extends PureComponent {
     super(props);
     this.state = {
       text: props.text,
+      textBackup: props.text,
     };
   }
-  handleSave() {
-    this.props.onItemSaved(this.state.text);
-    this.props.handleEditableState(false);
-  }
-  handleCancel() {
-    this.props.handleCancel();
-    this.props.handleEditableState(false);
-  }
-  handleChange(event) {
+  handleSave = () => {
+    this.setState({
+      textBackup: this.state.text,
+    });
+    this.props.onItemSaved(this.props.index, this.state.text);
+    this.props.handleEditableState(this.props.index, false);
+  };
+  handleCancel = () => {
+    this.setState({
+      text: this.state.textBackup,
+    });
+    this.props.handleCancel(this.props.index);
+    this.props.handleEditableState(this.props.index, false);
+  };
+  handleChange = (event) => {
     this.setState({ text: event.target.value });
-    this.props.keepNotSavedText(event.target.value);
-  }
-  handleClick() {
-    this.props.handleEditableState(true);
-  }
+  };
+  handleClick = () => {
+    this.props.handleEditableState(this.props.index, true);
+  };
   render() {
     return (
       <li className="list-group-item">
         {(this.props.editable) ?
           <div>
             <div className="col-xs-4">
-              <input className="form-control" value={this.state.text} onChange={(event) => this.handleChange(event)} />
+              <input className="form-control" value={this.state.text} onChange={this.handleChange} />
             </div>
-            <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>Save</button>
-            <button type="button" className="btn btn-light" onClick={() => this.handleCancel()}>Cancel</button>
-            <button type="button" className="btn btn-danger" onClick={() => this.props.actionDelete()}>Delete</button>
+            <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
+            <button type="button" className="btn btn-light" onClick={this.handleCancel}>Cancel</button>
+            <button type="button" className="btn btn-danger" onClick={() => this.props.actionDelete(this.props.index)}>Delete</button>
           </div> :
-          <div onClick={() => this.handleClick()}>{this.state.text}</div>}
+          <div onClick={this.handleClick}>{this.state.text}</div>}
       </li>
     );
   }
 }
 
 ListItem.propTypes = {
-  text: PropTypes.string,
-  onItemSaved: PropTypes.func,
-  handleEditableState: PropTypes.func,
-  keepNotSavedText: PropTypes.func,
-  actionDelete: PropTypes.func,
+  text: PropTypes.string.isRequired,
+  onItemSaved: PropTypes.func.isRequired,
+  handleEditableState: PropTypes.func.isRequired,
+  actionDelete: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
