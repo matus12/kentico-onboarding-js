@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class Add extends PureComponent {
   static propTypes = {
-    OnAddItem: PropTypes.func.isRequired,
+    onAddItem: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -19,8 +19,8 @@ export class Add extends PureComponent {
       inputValue: event.target.value,
     });
   };
-  OnAddItem = () => {
-    this.props.OnAddItem(this.state.inputValue);
+  onAddItem = () => {
+    this.props.onAddItem(this.state.inputValue);
     this.setState({
       inputValue: '',
     });
@@ -39,7 +39,7 @@ export class Add extends PureComponent {
         <button
           type="button"
           className="btn btn-light"
-          onClick={this.OnAddItem}
+          onClick={this.onAddItem}
         >
           Add
         </button>

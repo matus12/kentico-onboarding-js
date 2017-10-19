@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 export class ListItem extends PureComponent {
   static propTypes = {
     text: PropTypes.string.isRequired,
-    onItemSaved: PropTypes.func.isRequired,
-    handleEditableState: PropTypes.func.isRequired,
+    onSaveItem: PropTypes.func.isRequired,
+    isEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
   };
@@ -18,28 +18,28 @@ export class ListItem extends PureComponent {
     };
   }
 
-  handleDelete = () => {
+  onDelete = () => {
     this.props.actionDelete(this.props.index);
   };
-  handleSave = () => {
+  onSaveItem = () => {
     this.setState({
       textBackup: this.state.text,
     });
-    this.props.onItemSaved(this.props.index, this.state.text);
-    this.props.handleEditableState(this.props.index, false);
+    this.props.onSaveItem(this.props.index, this.state.text);
+    this.props.isEdited(this.props.index, false);
   };
-  handleCancel = () => {
+  onCancel = () => {
     this.setState({
       text: this.state.textBackup,
     });
-    this.props.handleCancel(this.props.index);
-    this.props.handleEditableState(this.props.index, false);
+    this.props.onCancel(this.props.index);
+    this.props.isEdited(this.props.index, false);
   };
-  handleChange = (event) => {
+  onChange = (event) => {
     this.setState({ text: event.target.value });
   };
-  handleClick = () => {
-    this.props.handleEditableState(this.props.index, true);
+  onClick = () => {
+    this.props.isEdited(this.props.index, true);
   };
 
   render() {
@@ -51,29 +51,29 @@ export class ListItem extends PureComponent {
               <input
                 className="form-control"
                 value={this.state.text}
-                onChange={this.handleChange}
+                onChange={this.onChange}
               />
             </div>
             <button
               type="button"
               className="btn btn-primary"
-              onClick={this.handleSave}
+              onClick={this.onSaveItem}
             >Save
             </button>
             <button
               type="button"
               className="btn btn-light"
-              onClick={this.handleCancel}
+              onClick={this.onCancel}
             >Cancel
             </button>
             <button
               type="button"
               className="btn btn-danger"
-              onClick={this.handleDelete}
+              onClick={this.onDelete}
             >Delete
             </button>
           </div> :
-          <div onClick={this.handleClick}>{this.state.text}</div>}
+          <div onClick={this.onClick}>{this.state.text}</div>}
       </li>
     );
   }

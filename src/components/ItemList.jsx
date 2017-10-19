@@ -27,12 +27,7 @@ export class ItemList extends PureComponent {
   generateID = () =>
     Guid.create().value;
 
-  handleChangeOfInputText = (value) => {
-    this.setState({
-      inputValue: value,
-    });
-  };
-  handleAdd = (value) => {
+  onAddItem = (value) => {
     if (value !== '') {
       const newValues = [
         ...this.state.values, {
@@ -49,14 +44,14 @@ export class ItemList extends PureComponent {
     }
   };
 
-  handleDelete = (index) => {
+  onDeleteItem = (index) => {
     const newArray = this.state.values.filter((value, i) => i !== index);
     this.setState({
       values: newArray,
     });
   };
 
-  handleSaveText = (index, text) => {
+  onSaveItem = (index, text) => {
     const newArray = [...this.state.values];
     newArray[index].text = text;
     newArray[index].textBackup = text;
@@ -65,7 +60,7 @@ export class ItemList extends PureComponent {
     });
   };
 
-  handleCancel = (index) => {
+  onCancel = (index) => {
     const newArray = [...this.state.values];
     newArray[index].text = this.state.values[index].textBackup;
     this.setState({
@@ -73,7 +68,7 @@ export class ItemList extends PureComponent {
     });
   };
 
-  handleEditableState = (index, editable) => {
+  isEdited = (index, editable) => {
     const newValues = [...this.state.values];
     newValues[index].isEdited = editable;
     this.setState({
@@ -90,15 +85,14 @@ export class ItemList extends PureComponent {
             editable={val.isEdited}
             text={val.text}
             index={index}
-            actionDelete={this.handleDelete}
-            onItemSaved={this.handleSaveText}
-            handleEditableState={this.handleEditableState}
-            handleCancel={this.handleCancel}
+            actionDelete={this.onDeleteItem}
+            onSaveItem={this.onSaveItem}
+            isEdited={this.isEdited}
+            onCancel={this.onCancel}
           />)}
         <Add
           value={this.state.inputText}
-          handleOnChange={this.handleChangeOfInputText}
-          handleAdd={this.handleAdd}
+          onAddItem={this.onAddItem}
         />
       </ul>
     );
