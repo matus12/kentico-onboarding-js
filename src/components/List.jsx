@@ -3,7 +3,7 @@ import { AddItem } from './AddItem';
 import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
-import { ListItem } from './ListItem';
+import { Item } from './ListItem';
 
 export class List extends PureComponent {
   constructor(props) {
@@ -81,7 +81,7 @@ export class List extends PureComponent {
         <div className="col-sm-12 col-md-offset-2 col-md-8">
           <ul className="list-group">
             {this.state.items.map((item, index) =>
-              <ListItem
+              <Item
                 key={item.id}
                 isEdited={item.isEdited}
                 text={item.text}
