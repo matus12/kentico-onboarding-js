@@ -27,7 +27,7 @@ export class ItemList extends PureComponent {
     if (value !== '') {
       const newValues = [
         ...this.state.items, {
-          id: this.generateId,
+          id: generateId(),
           text: value,
           textBackup: value,
           isEdited: false,
@@ -64,9 +64,9 @@ export class ItemList extends PureComponent {
     });
   };
 
-  isEdited = (index, editable) => {
+  setIsEdited = (index, isEdited) => {
     const newValues = [...this.state.items];
-    newValues[index].isEdited = editable;
+    newValues[index].isEdited = isEdited;
     this.setState({
       items: newValues,
     });
@@ -78,12 +78,12 @@ export class ItemList extends PureComponent {
         {this.state.items.map((item, index) =>
           <ListItem
             key={item.id}
-            editable={item.isEdited}
+            isEdited={item.isEdited}
             text={item.text}
             index={index}
             actionDelete={this.onDeleteItem}
             onSaveItem={this.onSaveItem}
-            isEdited={this.isEdited}
+            setIsEdited={this.setIsEdited}
             onCancel={this.onCancel}
           />)}
         <Add

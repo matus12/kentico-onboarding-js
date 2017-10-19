@@ -5,9 +5,10 @@ export class ListItem extends PureComponent {
   static propTypes = {
     text: PropTypes.string.isRequired,
     onSaveItem: PropTypes.func.isRequired,
-    isEdited: PropTypes.func.isRequired,
+    setIsEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
+    isEdited: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -27,7 +28,7 @@ export class ListItem extends PureComponent {
       textBackup: this.state.text,
     });
     this.props.onSaveItem(this.props.index, this.state.text);
-    this.props.isEdited(this.props.index, false);
+    this.props.setIsEdited(this.props.index, false);
   };
 
   onCancel = () => {
@@ -35,7 +36,7 @@ export class ListItem extends PureComponent {
       text: this.state.textBackup,
     });
     this.props.onCancel(this.props.index);
-    this.props.isEdited(this.props.index, false);
+    this.props.setIsEdited(this.props.index, false);
   };
 
   onChange = (event) => {
@@ -43,13 +44,13 @@ export class ListItem extends PureComponent {
   };
 
   onClick = () => {
-    this.props.isEdited(this.props.index, true);
+    this.props.setIsEdited(this.props.index, true);
   };
 
   render() {
     return (
       <li className="list-group-item">
-        {(this.props.editable) ?
+        {(this.props.isEdited) ?
           <div>
             <div className="col-xs-4">
               <input
