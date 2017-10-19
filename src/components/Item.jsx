@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PlainText } from './PlainText';
 
 export class Item extends PureComponent {
   static propTypes = {
@@ -76,7 +77,12 @@ export class Item extends PureComponent {
             >Delete
             </button>
           </div> :
-          <div onClick={this.onClick}>{this.props.index + 1}. {this.state.text}</div>}
+          <div onClick={this.onClick}>
+            <PlainText
+              index={this.props.index + 1}
+              text={this.state.text}
+            />
+          </div>}
       </li>
     );
   }
