@@ -6,6 +6,7 @@ import { ItemList } from './ItemList';
 export class List extends PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       values: ['Make a coffee', 'Master ReactJS', 'Learn ReduxJS', 'Help making Kentico Cloud awesome!'],
     };

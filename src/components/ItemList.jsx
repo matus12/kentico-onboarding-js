@@ -11,6 +11,7 @@ export class ItemList extends PureComponent {
 
   constructor(props) {
     super();
+
     this.state = {
       values: props.values.map((val) => ({
         id: generateId(),

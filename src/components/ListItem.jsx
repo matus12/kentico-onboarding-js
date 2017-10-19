@@ -21,6 +21,7 @@ export class ListItem extends PureComponent {
   onDelete = () => {
     this.props.actionDelete(this.props.index);
   };
+
   onSaveItem = () => {
     this.setState({
       textBackup: this.state.text,
@@ -28,6 +29,7 @@ export class ListItem extends PureComponent {
     this.props.onSaveItem(this.props.index, this.state.text);
     this.props.isEdited(this.props.index, false);
   };
+
   onCancel = () => {
     this.setState({
       text: this.state.textBackup,
@@ -35,9 +37,11 @@ export class ListItem extends PureComponent {
     this.props.onCancel(this.props.index);
     this.props.isEdited(this.props.index, false);
   };
+
   onChange = (event) => {
     this.setState({ text: event.target.value });
   };
+
   onClick = () => {
     this.props.isEdited(this.props.index, true);
   };

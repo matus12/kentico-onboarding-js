@@ -19,6 +19,7 @@ export class Add extends PureComponent {
       inputValue: event.target.value,
     });
   };
+
   onAddItem = () => {
     this.props.onAddItem(this.state.inputValue);
     this.setState({
