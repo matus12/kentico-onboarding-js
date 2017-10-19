@@ -8,7 +8,7 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      values: ['Make a coffee', 'Master ReactJS', 'Learn ReduxJS', 'Help making Kentico Cloud awesome!'],
+      items: ['Make a coffee', 'Master ReactJS', 'Learn ReduxJS', 'Help making Kentico Cloud awesome!'],
     };
   }
 
@@ -23,7 +23,7 @@ export class List extends PureComponent {
         </div>
         <div className="row">
           <div className="col-sm-12 col-md-offset-2 col-md-8">
-            <ItemList values={this.state.values} />
+            <ItemList items={this.state.items} />
           </div>
         </div>
       </div>

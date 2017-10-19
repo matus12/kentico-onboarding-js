@@ -6,14 +6,14 @@ import { generateId } from '../utils/generateId';
 
 export class ItemList extends PureComponent {
   static propTypes = {
-    values: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
   };
 
   constructor(props) {
     super();
 
     this.state = {
-      values: props.values.map((val) => ({
+      items: props.items.map((val) => ({
         id: generateId(),
         text: val,
         textBackup: val,
@@ -26,7 +26,7 @@ export class ItemList extends PureComponent {
   onAddItem = (value) => {
     if (value !== '') {
       const newValues = [
-        ...this.state.values, {
+        ...this.state.items, {
           id: this.generateId,
           text: value,
           textBackup: value,
@@ -34,52 +34,52 @@ export class ItemList extends PureComponent {
         },
       ];
       this.setState({
-        values: newValues,
+        items: newValues,
         inputValue: '',
       });
     }
   };
 
   onDeleteItem = (index) => {
-    const newArray = this.state.values.filter((value, i) => i !== index);
+    const newArray = this.state.items.filter((value, i) => i !== index);
     this.setState({
-      values: newArray,
+      items: newArray,
     });
   };
 
   onSaveItem = (index, text) => {
-    const newArray = [...this.state.values];
+    const newArray = [...this.state.items];
     newArray[index].text = text;
     newArray[index].textBackup = text;
     this.setState({
-      values: newArray,
+      items: newArray,
     });
   };
 
   onCancel = (index) => {
-    const newArray = [...this.state.values];
-    newArray[index].text = this.state.values[index].textBackup;
+    const newArray = [...this.state.items];
+    newArray[index].text = this.state.items[index].textBackup;
     this.setState({
-      values: newArray,
+      items: newArray,
     });
   };
 
   isEdited = (index, editable) => {
-    const newValues = [...this.state.values];
+    const newValues = [...this.state.items];
     newValues[index].isEdited = editable;
     this.setState({
-      values: newValues,
+      items: newValues,
     });
   };
 
   render() {
     return (
       <ul className="list-group">
-        {this.state.values.map((val, index) =>
+        {this.state.items.map((item, index) =>
           <ListItem
-            key={val.id}
-            editable={val.isEdited}
-            text={val.text}
+            key={item.id}
+            editable={item.isEdited}
+            text={item.text}
             index={index}
             actionDelete={this.onDeleteItem}
             onSaveItem={this.onSaveItem}
