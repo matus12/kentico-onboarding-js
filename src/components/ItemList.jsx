@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+/* import React, { PureComponent } from 'react';
 import { ListItem } from './ListItem';
 import { Add } from './Add';
 import PropTypes from 'prop-types';
@@ -95,3 +95,4 @@ export class ItemList extends PureComponent {
     );
   }
 }
+*/
