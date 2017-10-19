@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class Add extends PureComponent {
   static propTypes = {
-    addItem: PropTypes.func.isRequired,
+    OnAddItem: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -14,13 +14,13 @@ export class Add extends PureComponent {
     });
   }
 
-  onChange = (event) => {
+  onChangeOfInput = (event) => {
     this.setState({
       inputValue: event.target.value,
     });
   };
-  addItem = () => {
-    this.props.addItem(this.state.inputValue);
+  OnAddItem = () => {
+    this.props.OnAddItem(this.state.inputValue);
     this.setState({
       inputValue: '',
     });
@@ -33,13 +33,13 @@ export class Add extends PureComponent {
           <input
             className="form-control"
             value={this.state.inputValue}
-            onChange={this.onChange}
+            onChange={this.onChangeOfInput}
           />
         </div>
         <button
           type="button"
           className="btn btn-light"
-          onClick={this.addItem}
+          onClick={this.OnAddItem}
         >
           Add
         </button>
