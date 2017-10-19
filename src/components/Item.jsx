@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { PlainText } from './PlainText';
+import { EditedText } from './EditedText';
 
 export class Item extends PureComponent {
   static propTypes = {
@@ -50,33 +51,13 @@ export class Item extends PureComponent {
     return (
       <li className="list-group-item">
         {(this.props.item.isEdited) ?
-          <div>
-            <div className="col-xs-4">
-              <input
-                className="form-control"
-                value={this.state.text}
-                onChange={this.onChange}
-              />
-            </div>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={this.onSaveItem}
-            >Save
-            </button>
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={this.onCancel}
-            >Cancel
-            </button>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={this.onDelete}
-            >Delete
-            </button>
-          </div> :
+          <EditedText
+            text={this.state.text}
+            onSaveItem={this.onSaveItem}
+            onDelete={this.onDelete}
+            onCancel={this.onCancel}
+            onChange={this.onChange}
+          /> :
           <div onClick={this.onClick}>
             <PlainText
               index={this.props.index + 1}
