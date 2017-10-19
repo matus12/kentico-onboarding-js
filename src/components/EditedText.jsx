@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export class EditedText extends PureComponent {
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSaveItem: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+  }
+
   render() {
     return (
       <div>
