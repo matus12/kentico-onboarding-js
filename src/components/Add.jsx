@@ -2,6 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export class Add extends PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    handleAdd: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -43,8 +48,3 @@ export class Add extends PureComponent {
     );
   }
 }
-
-Add.propTypes = {
-  handleOnChange: PropTypes.func.isRequired,
-  handleAdd: PropTypes.func.isRequired,
-};
