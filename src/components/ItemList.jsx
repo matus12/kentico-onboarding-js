@@ -2,19 +2,31 @@ import React, { PureComponent } from 'react';
 import { ListItem } from './ListItem';
 import { Add } from './Add';
 import PropTypes from 'prop-types';
-const Guid = require('guid');
+import * as Guid from 'guid';
+
+// const Guid = require('guid');
 
 export class ItemList extends PureComponent {
+  static propTypes = {
+    values: PropTypes.array.isRequired,
+  };
+
   constructor(props) {
     super();
     this.state = {
-      values: props.values.map((val) => ({ id: this.generateID(), text: val, textBackup: val, isEdited: false })),
+      values: props.values.map((val) => ({
+        id: this.generateID(),
+        text: val,
+        textBackup: val,
+        isEdited: false,
+      })),
       inputValue: '',
     };
   }
-  generateID = () => {
-    return Guid.create().value;
-  };
+
+  generateID = () =>
+    Guid.create().value;
+
   handleChangeOfInputText = (value) => {
     this.setState({
       inputValue: value,
@@ -22,18 +34,28 @@ export class ItemList extends PureComponent {
   };
   handleAdd = (value) => {
     if (value !== '') {
-      const newValues = [...this.state.values, { id: this.generateID(), text: value, textBackup: value, isEdited: false }];
+      const newValues = [
+        ...this.state.values, {
+          id: this.generateID(),
+          text: value,
+          textBackup: value,
+          isEdited: false,
+        },
+      ];
       this.setState({
         values: newValues,
-        inputValue: '' });
+        inputValue: '',
+      });
     }
   };
+
   handleDelete = (index) => {
     const newArray = this.state.values.filter((value, i) => i !== index);
     this.setState({
       values: newArray,
     });
   };
+
   handleSaveText = (index, text) => {
     const newArray = [...this.state.values];
     newArray[index].text = text;
@@ -42,6 +64,7 @@ export class ItemList extends PureComponent {
       values: newArray,
     });
   };
+
   handleCancel = (index) => {
     const newArray = [...this.state.values];
     newArray[index].text = this.state.values[index].textBackup;
@@ -49,6 +72,7 @@ export class ItemList extends PureComponent {
       values: newArray,
     });
   };
+
   handleEditableState = (index, editable) => {
     const newValues = [...this.state.values];
     newValues[index].isEdited = editable;
@@ -56,12 +80,16 @@ export class ItemList extends PureComponent {
       values: newValues,
     });
   };
+
   render() {
     return (
       <ul className="list-group">
         {this.state.values.map((val, index) =>
           <ListItem
-            key={val.id} editable={val.isEdited} text={val.text} index={index}
+            key={val.id}
+            editable={val.isEdited}
+            text={val.text}
+            index={index}
             actionDelete={this.handleDelete}
             onItemSaved={this.handleSaveText}
             handleEditableState={this.handleEditableState}
@@ -76,7 +104,3 @@ export class ItemList extends PureComponent {
     );
   }
 }
-
-ItemList.propTypes = {
-  values: PropTypes.array.isRequired,
-};
