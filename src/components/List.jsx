@@ -3,7 +3,7 @@ import { AddItem } from './AddItem';
 import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
-import { Item } from './ListItem';
+import { Item } from './Item';
 
 export class List extends PureComponent {
   constructor(props) {
