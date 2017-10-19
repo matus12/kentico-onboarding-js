@@ -20,7 +20,7 @@ export class Item extends PureComponent {
   }
 
   onDelete = () => {
-    this.props.actionDelete(this.props.index);
+    this.props.actionDelete(this.props.item.id);
   };
 
   onSaveItem = () => {

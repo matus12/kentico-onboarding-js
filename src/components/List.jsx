@@ -37,8 +37,8 @@ export class List extends PureComponent {
     }
   };
 
-  onDeleteItem = (index) => {
-    const newArray = this.state.items.filter((value, i) => i !== index);
+  onDeleteItem = (id) => {
+    const newArray = this.state.items.filter((item) => item.id !== id);
     this.setState({
       items: newArray,
     });
