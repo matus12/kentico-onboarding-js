@@ -7,14 +7,13 @@ export class ListItem extends PureComponent {
     setIsEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
-    item: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      text: props.item.text,
-      textBackup: props.item.text,
+      text: props.text,
+      textBackup: props.text,
     };
   }
 
@@ -77,7 +76,7 @@ export class ListItem extends PureComponent {
             >Delete
             </button>
           </div> :
-          <div onClick={this.onClick}>{this.state.text}</div>}
+          <div onClick={this.onClick}>{this.props.index + 1}. {this.state.text}</div>}
       </li>
     );
   }

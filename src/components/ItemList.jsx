@@ -78,6 +78,8 @@ export class ItemList extends PureComponent {
         {this.state.items.map((item, index) =>
           <ListItem
             key={item.id}
+            isEdited={item.isEdited}
+            text={item.text}
             item={item}
             index={index}
             actionDelete={this.onDeleteItem}

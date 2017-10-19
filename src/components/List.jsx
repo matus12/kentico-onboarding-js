@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-
+import { Add } from './Add';
+import { generateId } from '../utils/generateId';
+import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
 import { ItemList } from './ItemList';
 
@@ -8,7 +10,7 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      items: ['Make a coffee', 'Master ReactJS', 'Learn ReduxJS', 'Help making Kentico Cloud awesome!'],
+      items: generateList(),
     };
   }
 
