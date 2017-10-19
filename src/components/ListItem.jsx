@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 
 export class ListItem extends PureComponent {
   static propTypes = {
-    text: PropTypes.string.isRequired,
     onSaveItem: PropTypes.func.isRequired,
     setIsEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
-    isEdited: PropTypes.bool.isRequired,
+    item: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      text: props.text,
-      textBackup: props.text,
+      text: props.item.text,
+      textBackup: props.item.text,
     };
   }
 
@@ -50,7 +49,7 @@ export class ListItem extends PureComponent {
   render() {
     return (
       <li className="list-group-item">
-        {(this.props.isEdited) ?
+        {(this.props.item.isEdited) ?
           <div>
             <div className="col-xs-4">
               <input
