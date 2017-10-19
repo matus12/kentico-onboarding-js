@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import { ListItem } from './ListItem';
 import { Add } from './Add';
 import PropTypes from 'prop-types';
-import * as Guid from 'guid';
-
-// const Guid = require('guid');
+import { generateId } from '../utils/generateId';
 
 export class ItemList extends PureComponent {
   static propTypes = {
@@ -15,7 +13,7 @@ export class ItemList extends PureComponent {
     super();
     this.state = {
       values: props.values.map((val) => ({
-        id: this.generateID(),
+        id: generateId(),
         text: val,
         textBackup: val,
         isEdited: false,
@@ -24,14 +22,11 @@ export class ItemList extends PureComponent {
     };
   }
 
-  generateID = () =>
-    Guid.create().value;
-
   onAddItem = (value) => {
     if (value !== '') {
       const newValues = [
         ...this.state.values, {
-          id: this.generateID(),
+          id: this.generateId,
           text: value,
           textBackup: value,
           isEdited: false,
