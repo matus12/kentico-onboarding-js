@@ -11,7 +11,7 @@ export class ListItem extends PureComponent {
   }
   handleDelete = () => {
     this.props.actionDelete(this.props.index);
-  }
+  };
   handleSave = () => {
     this.setState({
       textBackup: this.state.text,
