@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Add } from './Add';
+import { AddItem } from './Add';
 import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
@@ -92,7 +92,7 @@ export class List extends PureComponent {
                 setIsEdited={this.setIsEdited}
                 onCancel={this.onCancel}
               />)}
-            <Add
+            <AddItem
               value={this.state.inputText}
               onAddItem={this.onAddItem}
             />

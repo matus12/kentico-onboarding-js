@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export class Add extends PureComponent {
+export class AddItem extends PureComponent {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
   };
