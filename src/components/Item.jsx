@@ -28,7 +28,7 @@ export class Item extends PureComponent {
       textBackup: this.state.text,
     });
     this.props.onSaveItem(this.props.item.id, this.state.text);
-    this.props.setIsEdited(this.props.index, false);
+    this.props.setIsEdited(this.props.item.id, false);
   };
 
   onCancel = () => {
@@ -36,7 +36,7 @@ export class Item extends PureComponent {
       text: this.state.textBackup,
     });
     this.props.onCancel(this.props.item.id);
-    this.props.setIsEdited(this.props.index, false);
+    this.props.setIsEdited(this.props.item.id, false);
   };
 
   onChange = (event) => {
@@ -44,7 +44,7 @@ export class Item extends PureComponent {
   };
 
   onClick = () => {
-    this.props.setIsEdited(this.props.index, true);
+    this.props.setIsEdited(this.props.item.id, true);
   };
 
   render() {

@@ -72,11 +72,20 @@ export class List extends PureComponent {
     );
   };
 
-  setIsEdited = (index, isEdited) => {
-    const newValues = [...this.state.items];
-    newValues[index].isEdited = isEdited;
+  setIsEdited = (id, edited) => {
+    const newArray = this.state.items.map((item) => (
+        item.id === id ?
+          ({
+            id: item.id,
+            text: this.state.text,
+            textBackup: this.state.textBackup,
+            isEdited: edited,
+          }) :
+          item
+      )
+    );
     this.setState({
-      items: newValues,
+      items: newArray,
     });
   };
 
