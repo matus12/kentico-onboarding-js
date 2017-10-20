@@ -8,7 +8,7 @@ export class EditedText extends PureComponent {
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     return (

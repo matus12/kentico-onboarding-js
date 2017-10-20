@@ -46,14 +46,14 @@ export class List extends PureComponent {
 
   onSaveItem = (id, newText) => {
     this.state.items.map((item) => (
-      item.id === id ?
-        ({
-          id: item.id,
-          text: newText,
-          textBackup: newText,
-          isEdited: false,
-        }) :
-        item
+        item.id === id ?
+          ({
+            id: item.id,
+            text: newText,
+            textBackup: newText,
+            isEdited: false,
+          }) :
+          item
       )
     );
   };
