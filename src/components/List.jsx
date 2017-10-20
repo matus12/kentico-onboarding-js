@@ -10,10 +10,10 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      items: generateList().map((val) => ({
+      items: generateList().map((itemText) => ({
         id: generateId(),
-        text: val,
-        textBackup: val,
+        text: itemText,
+        textBackup: itemText,
         isEdited: false,
       })),
       inputValue: '',
