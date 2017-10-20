@@ -9,13 +9,14 @@ export class Item extends PureComponent {
     setIsEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
+    item: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      text: props.text,
-      textBackup: props.text,
+      text: props.item.text,
+      textBackup: props.item.text,
     };
   }
 
