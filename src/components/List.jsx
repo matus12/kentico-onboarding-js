@@ -13,8 +13,6 @@ export class List extends PureComponent {
       items: generateList().map((itemText) => ({
         id: generateId(),
         text: itemText,
-        textBackup: itemText,
-        isEdited: false,
       })),
       inputValue: '',
     };
@@ -26,8 +24,6 @@ export class List extends PureComponent {
         ...this.state.items, {
           id: generateId(),
           text: value,
-          textBackup: value,
-          isEdited: false,
         },
       ];
       this.setState({
@@ -39,51 +35,6 @@ export class List extends PureComponent {
 
   onDeleteItem = (id) => {
     const newArray = this.state.items.filter((item) => item.id !== id);
-    this.setState({
-      items: newArray,
-    });
-  };
-
-  onSaveItem = (id, newText) => {
-    this.state.items.map((item) => (
-        item.id === id ?
-          ({
-            id: item.id,
-            text: newText,
-            textBackup: newText,
-            isEdited: false,
-          }) :
-          item
-      )
-    );
-  };
-
-  onCancel = (id) => {
-    this.state.items.map((item) => (
-        item.id === id ?
-          ({
-            id: item.id,
-            text: this.state.textBackup,
-            textBackup: this.state.textBackup,
-            isEdited: false,
-          }) :
-          item
-      )
-    );
-  };
-
-  setIsEdited = (id, edited) => {
-    const newArray = this.state.items.map((item) => (
-        item.id === id ?
-          ({
-            id: item.id,
-            text: this.state.text,
-            textBackup: this.state.textBackup,
-            isEdited: edited,
-          }) :
-          item
-      )
-    );
     this.setState({
       items: newArray,
     });
@@ -106,9 +57,6 @@ export class List extends PureComponent {
                 item={item}
                 index={index}
                 actionDelete={this.onDeleteItem}
-                onSaveItem={this.onSaveItem}
-                setIsEdited={this.setIsEdited}
-                onCancel={this.onCancel}
               />)}
             <AddItem
               value={this.state.inputText}

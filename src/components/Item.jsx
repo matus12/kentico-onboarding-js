@@ -5,8 +5,6 @@ import { EditedText } from './EditedText';
 
 export class Item extends PureComponent {
   static propTypes = {
-    onSaveItem: PropTypes.func.isRequired,
-    setIsEdited: PropTypes.func.isRequired,
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.object.isRequired,
@@ -17,6 +15,7 @@ export class Item extends PureComponent {
     this.state = {
       text: props.item.text,
       textBackup: props.item.text,
+      isEdited: false,
     };
   }
 
@@ -24,20 +23,19 @@ export class Item extends PureComponent {
     this.props.actionDelete(this.props.item.id);
   };
 
-  onSaveItem = () => {
+  onSaveItem = (savedText) => {
     this.setState({
-      textBackup: this.state.text,
+      text: savedText,
+      textBackup: savedText,
+      isEdited: false,
     });
-    this.props.onSaveItem(this.props.item.id, this.state.text);
-    this.props.setIsEdited(this.props.item.id, false);
   };
 
   onCancel = () => {
     this.setState({
       text: this.state.textBackup,
+      isEdited: false,
     });
-    this.props.onCancel(this.props.item.id);
-    this.props.setIsEdited(this.props.item.id, false);
   };
 
   onChange = (event) => {
@@ -45,13 +43,15 @@ export class Item extends PureComponent {
   };
 
   onClick = () => {
-    this.props.setIsEdited(this.props.item.id, true);
+    this.setState({
+      isEdited: true,
+    });
   };
 
   render() {
     return (
       <li className="list-group-item">
-        {(this.props.item.isEdited) ?
+        {(this.state.isEdited) ?
           <EditedText
             text={this.state.text}
             onSaveItem={this.onSaveItem}
