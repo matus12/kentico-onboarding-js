@@ -44,13 +44,18 @@ export class List extends PureComponent {
     });
   };
 
-  onSaveItem = (index, text) => {
-    const newArray = [...this.state.items];
-    newArray[index].text = text;
-    newArray[index].textBackup = text;
-    this.setState({
-      items: newArray,
-    });
+  onSaveItem = (id, newText) => {
+    this.state.items.map((item) => (
+      item.id === id ?
+        ({
+          id: item.id,
+          text: newText,
+          textBackup: newText,
+          isEdited: false,
+        }) :
+        item
+      )
+    );
   };
 
   onCancel = (index) => {

@@ -27,7 +27,7 @@ export class Item extends PureComponent {
     this.setState({
       textBackup: this.state.text,
     });
-    this.props.onSaveItem(this.props.index, this.state.text);
+    this.props.onSaveItem(this.props.item.id, this.state.text);
     this.props.setIsEdited(this.props.index, false);
   };
 
