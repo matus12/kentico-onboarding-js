@@ -35,7 +35,7 @@ export class Item extends PureComponent {
     this.setState({
       text: this.state.textBackup,
     });
-    this.props.onCancel(this.props.index);
+    this.props.onCancel(this.props.item.id);
     this.props.setIsEdited(this.props.index, false);
   };
 

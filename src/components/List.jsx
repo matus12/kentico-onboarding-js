@@ -58,12 +58,18 @@ export class List extends PureComponent {
     );
   };
 
-  onCancel = (index) => {
-    const newArray = [...this.state.items];
-    newArray[index].text = this.state.items[index].textBackup;
-    this.setState({
-      items: newArray,
-    });
+  onCancel = (id) => {
+    this.state.items.map((item) => (
+        item.id === id ?
+          ({
+            id: item.id,
+            text: this.state.textBackup,
+            textBackup: this.state.textBackup,
+            isEdited: false,
+          }) :
+          item
+      )
+    );
   };
 
   setIsEdited = (index, isEdited) => {
