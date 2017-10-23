@@ -42,7 +42,8 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.onSaveItem}
-        >Save
+        >
+          Save
         </button>
         <button
           type="button"
