@@ -72,7 +72,6 @@ export class List extends PureComponent {
                 onSaveItem={this.onSaveItem}
               />)}
             <AddItem
-              value={this.state.inputText}
               onAddItem={this.onAddItem}
             />
           </ul>
