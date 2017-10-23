@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export class EditedText extends PureComponent {
+export class EditedItem extends PureComponent {
   static propTypes = {
     text: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,

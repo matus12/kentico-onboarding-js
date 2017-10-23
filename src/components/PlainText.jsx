@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export class PlainText extends PureComponent {
+export class PlainItem extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { PlainText } from './PlainText';
-import { EditedText } from './EditedText';
+import { PlainItem } from './PlainText';
+import { EditedItem } from './EditedText';
 
 export class Item extends PureComponent {
   static propTypes = {
@@ -52,7 +52,7 @@ export class Item extends PureComponent {
     return (
       <li className="list-group-item">
         {(this.state.isEdited) ?
-          <EditedText
+          <EditedItem
             text={this.state.text}
             onSaveItem={this.onSaveItem}
             onDelete={this.onDelete}
@@ -60,7 +60,7 @@ export class Item extends PureComponent {
             onChange={this.onChange}
           /> :
           <div onClick={this.onClick}>
-            <PlainText
+            <PlainItem
               index={this.props.index + 1}
               text={this.state.text}
             />
