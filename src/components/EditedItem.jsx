@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
-    text: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
@@ -14,7 +13,7 @@ export class EditedItem extends PureComponent {
     super(props);
 
     this.state = {
-      editedText: props.text,
+      editedText: props.item.text,
     };
   }
 

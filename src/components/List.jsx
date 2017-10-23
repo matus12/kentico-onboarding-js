@@ -40,6 +40,21 @@ export class List extends PureComponent {
     });
   };
 
+  onSaveItem = (id, savedText) => {
+    const newArray = this.state.items.map((item) =>
+      ((item.id !== id) ?
+          item :
+          ({
+            id: item.id,
+            text: savedText,
+          })
+      )
+    );
+    this.setState({
+      items: newArray,
+    });
+  };
+
   render() {
     return (
       <div className="row">
@@ -56,6 +71,7 @@ export class List extends PureComponent {
                 item={item}
                 index={index}
                 actionDelete={this.onDeleteItem}
+                onSaveItem={this.onSaveItem}
               />)}
             <AddItem
               value={this.state.inputText}

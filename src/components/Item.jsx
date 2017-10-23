@@ -29,6 +29,10 @@ export class Item extends PureComponent {
       textBackup: savedText,
       isEdited: false,
     });
+    this.props.onSaveItem(
+      this.props.item.id,
+      savedText
+    );
   };
 
   onCancel = () => {
@@ -53,7 +57,7 @@ export class Item extends PureComponent {
       <li className="list-group-item">
         {(this.state.isEdited) ?
           <EditedItem
-            text={this.state.text}
+            item={this.props.item}
             onSaveItem={this.onSaveItem}
             onDelete={this.onDelete}
             onCancel={this.onCancel}
@@ -62,7 +66,7 @@ export class Item extends PureComponent {
           <div onClick={this.onClick}>
             <PlainItem
               index={this.props.index + 1}
-              text={this.state.text}
+              item={this.props.item}
             />
           </div>}
       </li>
