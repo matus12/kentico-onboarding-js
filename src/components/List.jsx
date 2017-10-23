@@ -17,12 +17,12 @@ export class List extends PureComponent {
     };
   }
 
-  onAddItem = (value) => {
-    if (value !== '') {
+  onAddItem = (newText) => {
+    if (newText !== '') {
       const newValues = [
         ...this.state.items, {
           id: generateId(),
-          text: value,
+          text: newText,
         },
       ];
       this.setState({

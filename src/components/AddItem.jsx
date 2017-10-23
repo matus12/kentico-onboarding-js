@@ -10,20 +10,20 @@ export class AddItem extends PureComponent {
     super(props);
 
     this.state = ({
-      inputValue: '',
+      inputText: '',
     });
   }
 
   onChangeOfInput = (event) => {
     this.setState({
-      inputValue: event.target.value,
+      inputText: event.target.value,
     });
   };
 
   onAddItem = () => {
-    this.props.onAddItem(this.state.inputValue);
+    this.props.onAddItem(this.state.inputText);
     this.setState({
-      inputValue: '',
+      inputText: '',
     });
   };
 
@@ -33,7 +33,7 @@ export class AddItem extends PureComponent {
         <div className="col-xs-4">
           <input
             className="form-control"
-            value={this.state.inputValue}
+            value={this.state.inputText}
             onChange={this.onChangeOfInput}
           />
         </div>
