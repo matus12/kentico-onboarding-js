@@ -7,7 +7,10 @@ export class Item extends PureComponent {
   static propTypes = {
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
-    item: PropTypes.object.isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.number,
+      text: PropTypes.string,
+    }),
   };
 
   constructor(props) {

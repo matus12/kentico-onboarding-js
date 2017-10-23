@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 export class PlainItem extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.number,
+      text: PropTypes.string,
+    }),
   };
 
   render() {
