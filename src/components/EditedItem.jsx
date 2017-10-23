@@ -23,9 +23,10 @@ export class EditedItem extends PureComponent {
       editedText: event.currentTarget.value,
     });
   };
+
   onSaveItem = () => {
     this.props.onSaveItem(this.state.editedText);
-  }
+  };
 
   render() {
     return (
