@@ -8,9 +8,9 @@ export class Item extends PureComponent {
     actionDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       text: PropTypes.string,
-    }),
+    }).isRequired,
   };
 
   constructor(props) {
@@ -66,12 +66,12 @@ export class Item extends PureComponent {
             onCancel={this.onCancel}
             onChange={this.onChange}
           /> :
-          <div onClick={this.onClick}>
-            <PlainItem
-              index={this.props.index + 1}
-              item={this.props.item}
-            />
-          </div>}
+          <PlainItem
+            index={this.props.index + 1}
+            item={this.props.item}
+            onClick={this.onClick}
+          />
+        }
       </li>
     );
   }

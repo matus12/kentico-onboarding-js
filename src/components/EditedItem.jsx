@@ -8,9 +8,9 @@ export class EditedItem extends PureComponent {
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     item: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       text: PropTypes.string,
-    }),
+    }).isRequired,
   };
 
   constructor(props) {
