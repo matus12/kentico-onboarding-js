@@ -14,7 +14,6 @@ export class List extends PureComponent {
         id: generateId(),
         text: itemText,
       })),
-      inputValue: '',
     };
   }
 
@@ -28,7 +27,6 @@ export class List extends PureComponent {
       ];
       this.setState({
         items: newValues,
-        inputValue: '',
       });
     }
   };
