@@ -4,75 +4,51 @@ import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
+import { OrderedMap } from 'immutable';
 
 export class List extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      items: this.generateItems(),
+      items: new OrderedMap(
+        generateList()
+          .map((itemText) => (
+            [
+              generateId(),
+              itemText,
+            ]
+            ),
+          ),
+      ),
     };
   }
 
-  generateItems = () =>
-    generateList()
-      .map((itemText) => ({
-        id: generateId(),
-        text: itemText,
-        isEdited: false,
-      }));
-
   addItem = (newText) => {
-    this.setState((prevState) => ({
-      items:
-      [
-        ...prevState.items,
-        {
-          id: generateId(),
-          text: newText,
-          isEdited: false,
-        },
-      ],
-    }));
+    this.setState((prevState) => {
+      return {
+        items: prevState.items
+          .set(generateId(), newText),
+      };
+    });
   };
 
   deleteItem = (id) => {
-    this.setState((prevState) => ({
-      items: prevState.items
-        .filter((item) => item.id !== id),
-    }));
+    this.setState((prevState) => {
+      return {
+        items: prevState.items
+          .delete(id),
+      };
+    });
   };
 
   saveItem = (id, savedText) => {
-    this.setState((prevState) => ({
-      items: prevState.items
-        .map((item) =>
-          ((item.id !== id)
-              ? item
-              : ({
-                id: item.id,
-                text: savedText,
-                isEdited: false,
-              })
-          ),
-        ),
-    }));
-  };
-
-  setIsEdited = (id, edited) => {
-    this.setState((prevState) => ({
-      items: prevState.items
-        .map((item) =>
-          ((item.id !== id)
-              ? item
-              : ({
-                id: item.id,
-                text: item.text,
-                isEdited: edited,
-              })
-          ),
-        ),
-    }));
+    this.setState((prevState) => {
+      return {
+        items: prevState.items
+          .set(id, savedText),
+      };
+    });
   };
 
   cancel = (id) => {
@@ -94,11 +70,12 @@ export class List extends PureComponent {
         <div className="col-sm-12 col-md-offset-2 col-md-8">
           <ul className="list-group">
             {this.state.items
-              .map((item, index) =>
+              .entrySeq()
+              .map(([uniqueKey, value], index) =>
                 <Item
-                  key={item.id}
-                  item={item}
-                  index={index + 1}
+                  key={uniqueKey}
+                  item={{ id: uniqueKey, text: value }}
+                  index={index}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
                   onCancel={this.cancel}
