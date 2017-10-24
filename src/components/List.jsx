@@ -19,9 +19,6 @@ export class List extends PureComponent {
   }
 
   addItem = (newText) => {
-    if (newText === '') {
-      return;
-    }
     const newValues = [
       ...this.state.items,
       {
