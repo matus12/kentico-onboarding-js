@@ -21,13 +21,13 @@ export class EditedItem extends PureComponent {
     };
   }
 
-  onChange = (event) => {
+  changeOfInput = (event) => {
     this.setState({
       editedText: event.currentTarget.value,
     });
   };
 
-  onSaveItem = () => {
+  saveItem = () => {
     this.props.onSaveItem(this.state.editedText);
   };
 
@@ -38,13 +38,13 @@ export class EditedItem extends PureComponent {
           <input
             className="form-control"
             value={this.state.editedText}
-            onChange={this.onChange}
+            onChange={this.changeOfInput}
           />
         </div>
         <button
           type="button"
           className="btn btn-primary"
-          onClick={this.onSaveItem}
+          onClick={this.saveItem}
         >
           Save
         </button>

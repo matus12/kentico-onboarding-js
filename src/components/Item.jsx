@@ -5,7 +5,7 @@ import { EditedItem } from './EditedItem';
 
 export class Item extends PureComponent {
   static propTypes = {
-    actionDelete: PropTypes.func.isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -22,11 +22,11 @@ export class Item extends PureComponent {
     };
   }
 
-  onDelete = () => {
-    this.props.actionDelete(this.props.item.id);
+  deleteItem = () => {
+    this.props.onDeleteItem(this.props.item.id);
   };
 
-  onSaveItem = (savedText) => {
+  saveItem = (savedText) => {
     this.setState({
       text: savedText,
       textBackup: savedText,
@@ -38,18 +38,18 @@ export class Item extends PureComponent {
     );
   };
 
-  onCancel = () => {
+  cancelChange = () => {
     this.setState({
       text: this.state.textBackup,
       isEdited: false,
     });
   };
 
-  onChange = (event) => {
+  changeOfInput = (event) => {
     this.setState({ text: event.target.value });
   };
 
-  onClick = () => {
+  clickedOnText = () => {
     this.setState({
       isEdited: true,
     });
@@ -61,15 +61,16 @@ export class Item extends PureComponent {
         {(this.state.isEdited) ?
           <EditedItem
             item={this.props.item}
-            onSaveItem={this.onSaveItem}
-            onDelete={this.onDelete}
-            onCancel={this.onCancel}
-            onChange={this.onChange}
+            index={this.props.index + 1}
+            onSaveItem={this.saveItem}
+            onDelete={this.deleteItem}
+            onCancel={this.cancelChange}
+            onChange={this.changeOfInput}
           /> :
           <PlainItem
             index={this.props.index + 1}
             item={this.props.item}
-            onClick={this.onClick}
+            onClick={this.clickedOnText}
           />
         }
       </li>

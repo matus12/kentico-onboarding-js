@@ -18,7 +18,7 @@ export class List extends PureComponent {
     };
   }
 
-  onAddItem = (newText) => { // addItem
+  addItem = (newText) => {
     if (newText !== '') {
       const newValues = [
         ...this.state.items,
@@ -33,7 +33,7 @@ export class List extends PureComponent {
     }
   };
 
-  onDeleteItem = (id) => {
+  deleteItem = (id) => {
     const newArray = this.state.items
       .filter((item) => item.id !== id);
     this.setState({
@@ -41,7 +41,7 @@ export class List extends PureComponent {
     });
   };
 
-  onSaveItem = (id, savedText) => {
+  saveItem = (id, savedText) => {
     const newArray = this.state.items
       .map((item) =>
         ((item.id !== id) ?
@@ -67,16 +67,17 @@ export class List extends PureComponent {
         </div>
         <div className="col-sm-12 col-md-offset-2 col-md-8">
           <ul className="list-group">
-            {this.state.items.map((item, index) =>
-              <Item
-                key={item.id}
-                item={item}
-                index={index}
-                actionDelete={this.onDeleteItem}
-                onSaveItem={this.onSaveItem}
-              />)}
+            {this.state.items
+              .map((item, index) =>
+                <Item
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  onDeleteItem={this.deleteItem}
+                  onSaveItem={this.saveItem}
+                />)}
             <AddItem
-              onAddItem={this.onAddItem}
+              onAddItem={this.addItem}
             />
           </ul>
         </div>
