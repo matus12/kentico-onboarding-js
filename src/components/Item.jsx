@@ -6,6 +6,7 @@ import { EditedItem } from './EditedItem';
 export class Item extends PureComponent {
   static propTypes = {
     onDeleteItem: PropTypes.func.isRequired,
+    onSaveItem: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,

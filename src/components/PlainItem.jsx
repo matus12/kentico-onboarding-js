@@ -14,7 +14,7 @@ export class PlainItem extends PureComponent {
   render() {
     return (
       <div onClick={this.props.onClick}>
-        {this.props.index}. {this.props.item.text}
+        {this.props.index + '. ' + this.props.item.text}
       </div>
     );
   }

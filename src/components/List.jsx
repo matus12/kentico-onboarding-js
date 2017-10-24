@@ -77,7 +77,9 @@ export class List extends PureComponent {
                   index={index}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
-                />)}
+                />,
+              )
+            }
             <AddItem
               onAddItem={this.addItem}
             />

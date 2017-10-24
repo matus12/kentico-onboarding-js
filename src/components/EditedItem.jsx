@@ -7,6 +7,7 @@ export class EditedItem extends PureComponent {
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string,
