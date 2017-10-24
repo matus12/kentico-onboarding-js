@@ -14,13 +14,13 @@ export class AddItem extends PureComponent {
     });
   }
 
-  onChangeOfInput = (event) => {
+  changeOfInput = (event) => {
     this.setState({
       inputText: event.target.value,
     });
   };
 
-  onAddItem = () => {
+  addItem = () => {
     this.props.onAddItem(this.state.inputText);
     this.setState({
       inputText: '',
@@ -34,16 +34,27 @@ export class AddItem extends PureComponent {
           <input
             className="form-control"
             value={this.state.inputText}
-            onChange={this.onChangeOfInput}
+            onChange={this.changeOfInput}
+            required
           />
         </div>
-        <button
-          type="button"
-          className="btn btn-light"
-          onClick={this.onAddItem}
-        >
-          Add
-        </button>
+        {(this.state.inputText === '') ?
+          <button
+            type="button"
+            title="Please fill out the field"
+            className="btn btn-light"
+            disabled
+          >
+            Add
+          </button> :
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={this.addItem}
+          >
+            Add
+          </button>
+        }
       </li>
     );
   }

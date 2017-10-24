@@ -19,7 +19,7 @@ export class List extends PureComponent {
   }
 
   addItem = (newText) => {
-    if (newText !== '') {
+    if (newText === '') {
       return;
     }
     const newValues = [

@@ -43,16 +43,28 @@ export class EditedItem extends PureComponent {
               className="form-control"
               value={this.state.editedText}
               onChange={this.changeOfInput}
+              required
             />
           </div>
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this.saveItem}
-        >
-          Save
-        </button>
+        {(this.state.editedText !== '') ?
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.saveItem}
+          >
+            Save
+          </button> :
+          <button
+            type="button"
+            className="btn btn-primary"
+            title="Please fill out the field"
+            disabled
+          >
+            Save
+          </button>
+        }
+
         <button
           type="button"
           className="btn btn-light"
