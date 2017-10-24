@@ -20,17 +20,18 @@ export class List extends PureComponent {
 
   addItem = (newText) => {
     if (newText !== '') {
-      const newValues = [
-        ...this.state.items,
-        {
-          id: generateId(),
-          text: newText,
-        },
-      ];
-      this.setState({
-        items: newValues,
-      });
+      return;
     }
+    const newValues = [
+      ...this.state.items,
+      {
+        id: generateId(),
+        text: newText,
+      },
+    ];
+    this.setState({
+      items: newValues,
+    });
   };
 
   deleteItem = (id) => {
