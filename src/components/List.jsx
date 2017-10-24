@@ -19,39 +19,43 @@ export class List extends PureComponent {
   }
 
   addItem = (newText) => {
-    const newValues = [
-      ...this.state.items,
-      {
-        id: generateId(),
-        text: newText,
-      },
-    ];
-    this.setState({
-      items: newValues,
+    this.setState((prevState) => {
+      return {
+        items:
+        [
+          ...prevState.items,
+          {
+            id: generateId(),
+            text: newText,
+          },
+        ],
+      };
     });
   };
 
   deleteItem = (id) => {
-    const newArray = this.state.items
-      .filter((item) => item.id !== id);
-    this.setState({
-      items: newArray,
+    this.setState((prevState) => {
+      return {
+        items: prevState.items
+          .filter((item) => item.id !== id),
+      };
     });
   };
 
   saveItem = (id, savedText) => {
-    const newArray = this.state.items
-      .map((item) =>
-        ((item.id !== id) ?
-            item :
-            ({
-              id: item.id,
-              text: savedText,
-            })
-        ),
-      );
-    this.setState({
-      items: newArray,
+    this.setState((prevState) => {
+      return {
+        items: prevState.items
+          .map((item) =>
+            ((item.id !== id) ?
+                item :
+                ({
+                  id: item.id,
+                  text: savedText,
+                })
+            ),
+          ),
+      };
     });
   };
 
