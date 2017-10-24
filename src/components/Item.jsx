@@ -34,7 +34,7 @@ export class Item extends PureComponent {
     });
     this.props.onSaveItem(
       this.props.item.id,
-      savedText
+      savedText,
     );
   };
 

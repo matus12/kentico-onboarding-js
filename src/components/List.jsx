@@ -10,17 +10,19 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      items: generateList().map((itemText) => ({
-        id: generateId(),
-        text: itemText,
-      })),
+      items: generateList()
+        .map((itemText) => ({
+          id: generateId(),
+          text: itemText,
+        })),
     };
   }
 
-  onAddItem = (newText) => {
+  onAddItem = (newText) => { // addItem
     if (newText !== '') {
       const newValues = [
-        ...this.state.items, {
+        ...this.state.items,
+        {
           id: generateId(),
           text: newText,
         },
@@ -32,22 +34,24 @@ export class List extends PureComponent {
   };
 
   onDeleteItem = (id) => {
-    const newArray = this.state.items.filter((item) => item.id !== id);
+    const newArray = this.state.items
+      .filter((item) => item.id !== id);
     this.setState({
       items: newArray,
     });
   };
 
   onSaveItem = (id, savedText) => {
-    const newArray = this.state.items.map((item) =>
-      ((item.id !== id) ?
-          item :
-          ({
-            id: item.id,
-            text: savedText,
-          })
-      )
-    );
+    const newArray = this.state.items
+      .map((item) =>
+        ((item.id !== id) ?
+            item :
+            ({
+              id: item.id,
+              text: savedText,
+            })
+        ),
+      );
     this.setState({
       items: newArray,
     });
