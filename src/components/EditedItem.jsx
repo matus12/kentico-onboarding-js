@@ -33,13 +33,18 @@ export class EditedItem extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="row">
         <div className="col-xs-4">
-          <input
-            className="form-control"
-            value={this.state.editedText}
-            onChange={this.changeOfInput}
-          />
+          <div className="input-group">
+            <span className="input-group-addon">
+              {this.props.index}.
+            </span>
+            <input
+              className="form-control"
+              value={this.state.editedText}
+              onChange={this.changeOfInput}
+            />
+          </div>
         </div>
         <button
           type="button"
