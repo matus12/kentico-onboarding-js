@@ -22,7 +22,7 @@ export class EditedItem extends PureComponent {
     };
   }
 
-  changeOfInput = (event) => {
+  inputChange = (event) => {
     this.setState({
       editedText: event.currentTarget.value,
     });
@@ -43,7 +43,7 @@ export class EditedItem extends PureComponent {
             <input
               className="form-control"
               value={this.state.editedText}
-              onChange={this.changeOfInput}
+              onChange={this.inputChange}
               required
             />
           </div>
@@ -70,13 +70,15 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-light"
           onClick={this.props.onCancel}
-        >Cancel
+        >
+          Cancel
         </button>
         <button
           type="button"
           className="btn btn-danger"
           onClick={this.props.onDelete}
-        >Delete
+        >
+          Delete
         </button>
       </div>
     );
