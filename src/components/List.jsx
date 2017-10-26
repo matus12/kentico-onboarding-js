@@ -14,6 +14,7 @@ export class List extends PureComponent {
         .map((itemText) => ({
           id: generateId(),
           text: itemText,
+          isEdited: false,
         })),
     };
   }
@@ -26,6 +27,7 @@ export class List extends PureComponent {
         {
           id: generateId(),
           text: newText,
+          isEdited: false,
         },
       ],
     }));
@@ -47,6 +49,23 @@ export class List extends PureComponent {
               ({
                 id: item.id,
                 text: savedText,
+                isEdited: false,
+              })
+          ),
+        ),
+    }));
+  };
+
+  setIsEdited = (id, edited) => {
+    this.setState((prevState) => ({
+      items: prevState.items
+        .map((item) =>
+          ((item.id !== id) ?
+              item :
+              ({
+                id: item.id,
+                text: item.text,
+                isEdited: edited,
               })
           ),
         ),
@@ -71,6 +90,7 @@ export class List extends PureComponent {
                   index={index + 1}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
+                  setIsEdited={this.setIsEdited}
                 />,
               )
             }

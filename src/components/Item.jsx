@@ -7,28 +7,20 @@ export class Item extends PureComponent {
   static propTypes = {
     onDeleteItem: PropTypes.func.isRequired,
     onSaveItem: PropTypes.func.isRequired,
+    setIsEdited: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string,
+      isEdited: PropTypes.bool,
     }).isRequired,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEdited: false,
-    };
-  }
 
   deleteItem = () => {
     this.props.onDeleteItem(this.props.item.id);
   };
 
   saveItem = (savedText) => {
-    this.setState({
-      isEdited: false,
-    });
     this.props.onSaveItem(
       this.props.item.id,
       savedText,
@@ -36,21 +28,23 @@ export class Item extends PureComponent {
   };
 
   cancelChange = () => {
-    this.setState({
-      isEdited: false,
-    });
+    this.props.setIsEdited(
+      this.props.item.id,
+      false
+    );
   };
 
   clickedOnText = () => {
-    this.setState({
-      isEdited: true,
-    });
+    this.props.setIsEdited(
+      this.props.item.id,
+      true
+    );
   };
 
   render() {
     return (
       <li className="list-group-item">
-        {(this.state.isEdited) ?
+        {(this.props.item.isEdited) ?
           <EditedItem
             item={this.props.item}
             index={this.props.index}
