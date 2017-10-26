@@ -28,6 +28,7 @@ export class AddItem extends PureComponent {
   };
 
   render() {
+    const isInputValid = !!this.state.inputText;
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
@@ -38,23 +39,15 @@ export class AddItem extends PureComponent {
             required
           />
         </div>
-        {(this.state.inputText === '') ?
-          <button
-            type="button"
-            title="Please fill out the field"
-            className="btn btn-light"
-            disabled
-          >
-            Add
-          </button> :
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={this.addItem}
-          >
-            Add
-          </button>
-        }
+        <button
+          type="button"
+          title="Please fill out the field"
+          className="btn btn-light"
+          disabled={!isInputValid}
+          onClick={this.addItem}
+        >
+          Add
+        </button>
       </li>
     );
   }

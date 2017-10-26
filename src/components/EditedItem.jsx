@@ -33,6 +33,7 @@ export class EditedItem extends PureComponent {
   };
 
   render() {
+    const isInputValid = !!this.state.editedText;
     return (
       <div className="row">
         <div className="col-xs-4">
@@ -48,23 +49,14 @@ export class EditedItem extends PureComponent {
             />
           </div>
         </div>
-        {(this.state.editedText !== '') ?
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.saveItem}
-          >
-            Save
-          </button> :
-          <button
-            type="button"
-            className="btn btn-primary"
-            title="Please fill out the field"
-            disabled
-          >
-            Save
-          </button>
-        }
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.saveItem}
+          disabled={!isInputValid}
+        >
+          Save
+        </button>
 
         <button
           type="button"
