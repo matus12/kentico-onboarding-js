@@ -10,14 +10,18 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      items: generateList()
-        .map((itemText) => ({
-          id: generateId(),
-          text: itemText,
-          isEdited: false,
-        })),
+      items: this.generateItems(),
     };
   }
+
+  generateItems = () =>
+    generateList()
+      .map((itemText) => ({
+        id: generateId(),
+        text: itemText,
+        isEdited: false,
+      }));
+
 
   isInputValid = (inputText) =>
     (!!inputText && inputText.match(/\w/));
