@@ -17,8 +17,6 @@ export class Item extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      text: props.item.text,
-      textBackup: props.item.text,
       isEdited: false,
     };
   }
@@ -29,8 +27,6 @@ export class Item extends PureComponent {
 
   saveItem = (savedText) => {
     this.setState({
-      text: savedText,
-      textBackup: savedText,
       isEdited: false,
     });
     this.props.onSaveItem(
@@ -41,13 +37,8 @@ export class Item extends PureComponent {
 
   cancelChange = () => {
     this.setState({
-      text: this.state.textBackup,
       isEdited: false,
     });
-  };
-
-  changeOfInput = (event) => {
-    this.setState({ text: event.target.value });
   };
 
   clickedOnText = () => {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
