@@ -42,7 +42,9 @@ export class EditedItem extends PureComponent {
               {this.props.index}.
             </span>
             <input
-              className={this.props.chooseFormStyle(this.state.editedText)}
+              className={this.props
+                .chooseFormStyle(
+                  this.state.editedText)}
               value={this.state.editedText}
               onChange={this.inputChange}
             />
@@ -52,7 +54,9 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          disabled={!this.props.isInputValid(this.state.editedText)}
+          disabled={!this.props
+            .isInputValid(
+              this.state.editedText)}
         >
           Save
         </button>
