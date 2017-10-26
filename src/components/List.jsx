@@ -19,8 +19,11 @@ export class List extends PureComponent {
     };
   }
 
+  isInputValid = (inputText) =>
+    (!!inputText && inputText.match(/\w/));
+
   chooseFormStyle = (inputText) => (
-    (!!inputText && inputText.match(/\w/)) ?
+    this.isInputValid(inputText) ?
       'form-control' :
       'form-control2'
   );
@@ -98,12 +101,14 @@ export class List extends PureComponent {
                   onSaveItem={this.saveItem}
                   setIsEdited={this.setIsEdited}
                   chooseFormStyle={this.chooseFormStyle}
+                  isInputValid={this.isInputValid}
                 />,
               )
             }
             <AddItem
               onAddItem={this.addItem}
               chooseFormStyle={this.chooseFormStyle}
+              isInputValid={this.isInputValid}
             />
           </ul>
         </div>

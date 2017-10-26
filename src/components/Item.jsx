@@ -9,6 +9,7 @@ export class Item extends PureComponent {
     onSaveItem: PropTypes.func.isRequired,
     setIsEdited: PropTypes.func.isRequired,
     chooseFormStyle: PropTypes.func.isRequired,
+    isInputValid: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -54,6 +55,7 @@ export class Item extends PureComponent {
             onCancel={this.cancelChange}
             onChange={this.changeOfInput}
             chooseFormStyle={this.props.chooseFormStyle}
+            isInputValid={this.props.isInputValid}
           /> :
           <PlainItem
             index={this.props.index}

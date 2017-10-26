@@ -7,6 +7,7 @@ export class EditedItem extends PureComponent {
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     chooseFormStyle: PropTypes.func.isRequired,
+    isInputValid: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -33,7 +34,6 @@ export class EditedItem extends PureComponent {
   };
 
   render() {
-    const isInputValid = !!this.state.editedText;
     return (
       <div className="row">
         <div className="col-xs-4">
@@ -52,7 +52,7 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          disabled={!isInputValid}
+          disabled={!this.props.isInputValid(this.state.editedText)}
         >
           Save
         </button>
