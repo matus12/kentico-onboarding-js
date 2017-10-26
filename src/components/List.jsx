@@ -80,9 +80,7 @@ export class List extends PureComponent {
                 />,
               )
             }
-            <AddItem
-              onAddItem={this.addItem}
-            />
+            <AddItem onAddItem={this.addItem} />
           </ul>
         </div>
       </div>
