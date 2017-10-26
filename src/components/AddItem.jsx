@@ -33,10 +33,9 @@ export class AddItem extends PureComponent {
       <li className="list-group-item">
         <div className="col-xs-4">
           <input
-            className="form-control"
+            className={isInputValid ? 'form-control' : 'form-control2'}
             value={this.state.inputText}
             onChange={this.changeOfInput}
-            required
           />
         </div>
         <button

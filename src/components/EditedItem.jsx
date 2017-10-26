@@ -41,10 +41,9 @@ export class EditedItem extends PureComponent {
               {this.props.index}.
             </span>
             <input
-              className="form-control"
+              className={isInputValid ? 'form-control' : 'form-control2'}
               value={this.state.editedText}
               onChange={this.inputChange}
-              required
             />
           </div>
         </div>
