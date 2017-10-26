@@ -8,29 +8,9 @@ describe('Generate id', () => {
     expect(guid1).not.toEqual(guid2);
   });
 
-  it('returns string of length 36', () => {
+  it('returns valid guid string', () => {
     const guid = generateId();
 
-    expect(typeof(guid)).toEqual('string');
-    expect(guid.length).toBe(36);
-  });
-
-  it('id has dashes at certain positions', () => {
-    const guid = generateId();
-
-    expect(guid[8]).toEqual('-');
-    expect(guid[13]).toEqual('-');
-    expect(guid[18]).toEqual('-');
-    expect(guid[23]).toEqual('-');
-  });
-
-  it('id contains alpha-numeric characters', () => {
-    const guid = generateId();
-
-    expect(guid.substr(0, 7)).toMatch(/\w/);
-    expect(guid.substr(9, 4)).toMatch(/\w/);
-    expect(guid.substr(14, 4)).toMatch(/\w/);
-    expect(guid.substr(19, 4)).toMatch(/\w/);
-    expect(guid.substr(24, 13)).toMatch(/\w/);
+    expect(guid).toMatch(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/);
   });
 });
