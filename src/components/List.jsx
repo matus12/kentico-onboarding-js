@@ -74,7 +74,7 @@ export class List extends PureComponent {
                 <Item
                   key={item.id}
                   item={item}
-                  index={index}
+                  index={index + 1}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
                 />,

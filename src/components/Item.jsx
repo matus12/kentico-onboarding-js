@@ -62,14 +62,14 @@ export class Item extends PureComponent {
         {(this.state.isEdited) ?
           <EditedItem
             item={this.props.item}
-            index={this.props.index + 1}
+            index={this.props.index}
             onSaveItem={this.saveItem}
             onDelete={this.deleteItem}
             onCancel={this.cancelChange}
             onChange={this.changeOfInput}
           /> :
           <PlainItem
-            index={this.props.index + 1}
+            index={this.props.index}
             item={this.props.item}
             onClick={this.clickedOnText}
           />
