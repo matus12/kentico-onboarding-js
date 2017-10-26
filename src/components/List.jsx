@@ -19,6 +19,12 @@ export class List extends PureComponent {
     };
   }
 
+  chooseFormStyle = (inputText) => (
+    (!!inputText && inputText.match(/\w/)) ?
+      'form-control' :
+      'form-control2'
+  );
+
   addItem = (newText) => {
     this.setState((prevState) => ({
       items:
@@ -91,10 +97,14 @@ export class List extends PureComponent {
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
                   setIsEdited={this.setIsEdited}
+                  chooseFormStyle={this.chooseFormStyle}
                 />,
               )
             }
-            <AddItem onAddItem={this.addItem} />
+            <AddItem
+              onAddItem={this.addItem}
+              chooseFormStyle={this.chooseFormStyle}
+            />
           </ul>
         </div>
       </div>

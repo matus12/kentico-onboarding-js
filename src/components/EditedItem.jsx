@@ -6,6 +6,7 @@ export class EditedItem extends PureComponent {
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    chooseFormStyle: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -41,7 +42,7 @@ export class EditedItem extends PureComponent {
               {this.props.index}.
             </span>
             <input
-              className={isInputValid ? 'form-control' : 'form-control2'}
+              className={this.props.chooseFormStyle(this.state.editedText)}
               value={this.state.editedText}
               onChange={this.inputChange}
             />

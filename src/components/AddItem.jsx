@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export class AddItem extends PureComponent {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
+    chooseFormStyle: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -33,7 +34,7 @@ export class AddItem extends PureComponent {
       <li className="list-group-item">
         <div className="col-xs-4">
           <input
-            className={isInputValid ? 'form-control' : 'form-control2'}
+            className={this.props.chooseFormStyle(this.state.inputText)}
             value={this.state.inputText}
             onChange={this.changeOfInput}
           />
@@ -41,7 +42,7 @@ export class AddItem extends PureComponent {
         <button
           type="button"
           title="Please fill out the field"
-          className="btn btn-light"
+          className="btn btn-primary"
           disabled={!isInputValid}
           onClick={this.addItem}
         >
