@@ -22,7 +22,6 @@ export class List extends PureComponent {
         isEdited: false,
       }));
 
-
   isInputValid = (inputText) =>
     (!!inputText && inputText.match(/\w/));
 
