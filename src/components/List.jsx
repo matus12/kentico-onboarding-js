@@ -32,6 +32,12 @@ export class List extends PureComponent {
       'form-control2'
   );
 
+  fillInTitle = (inputText) => (
+    this.isInputValid(inputText) ?
+      '' :
+      'Please fill out the field'
+  );
+
   addItem = (newText) => {
     this.setState((prevState) => ({
       items:
@@ -106,6 +112,7 @@ export class List extends PureComponent {
                   setIsEdited={this.setIsEdited}
                   chooseFormStyle={this.chooseFormStyle}
                   isInputValid={this.isInputValid}
+                  fillInTitle={this.fillInTitle}
                 />,
               )
             }
@@ -113,6 +120,7 @@ export class List extends PureComponent {
               onAddItem={this.addItem}
               chooseFormStyle={this.chooseFormStyle}
               isInputValid={this.isInputValid}
+              fillInTitle={this.fillInTitle}
             />
           </ul>
         </div>

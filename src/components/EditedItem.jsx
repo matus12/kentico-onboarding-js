@@ -8,6 +8,7 @@ export class EditedItem extends PureComponent {
     onDelete: PropTypes.func.isRequired,
     chooseFormStyle: PropTypes.func.isRequired,
     isInputValid: PropTypes.func.isRequired,
+    fillInTitle: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -54,6 +55,7 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
+          title={this.props.fillInTitle(this.state.editedText)}
           disabled={!this.props
             .isInputValid(
               this.state.editedText)}

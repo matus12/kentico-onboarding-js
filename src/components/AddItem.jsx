@@ -6,6 +6,7 @@ export class AddItem extends PureComponent {
     onAddItem: PropTypes.func.isRequired,
     chooseFormStyle: PropTypes.func.isRequired,
     isInputValid: PropTypes.func.isRequired,
+    fillInTitle: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -43,7 +44,7 @@ export class AddItem extends PureComponent {
         </div>
         <button
           type="button"
-          title="Please fill out the field"
+          title={this.props.fillInTitle(this.state.inputText)}
           className="btn btn-primary"
           disabled={!this.props
             .isInputValid(
