@@ -44,7 +44,9 @@ export class AddItem extends PureComponent {
         </div>
         <button
           type="button"
-          title={this.props.fillInTitle(this.state.inputText)}
+          title={this.props
+            .fillInTitle(
+              this.state.inputText)}
           className="btn btn-primary"
           disabled={!this.props
             .isInputValid(

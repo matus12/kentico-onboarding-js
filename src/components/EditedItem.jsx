@@ -55,7 +55,9 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={this.props.fillInTitle(this.state.editedText)}
+          title={this.props
+            .fillInTitle(
+              this.state.editedText)}
           disabled={!this.props
             .isInputValid(
               this.state.editedText)}
