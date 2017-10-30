@@ -28,7 +28,7 @@ export class List extends PureComponent {
   chooseFormStyle = (inputText) => (
     this.isInputValid(inputText) ?
       'form-control' :
-      'form-control2'
+      'form-control-invalid-input'
   );
 
   fillInTitle = (inputText) => (
