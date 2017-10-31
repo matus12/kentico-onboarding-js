@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  isInputValid,
-} from '../utils/inputValidation';
+import { isInputValid } from '../utils/inputValidation';
 
 export class AddItem extends PureComponent {
   static propTypes = {
@@ -36,14 +34,12 @@ export class AddItem extends PureComponent {
 
   focus = () => {
     this.setState({
-      inputText: this.state.inputText,
       isFocused: true,
     });
   };
 
   blur = () => {
     this.setState(() => ({
-      inputText: this.state.inputText,
       isFocused: false,
     }));
   };
