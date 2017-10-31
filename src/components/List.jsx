@@ -85,9 +85,17 @@ export class List extends PureComponent {
                 text: item.text,
                 isEdited: edited,
               })
-          ),
+          )
         ),
     }));
+  };
+
+  cancelChange = (id) => {
+    this.setIsEdited(id, false);
+  };
+
+  clickedOnText = (id) => {
+    this.setIsEdited(id, true);
   };
 
   render() {
@@ -108,6 +116,8 @@ export class List extends PureComponent {
                   index={index + 1}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
+                  onCancelChange={this.cancelChange}
+                  onTextClick={this.clickedOnText}
                   setIsEdited={this.setIsEdited}
                   chooseFormStyle={this.chooseFormStyle}
                   isInputValid={this.isInputValid}

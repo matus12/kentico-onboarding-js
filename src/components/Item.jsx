@@ -7,6 +7,8 @@ export class Item extends PureComponent {
   static propTypes = {
     onDeleteItem: PropTypes.func.isRequired,
     onSaveItem: PropTypes.func.isRequired,
+    onCancelChange: PropTypes.func.isRequired,
+    onTextClick: PropTypes.func.isRequired,
     setIsEdited: PropTypes.func.isRequired,
     chooseFormStyle: PropTypes.func.isRequired,
     isInputValid: PropTypes.func.isRequired,
@@ -20,7 +22,9 @@ export class Item extends PureComponent {
   };
 
   deleteItem = () => {
-    this.props.onDeleteItem(this.props.item.id);
+    this.props.onDeleteItem(
+      this.props.item.id
+    );
   };
 
   saveItem = (savedText) => {
@@ -31,16 +35,14 @@ export class Item extends PureComponent {
   };
 
   cancelChange = () => {
-    this.props.setIsEdited(
-      this.props.item.id,
-      false
+    this.props.onCancelChange(
+      this.props.item.id
     );
   };
 
   clickedOnText = () => {
-    this.props.setIsEdited(
-      this.props.item.id,
-      true
+    this.props.onTextClick(
+      this.props.item.id
     );
   };
 
