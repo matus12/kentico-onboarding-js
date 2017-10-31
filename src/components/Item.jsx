@@ -53,9 +53,6 @@ export class Item extends PureComponent {
             onDelete={this.deleteItem}
             onCancel={this.cancelChange}
             onChange={this.changeOfInput}
-            chooseFormStyle={this.props.chooseFormStyle}
-            isInputValid={this.props.isInputValid}
-            fillInTitle={this.props.fillInTitle}
           /> :
           <PlainItem
             index={this.props.index}

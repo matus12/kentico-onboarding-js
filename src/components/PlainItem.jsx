@@ -6,8 +6,8 @@ export class PlainItem extends PureComponent {
     index: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
     item: PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
     }).isRequired,
   };
 

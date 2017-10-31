@@ -29,6 +29,7 @@ export class AddItem extends PureComponent {
     this.props.onAddItem(this.state.inputText);
     this.setState({
       inputText: '',
+      isInputValid: false,
     });
   };
 
