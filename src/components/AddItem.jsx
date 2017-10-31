@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import {
+  isInputValid,
+  chooseFormStyle,
+  fillInTitle,
+} from '../utils/inputValidation';
 
 export class AddItem extends PureComponent {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
-    chooseFormStyle: PropTypes.func.isRequired,
-    isInputValid: PropTypes.func.isRequired,
-    fillInTitle: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -35,8 +37,7 @@ export class AddItem extends PureComponent {
       <li className="list-group-item">
         <div className="col-xs-4">
           <input
-            className={this.props
-              .chooseFormStyle(
+            className={chooseFormStyle(
               this.state.inputText)}
             value={this.state.inputText}
             onChange={this.changeOfInput}
@@ -44,12 +45,10 @@ export class AddItem extends PureComponent {
         </div>
         <button
           type="button"
-          title={this.props
-            .fillInTitle(
+          title={fillInTitle(
               this.state.inputText)}
           className="btn btn-primary"
-          disabled={!this.props
-            .isInputValid(
+          disabled={!isInputValid(
             this.state.inputText)}
           onClick={this.addItem}
         >

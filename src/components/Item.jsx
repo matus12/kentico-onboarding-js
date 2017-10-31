@@ -9,10 +9,6 @@ export class Item extends PureComponent {
     onSaveItem: PropTypes.func.isRequired,
     onCancelChange: PropTypes.func.isRequired,
     onTextClick: PropTypes.func.isRequired,
-    setIsEdited: PropTypes.func.isRequired,
-    chooseFormStyle: PropTypes.func.isRequired,
-    isInputValid: PropTypes.func.isRequired,
-    fillInTitle: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,

@@ -1,14 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import {
+  isInputValid,
+  chooseFormStyle,
+  fillInTitle,
+} from '../utils/inputValidation';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
     onSaveItem: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    chooseFormStyle: PropTypes.func.isRequired,
-    isInputValid: PropTypes.func.isRequired,
-    fillInTitle: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       id: PropTypes.string,
@@ -43,8 +45,7 @@ export class EditedItem extends PureComponent {
               {this.props.index}.
             </span>
             <input
-              className={this.props
-                .chooseFormStyle(
+              className={chooseFormStyle(
                   this.state.editedText)}
               value={this.state.editedText}
               onChange={this.inputChange}
@@ -55,11 +56,9 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={this.props
-            .fillInTitle(
+          title={fillInTitle(
               this.state.editedText)}
-          disabled={!this.props
-            .isInputValid(
+          disabled={!isInputValid(
               this.state.editedText)}
         >
           Save

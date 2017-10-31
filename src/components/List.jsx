@@ -118,10 +118,6 @@ export class List extends PureComponent {
                   onSaveItem={this.saveItem}
                   onCancelChange={this.cancelChange}
                   onTextClick={this.clickedOnText}
-                  setIsEdited={this.setIsEdited}
-                  chooseFormStyle={this.chooseFormStyle}
-                  isInputValid={this.isInputValid}
-                  fillInTitle={this.fillInTitle}
                 />,
               )
             }
