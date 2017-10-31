@@ -47,9 +47,9 @@ export class List extends PureComponent {
     this.setState((prevState) => ({
       items: prevState.items
         .map((item) =>
-          ((item.id !== id) ?
-              item :
-              ({
+          ((item.id !== id)
+              ? item
+              : ({
                 id: item.id,
                 text: savedText,
                 isEdited: false,
@@ -63,14 +63,14 @@ export class List extends PureComponent {
     this.setState((prevState) => ({
       items: prevState.items
         .map((item) =>
-          ((item.id !== id) ?
-              item :
-              ({
+          ((item.id !== id)
+              ? item
+              : ({
                 id: item.id,
                 text: item.text,
                 isEdited: edited,
               })
-          )
+          ),
         ),
     }));
   };

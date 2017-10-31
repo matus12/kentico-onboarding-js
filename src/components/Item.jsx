@@ -7,13 +7,13 @@ export class Item extends PureComponent {
   static propTypes = {
     onDeleteItem: PropTypes.func.isRequired,
     onSaveItem: PropTypes.func.isRequired,
-    onCancelChange: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
     onTextClick: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-      isEdited: PropTypes.bool,
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      isEdited: PropTypes.bool.isRequired,
     }).isRequired,
   };
 
@@ -31,7 +31,7 @@ export class Item extends PureComponent {
   };
 
   cancelChange = () => {
-    this.props.onCancelChange(
+    this.props.onCancel(
       this.props.item.id
     );
   };

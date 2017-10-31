@@ -13,8 +13,8 @@ export class EditedItem extends PureComponent {
     onDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
     }).isRequired,
   };
 
