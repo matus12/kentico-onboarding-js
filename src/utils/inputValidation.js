@@ -1,5 +1,5 @@
 export const isInputValid = (inputText) =>
-  (!!inputText && inputText.match(/\w/));
+  (!!inputText && !!inputText.match(/\w/));
 
 export const chooseFormStyle = (inputText) => (
   isInputValid(inputText) ?

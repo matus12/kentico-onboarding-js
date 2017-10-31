@@ -22,21 +22,6 @@ export class List extends PureComponent {
         isEdited: false,
       }));
 
-  isInputValid = (inputText) =>
-    (!!inputText && inputText.match(/\w/));
-
-  chooseFormStyle = (inputText) => (
-    this.isInputValid(inputText) ?
-      'form-control' :
-      'form-control-invalid-input'
-  );
-
-  fillInTitle = (inputText) => (
-    this.isInputValid(inputText) ?
-      '' :
-      'Please fill out the field'
-  );
-
   addItem = (newText) => {
     this.setState((prevState) => ({
       items:
