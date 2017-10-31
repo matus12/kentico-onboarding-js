@@ -106,12 +106,7 @@ export class List extends PureComponent {
                 />,
               )
             }
-            <AddItem
-              onAddItem={this.addItem}
-              chooseFormStyle={this.chooseFormStyle}
-              isInputValid={this.isInputValid}
-              fillInTitle={this.fillInTitle}
-            />
+            <AddItem onAddItem={this.addItem} />
           </ul>
         </div>
       </div>
