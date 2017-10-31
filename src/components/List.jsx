@@ -75,7 +75,7 @@ export class List extends PureComponent {
     }));
   };
 
-  cancelChange = (id) => {
+  cancel = (id) => {
     this.setIsEdited(id, false);
   };
 
@@ -101,7 +101,7 @@ export class List extends PureComponent {
                   index={index + 1}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
-                  onCancelChange={this.cancelChange}
+                  onCancel={this.cancel}
                   onTextClick={this.clickedOnText}
                 />,
               )

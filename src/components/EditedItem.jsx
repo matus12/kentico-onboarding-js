@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   isInputValid,
-  chooseFormStyle,
-  fillInTitle,
 } from '../utils/inputValidation';
 
 export class EditedItem extends PureComponent {
@@ -23,6 +21,7 @@ export class EditedItem extends PureComponent {
 
     this.state = {
       editedText: props.item.text,
+      isFocused: false,
     };
   }
 
@@ -36,19 +35,44 @@ export class EditedItem extends PureComponent {
     this.props.onSaveItem(this.state.editedText);
   };
 
+  chooseClass = () => {
+    if (!this.state.isFocused) {
+      return 'input-group';
+    }
+    if (isInputValid(this.state.editedText)) {
+      return 'input-group has-success';
+    }
+    return 'input-group has-error';
+  };
+
+  focus = () => {
+    this.setState({
+      editedText: this.state.editedText,
+      isFocused: true,
+    });
+  };
+
+  blur = () => {
+    this.setState(() => ({
+      editedText: this.state.editedText,
+      isFocused: false,
+    }));
+  };
+
   render() {
     return (
       <div className="row">
         <div className="col-xs-4">
-          <div className="input-group">
+          <div className={this.chooseClass()}>
             <span className="input-group-addon">
               {this.props.index}.
             </span>
             <input
-              className={chooseFormStyle(
-                  this.state.editedText)}
+              className="form-control"
               value={this.state.editedText}
               onChange={this.inputChange}
+              onFocus={this.focus}
+              onBlur={this.blur}
             />
           </div>
         </div>
@@ -56,8 +80,10 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={fillInTitle(
-              this.state.editedText)}
+          title={isInputValid(
+              this.state.editedText)
+            ? undefined
+            : 'Please fill out the form'}
           disabled={!isInputValid(
               this.state.editedText)}
         >
