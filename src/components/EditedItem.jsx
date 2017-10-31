@@ -22,12 +22,15 @@ export class EditedItem extends PureComponent {
     this.state = {
       editedText: props.item.text,
       isFocused: false,
+      isInputValid: true,
     };
   }
 
   inputChange = (event) => {
     this.setState({
       editedText: event.currentTarget.value,
+      isFocused: true,
+      isInputValid: isInputValid(event.currentTarget.value),
     });
   };
 
@@ -39,7 +42,7 @@ export class EditedItem extends PureComponent {
     if (!this.state.isFocused) {
       return 'input-group';
     }
-    if (isInputValid(this.state.editedText)) {
+    if (this.state.isInputValid) {
       return 'input-group has-success';
     }
     return 'input-group has-error';
@@ -80,12 +83,10 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={isInputValid(
-              this.state.editedText)
+          title={this.state.isInputValid
             ? undefined
             : 'Please fill out the form'}
-          disabled={!isInputValid(
-              this.state.editedText)}
+          disabled={!this.state.isInputValid}
         >
           Save
         </button>

@@ -15,12 +15,15 @@ export class AddItem extends PureComponent {
     this.state = ({
       inputText: '',
       isFocused: false,
+      isInputValid: false,
     });
   }
 
   changeOfInput = (event) => {
     this.setState({
       inputText: event.target.value,
+      isFocused: true,
+      isInputValid: isInputValid(event.currentTarget.value),
     });
   };
 
@@ -49,7 +52,7 @@ export class AddItem extends PureComponent {
     if (!this.state.isFocused) {
       return 'input-group';
     }
-    if (isInputValid(this.state.inputText)) {
+    if (this.state.isInputValid) {
       return 'input-group has-success';
     }
     return 'input-group has-error';
@@ -73,13 +76,11 @@ export class AddItem extends PureComponent {
         </div>
         <button
           type="button"
-          title={isInputValid(
-            this.state.inputText)
+          title={this.state.isInputValid
             ? undefined
             : 'Please fill out the form'}
           className="btn btn-primary"
-          disabled={!isInputValid(
-            this.state.inputText)}
+          disabled={!this.state.isInputValid}
           onClick={this.addItem}
         >
           Add
