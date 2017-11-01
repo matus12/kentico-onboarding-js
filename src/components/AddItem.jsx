@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isInputValid } from '../utils/inputValidation';
+import classnames from 'classnames';
 
 export class AddItem extends PureComponent {
   static propTypes = {
@@ -45,22 +46,15 @@ export class AddItem extends PureComponent {
     }));
   };
 
-  chooseClass = () => {
-    if (!this.state.isFocused) {
-      return 'input-group';
-    }
-    if (this.state.isInputValid) {
-      return 'input-group has-success';
-    }
-    return 'input-group has-error';
-  };
-
   render() {
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
           <div
-            className={this.chooseClass()}
+            className={classnames('input-group',
+              { 'has-success': this.state.isFocused && this.state.isInputValid },
+              { 'has-error': this.state.isFocused && !this.state.isInputValid })
+            }
           >
             <input
               className="form-control"

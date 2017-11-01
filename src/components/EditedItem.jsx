@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isInputValid } from '../utils/inputValidation';
+import classnames from 'classnames';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
@@ -36,16 +37,6 @@ export class EditedItem extends PureComponent {
     this.props.onSaveItem(this.state.editedText);
   };
 
-  chooseClass = () => {
-    if (!this.state.isFocused) {
-      return 'input-group';
-    }
-    if (this.state.isInputValid) {
-      return 'input-group has-success';
-    }
-    return 'input-group has-error';
-  };
-
   focus = () => {
     this.setState({
       isFocused: true,
@@ -62,7 +53,12 @@ export class EditedItem extends PureComponent {
     return (
       <div className="row">
         <div className="col-xs-4">
-          <div className={this.chooseClass()}>
+          <div
+            className={classnames('input-group',
+              { 'has-success': this.state.isFocused && this.state.isInputValid },
+              { 'has-error': this.state.isFocused && !this.state.isInputValid })
+            }
+          >
             <span className="input-group-addon">
               {this.props.index}.
             </span>
@@ -86,7 +82,6 @@ export class EditedItem extends PureComponent {
         >
           Save
         </button>
-
         <button
           type="button"
           className="btn btn-light"
