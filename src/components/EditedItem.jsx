@@ -68,6 +68,9 @@ export class EditedItem extends PureComponent {
               onChange={this.inputChange}
               onFocus={this.focus}
               onBlur={this.blur}
+              title={classnames({
+                'Please fill out the form': !this.state.isInputValid,
+              })}
             />
           </div>
         </div>
@@ -75,9 +78,9 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={this.state.isInputValid
-            ? undefined
-            : 'Please fill out the form'}
+          title={classnames({
+            'Please fill out the form': !this.state.isInputValid,
+          })}
           disabled={!this.state.isInputValid}
         >
           Save

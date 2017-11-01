@@ -62,14 +62,17 @@ export class AddItem extends PureComponent {
               onChange={this.changeOfInput}
               onFocus={this.focus}
               onBlur={this.blur}
+              title={classnames({
+                'Please fill out the form': !this.state.isInputValid,
+              })}
             />
           </div>
         </div>
         <button
           type="button"
-          title={this.state.isInputValid
-            ? undefined
-            : 'Please fill out the form'}
+          title={classnames({
+            'Please fill out the form': !this.state.isInputValid,
+          })}
           className="btn btn-primary"
           disabled={!this.state.isInputValid}
           onClick={this.addItem}
