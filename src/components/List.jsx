@@ -1,39 +1,19 @@
 import React, { PureComponent } from 'react';
 import { AddedItem } from './AddedItem';
 import { generateId } from '../utils/generateId';
-import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
-import { OrderedMap, Record } from 'immutable';
+import { Record } from 'immutable';
+import { generateItems } from '../utils/generateItems';
 
 export class List extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      items: this.generateItems(),
+      items: generateItems(),
     };
   }
-
-  generateItems = () => {
-    return new OrderedMap(
-      generateList()
-        .map((itemText) => {
-          const guid = generateId();
-          const MyRecord = Record({
-            id: guid,
-            text: itemText,
-            isEdited: false,
-          });
-          return (
-            [
-              guid,
-              new MyRecord(),
-            ]
-          );
-        })
-    );
-  };
 
   addItem = (newText) => {
     const guid = generateId();
