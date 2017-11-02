@@ -18,12 +18,16 @@ describe('generate items', () => {
 
   it('returns ordered map with guid:key record:values', () => {
     const orderedMap = generateItems();
+    const itemTexts = generateList();
 
     orderedMap.keySeq().forEach((element) => {
       expect(Guid.isGuid(element)).toBe(true);
     });
     orderedMap.valueSeq().forEach((element) => {
       expect(typeof(element)).toEqual(typeof({}));
+      expect(element.isEdited).toBe(false);
+      expect(Guid.isGuid(element.id)).toBe(true);
+      expect(itemTexts).toContain(element.text);
     });
   });
 });
