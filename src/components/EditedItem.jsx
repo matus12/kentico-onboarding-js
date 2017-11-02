@@ -55,8 +55,10 @@ export class EditedItem extends PureComponent {
         <div className="col-xs-4">
           <div
             className={classnames('input-group',
-              { 'has-success': this.state.isFocused && this.state.isInputValid },
-              { 'has-error': this.state.isFocused && !this.state.isInputValid })
+              this.state.isFocused && {
+                'has-success': this.state.isInputValid,
+                'has-error': !this.state.isInputValid,
+              })
             }
           >
             <span className="input-group-addon">
@@ -68,9 +70,10 @@ export class EditedItem extends PureComponent {
               onChange={this.inputChange}
               onFocus={this.focus}
               onBlur={this.blur}
-              title={classnames({
-                'Please fill out the form': !this.state.isInputValid,
-              })}
+              title={(this.state.isInputValid)
+                ? undefined
+                : 'Please fill out the form'
+              }
             />
           </div>
         </div>
@@ -78,9 +81,10 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={classnames({
-            'Please fill out the form': !this.state.isInputValid,
-          })}
+          title={(this.state.isInputValid)
+            ? undefined
+            : 'Please fill out the form'
+          }
           disabled={!this.state.isInputValid}
         >
           Save
