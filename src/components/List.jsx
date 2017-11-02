@@ -17,14 +17,14 @@ export class List extends PureComponent {
 
   addItem = (newText) => {
     const guid = generateId();
-    const MyRecord = Record({
+    const ItemRecord = Record({
       id: guid,
       text: newText,
       isEdited: false,
     });
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new MyRecord()),
+        .set(guid, new ItemRecord()),
     }));
   };
 
@@ -36,26 +36,27 @@ export class List extends PureComponent {
   };
 
   saveItem = (guid, savedText) => {
-    const MyRecord = Record({
+    const ItemRecord = Record({
       id: guid,
       text: savedText,
       isEdited: false,
     });
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new MyRecord()),
+        .set(guid, new ItemRecord()),
     }));
   };
 
-  setIsEdited = (guid, prevText, edited) => {
-    const MyRecord = Record({
+  setIsEdited = (guid, edited) => {
+    const ItemRecord = Record({
       id: guid,
-      text: prevText,
+      text: this.state.items
+        .get(guid).text,
       isEdited: edited,
     });
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new MyRecord()),
+        .set(guid, new ItemRecord()),
     }));
   };
 
