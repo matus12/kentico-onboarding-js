@@ -1,6 +1,6 @@
 import {
   isInputValid,
-} from '../src/utils/inputValidation';
+} from '../../src/utils/inputValidation';
 
 const emptyInput = '';
 const validInput = 'asdfasf';
