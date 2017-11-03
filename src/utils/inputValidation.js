@@ -1,2 +1,2 @@
-export const isInputValid = (inputText) =>
+export const validateText = (inputText) =>
   (!!inputText && !!inputText.match(/\w/));

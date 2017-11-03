@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { isInputValid } from '../utils/inputValidation';
+import { validateText } from '../utils/inputValidation';
 import classnames from 'classnames';
 
 export class AddItem extends PureComponent {
@@ -22,7 +22,7 @@ export class AddItem extends PureComponent {
     this.setState({
       inputText: event.target.value,
       isFocused: true,
-      isInputValid: isInputValid(event.currentTarget.value),
+      isInputValid: validateText(event.currentTarget.value),
     });
   };
 

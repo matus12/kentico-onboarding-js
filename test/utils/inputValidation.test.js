@@ -1,5 +1,5 @@
 import {
-  isInputValid,
+  validateText,
 } from '../../src/utils/inputValidation';
 
 const emptyInput = '';
@@ -8,8 +8,8 @@ const invalidInput = '          ';
 
 describe('Input validation', () => {
   it('validates input correctly', () => {
-    expect(isInputValid(validInput)).toEqual(true);
-    expect(isInputValid(emptyInput)).toBe(false);
-    expect(isInputValid(invalidInput)).toBe(false);
+    expect(validateText(validInput)).toEqual(true);
+    expect(validateText(emptyInput)).toBe(false);
+    expect(validateText(invalidInput)).toBe(false);
   });
 });
