@@ -1,15 +1,29 @@
 import {
   validateText,
-} from '../../src/utils/inputValidation';
+} from '../../src/utils/textValidation';
 
-const emptyInput = '';
-const validInput = 'asdfasf';
-const invalidInput = '          ';
+describe('validateText', () => {
+  it('returns true for non-empty string', () => {
+    const validString = 'asdfasf';
 
-describe('Input validation', () => {
-  it('validates input correctly', () => {
-    expect(validateText(validInput)).toEqual(true);
-    expect(validateText(emptyInput)).toBe(false);
-    expect(validateText(invalidInput)).toBe(false);
+    const isStringValid = validateText(validString);
+
+    expect(isStringValid).toEqual(true);
+  });
+
+  it('returns false for empty string', () => {
+    const emptyString = '';
+
+    const isStringValid = validateText(emptyString);
+
+    expect(isStringValid).toBe(false);
+  });
+
+  it('returns false for string with whitespaces only', () => {
+    const invalidString = '          ';
+
+    const isStringValid = validateText(invalidString);
+
+    expect(isStringValid).toBe(false);
   });
 });

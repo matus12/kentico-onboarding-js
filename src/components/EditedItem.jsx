@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { validateText } from '../utils/inputValidation';
+import { validateText } from '../utils/textValidation';
 import classnames from 'classnames';
 
 export class EditedItem extends PureComponent {
