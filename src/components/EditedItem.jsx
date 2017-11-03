@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { validateText } from '../utils/textValidation';
-import classnames from 'classnames';
+import { Input } from './Input';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
@@ -20,15 +20,13 @@ export class EditedItem extends PureComponent {
 
     this.state = {
       editedText: props.item.text,
-      isFocused: false,
       isInputValid: true,
     };
   }
 
-  inputChange = (event) => {
+  changeOfInput = (event) => {
     this.setState({
       editedText: event.currentTarget.value,
-      isFocused: true,
       isInputValid: validateText(event.currentTarget.value),
     });
   };
@@ -37,43 +35,17 @@ export class EditedItem extends PureComponent {
     this.props.onSaveItem(this.state.editedText);
   };
 
-  focus = () => {
-    this.setState({
-      isFocused: true,
-    });
-  };
-
-  blur = () => {
-    this.setState(() => ({
-      isFocused: false,
-    }));
-  };
-
   render() {
     return (
       <div className="row">
         <div className="col-xs-4">
-          <div
-            className={classnames('input-group',
-              this.state.isFocused && {
-                'has-success': this.state.isInputValid,
-                'has-error': !this.state.isInputValid,
-              })
-            }
-          >
+          <div className="input-group">
             <span className="input-group-addon">
               {this.props.index}.
             </span>
-            <input
-              className="form-control"
-              value={this.state.editedText}
-              onChange={this.inputChange}
-              onFocus={this.focus}
-              onBlur={this.blur}
-              title={(this.state.isInputValid)
-                ? undefined
-                : 'Please fill out the form'
-              }
+            <Input
+              text={this.state.editedText}
+              onChange={this.changeOfInput}
             />
           </div>
         </div>

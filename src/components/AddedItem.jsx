@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { validateText } from '../utils/textValidation';
-import classnames from 'classnames';
+import { Input } from './Input';
 
 export class AddedItem extends PureComponent {
   static propTypes = {
@@ -13,7 +13,6 @@ export class AddedItem extends PureComponent {
 
     this.state = ({
       inputText: '',
-      isFocused: false,
       isInputValid: false,
     });
   }
@@ -21,28 +20,15 @@ export class AddedItem extends PureComponent {
   changeOfInput = (event) => {
     this.setState({
       inputText: event.target.value,
-      isFocused: true,
       isInputValid: validateText(event.currentTarget.value),
     });
   };
 
   addItem = () => {
     this.props.onAddItem(this.state.inputText);
-    this.setState({
+    this.setState(() => ({
       inputText: '',
       isInputValid: false,
-    });
-  };
-
-  focus = () => {
-    this.setState({
-      isFocused: true,
-    });
-  };
-
-  blur = () => {
-    this.setState(() => ({
-      isFocused: false,
     }));
   };
 
@@ -50,26 +36,10 @@ export class AddedItem extends PureComponent {
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
-          <div
-            className={classnames('input-group',
-              this.state.isFocused && {
-                'has-success': this.state.isInputValid,
-                'has-error': !this.state.isInputValid,
-              })
-            }
-          >
-            <input
-              className="form-control"
-              value={this.state.inputText}
-              onChange={this.changeOfInput}
-              onFocus={this.focus}
-              onBlur={this.blur}
-              title={(this.state.isInputValid)
-                ? undefined
-                : 'Please fill out the form'
-              }
-            />
-          </div>
+          <Input
+            text={this.state.inputText}
+            onChange={this.changeOfInput}
+          />
         </div>
         <button
           type="button"
