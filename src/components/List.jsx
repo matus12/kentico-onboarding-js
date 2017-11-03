@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AddedItem } from './AddItem';
+import { AddedItem } from './AddedItem';
 import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
