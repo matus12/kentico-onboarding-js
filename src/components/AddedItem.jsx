@@ -38,6 +38,7 @@ export class AddedItem extends PureComponent {
         <div className="col-xs-4">
           <Input
             text={this.state.inputText}
+            isInputValid={this.state.isInputValid}
             onChange={this.changeOfInput}
           />
         </div>
