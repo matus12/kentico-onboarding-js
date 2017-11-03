@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { validateText } from '../utils/textValidation';
 import classnames from 'classnames';
 
-export class AddItem extends PureComponent {
+export class AddedItem extends PureComponent {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
   };

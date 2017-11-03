@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AddItem } from './AddItem';
+import { AddedItem } from './AddItem';
 import { generateId } from '../utils/generateId';
 import { generateList } from '../utils/initItemList';
 import { TsComponent } from './TsComponent.tsx';
@@ -106,7 +106,7 @@ export class List extends PureComponent {
                 />,
               )
             }
-            <AddItem onAddItem={this.addItem} />
+            <AddedItem onAddItem={this.addItem} />
           </ul>
         </div>
       </div>
