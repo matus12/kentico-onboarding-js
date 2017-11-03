@@ -1,6 +1,6 @@
-import { generateItems } from '../src/utils/generateItems';
+import { generateItems } from '../../src/utils/generateItems';
 import { OrderedMap } from 'immutable';
-import { generateList } from '../src/utils/initItemList';
+import { generateList } from '../../src/utils/initItemList';
 import * as Guid from 'guid';
 
 describe('generate items', () => {
