@@ -24,9 +24,9 @@ export class Input extends PureComponent {
   };
 
   blur = () => {
-    this.setState(() => ({
+    this.setState({
       isFocused: false,
-    }));
+    });
   };
 
   render() {
