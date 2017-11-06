@@ -30,6 +30,9 @@ export class Input extends PureComponent {
   };
 
   render() {
+    const inputTitle = (this.props.isInputValid)
+      ? undefined
+      : 'Please fill out the form';
     return (
       <div
         className={classnames('input-group',
@@ -45,10 +48,7 @@ export class Input extends PureComponent {
           onChange={this.props.onChange}
           onFocus={this.focus}
           onBlur={this.blur}
-          title={(this.props.isInputValid)
-            ? undefined
-            : 'Please fill out the form'
-          }
+          title={inputTitle}
         />
       </div>
     );

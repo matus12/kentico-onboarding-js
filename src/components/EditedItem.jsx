@@ -36,6 +36,10 @@ export class EditedItem extends PureComponent {
   };
 
   render() {
+    const buttonTitle = (this.state.isInputValid)
+      ? undefined
+      : 'Please fill out the form';
+
     return (
       <div className="row">
         <div className="col-xs-4">
@@ -54,10 +58,7 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={(this.state.isInputValid)
-            ? undefined
-            : 'Please fill out the form'
-          }
+          title={buttonTitle}
           disabled={!this.state.isInputValid}
         >
           Save

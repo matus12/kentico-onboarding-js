@@ -33,6 +33,10 @@ export class AddedItem extends PureComponent {
   };
 
   render() {
+    const buttonTitle = (this.state.isInputValid)
+      ? undefined
+      : 'Please fill out the form';
+
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
@@ -44,10 +48,7 @@ export class AddedItem extends PureComponent {
         </div>
         <button
           type="button"
-          title={(this.state.isInputValid)
-            ? undefined
-            : 'Please fill out the form'
-          }
+          title={buttonTitle}
           className="btn btn-primary"
           disabled={!this.state.isInputValid}
           onClick={this.addItem}
