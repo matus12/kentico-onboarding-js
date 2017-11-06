@@ -3,8 +3,8 @@ import { AddedItem } from './AddedItem';
 import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
-import { Record } from 'immutable';
 import { generateItems } from '../utils/generateItems';
+import { ItemRecord } from '../utils/itemRecord';
 
 export class List extends PureComponent {
   constructor(props) {
@@ -17,14 +17,13 @@ export class List extends PureComponent {
 
   addItem = (newText) => {
     const guid = generateId();
-    const ItemRecord = Record({
-      id: guid,
-      text: newText,
-      isEdited: false,
-    });
+
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord()),
+        .set(guid, new ItemRecord({
+          id: guid,
+          text: newText,
+        })),
     }));
   };
 
@@ -36,27 +35,24 @@ export class List extends PureComponent {
   };
 
   saveItem = (guid, savedText) => {
-    const ItemRecord = Record({
-      id: guid,
-      text: savedText,
-      isEdited: false,
-    });
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord()),
+        .set(guid, new ItemRecord({
+          id: guid,
+          text: savedText,
+        })),
     }));
   };
 
   setIsEdited = (guid, edited) => {
-    const ItemRecord = Record({
-      id: guid,
-      text: this.state.items
-        .get(guid).text,
-      isEdited: edited,
-    });
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord()),
+        .set(guid, new ItemRecord({
+          id: guid,
+          text: this.state.items
+            .get(guid).text,
+          isEdited: edited,
+        })),
     }));
   };
 
