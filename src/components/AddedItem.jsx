@@ -33,22 +33,23 @@ export class AddedItem extends PureComponent {
   };
 
   render() {
-    const buttonTitle = (this.state.isInputValid)
+    const invalidTextTitle = (this.state.isInputValid)
       ? undefined
-      : 'Please fill out the form';
+      : 'New item must consist of non-empty text';
 
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
           <Input
             value={this.state.inputText}
-            isInputValid={this.state.isInputValid}
+            isValid={this.state.isInputValid}
             onChange={this.changeOfInput}
+            title={invalidTextTitle}
           />
         </div>
         <button
           type="button"
-          title={buttonTitle}
+          title={invalidTextTitle}
           className="btn btn-primary"
           disabled={!this.state.isInputValid}
           onClick={this.addItem}

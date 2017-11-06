@@ -36,9 +36,10 @@ export class EditedItem extends PureComponent {
   };
 
   render() {
-    const buttonTitle = (this.state.isInputValid)
+    const invalidTextTitle = (this.state.isInputValid)
       ? undefined
-      : 'Please fill out the form';
+      : 'Empty item cannot be stored. \n ' +
+        'Tip: Use delete button to remove an item';
 
     return (
       <div className="row">
@@ -49,8 +50,9 @@ export class EditedItem extends PureComponent {
             </span>
             <Input
               value={this.state.editedText}
-              isInputValid={this.state.isInputValid}
+              isValid={this.state.isInputValid}
               onChange={this.changeOfInput}
+              title={invalidTextTitle}
             />
           </div>
         </div>
@@ -58,7 +60,7 @@ export class EditedItem extends PureComponent {
           type="button"
           className="btn btn-primary"
           onClick={this.saveItem}
-          title={buttonTitle}
+          title={invalidTextTitle}
           disabled={!this.state.isInputValid}
         >
           Save

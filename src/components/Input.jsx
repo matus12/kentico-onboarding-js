@@ -6,7 +6,8 @@ export class Input extends PureComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
-    isInputValid: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -30,15 +31,12 @@ export class Input extends PureComponent {
   };
 
   render() {
-    const inputTitle = (this.props.isInputValid)
-      ? undefined
-      : 'Please fill out the form';
     return (
       <div
         className={classnames('input-group',
           this.state.isFocused && {
-            'has-success': this.props.isInputValid,
-            'has-error': !this.props.isInputValid,
+            'has-success': this.props.isValid,
+            'has-error': !this.props.isValid,
           })
         }
       >
@@ -48,7 +46,7 @@ export class Input extends PureComponent {
           onChange={this.props.onChange}
           onFocus={this.focus}
           onBlur={this.blur}
-          title={inputTitle}
+          title={this.props.title}
         />
       </div>
     );
