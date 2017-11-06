@@ -19,7 +19,7 @@ export class AddedItem extends PureComponent {
 
   changeOfInput = (event) => {
     this.setState({
-      inputText: event.target.value,
+      inputText: event.currentTarget.value,
       isInputValid: validateText(event.currentTarget.value),
     });
   };
