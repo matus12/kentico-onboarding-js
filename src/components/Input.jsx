@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export class Input extends PureComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    text: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     isInputValid: PropTypes.bool.isRequired,
   };
 
@@ -41,7 +41,7 @@ export class Input extends PureComponent {
       >
         <input
           className="form-control"
-          value={this.props.text}
+          value={this.props.value}
           onChange={this.props.onChange}
           onFocus={this.focus}
           onBlur={this.blur}

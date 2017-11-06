@@ -44,7 +44,7 @@ export class EditedItem extends PureComponent {
               {this.props.index}.
             </span>
             <Input
-              text={this.state.editedText}
+              value={this.state.editedText}
               isInputValid={this.state.isInputValid}
               onChange={this.changeOfInput}
             />

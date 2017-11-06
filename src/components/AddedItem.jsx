@@ -37,7 +37,7 @@ export class AddedItem extends PureComponent {
       <li className="list-group-item">
         <div className="col-xs-4">
           <Input
-            text={this.state.inputText}
+            value={this.state.inputText}
             isInputValid={this.state.isInputValid}
             onChange={this.changeOfInput}
           />
