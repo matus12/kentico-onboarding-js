@@ -7,7 +7,7 @@ export class Input extends PureComponent {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
     isValid: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
   };
 
   constructor(props) {
