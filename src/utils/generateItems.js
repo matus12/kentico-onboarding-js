@@ -1,21 +1,20 @@
-import { OrderedMap, Record } from 'immutable';
+import { OrderedMap } from 'immutable';
 import { generateList } from './initItemList';
 import { generateId } from './generateId';
+import { ItemRecord } from './itemRecord';
 
 export const generateItems = () => {
   return new OrderedMap(
     generateList()
       .map((itemText) => {
         const guid = generateId();
-        const MyRecord = Record({
-          id: guid,
-          text: itemText,
-          isEdited: false,
-        });
         return (
         [
           guid,
-          new MyRecord(),
+          new ItemRecord({
+            id: guid,
+            text: itemText,
+          }),
         ]
         );
       })
