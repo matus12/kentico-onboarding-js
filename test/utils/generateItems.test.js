@@ -7,13 +7,18 @@ describe('generate items', () => {
   it('returns ordered map', () => {
     const maybeOrderedMap = generateItems();
 
-    expect(OrderedMap.isOrderedMap(maybeOrderedMap)).toBe(true);
+    const isOrderedMap = OrderedMap.isOrderedMap(maybeOrderedMap);
+
+    expect(isOrderedMap).toBe(true);
   });
 
   it('returns ordered map with size of initItemList', () => {
     const orderedMap = generateItems();
 
-    expect(orderedMap.size).toEqual(generateList().length);
+    const orderedMapSize = orderedMap.size;
+    const numberOfItems = generateList().length;
+
+    expect(orderedMapSize).toEqual(numberOfItems);
   });
 
   it('returns ordered map where keys are guids', () => {
