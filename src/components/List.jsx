@@ -60,7 +60,7 @@ export class List extends PureComponent {
     this.setIsEdited(id, false);
   };
 
-  clickedOnText = (id) => {
+  clickOnText = (id) => {
     this.setIsEdited(id, true);
   };
 
@@ -76,15 +76,15 @@ export class List extends PureComponent {
           <ul className="list-group">
             {this.state.items
               .entrySeq()
-              .map(([uniqueKey, mapItem], index) =>
+              .map(([uniqueKey, item], index) =>
                 <Item
                   key={uniqueKey}
-                  item={mapItem}
+                  item={item}
                   index={index + 1}
                   onDeleteItem={this.deleteItem}
                   onSaveItem={this.saveItem}
                   onCancel={this.cancel}
-                  onTextClick={this.clickedOnText}
+                  onTextClick={this.clickOnText}
                 />,
               )
             }
