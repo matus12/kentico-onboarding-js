@@ -3,9 +3,10 @@ import * as actions from '../src/actions/actionCreators';
 import { OrderedMap, Record } from 'immutable';
 import { items } from '../src/reducers/todoList/todoItem/items';
 import { generateId } from '../src/utils/generateId';
+// import { ItemRecord } from '../src/utils/itemRecord';
 
 describe('actions', () => {
-  it('should create an action to add todo item', () => {
+  it('should create an action to add todo item with correct type', () => {
     const text = 'Make a coffee';
     const expectedAction = {
       type: types.TODO_LIST_ITEM_CREATE,
@@ -15,9 +16,45 @@ describe('actions', () => {
         isEdited: false,
       },
     };
-    expect(actions.insertItem(text).type).toEqual(expectedAction.type);
-    expect(actions.insertItem(text).payload.text).toEqual(expectedAction.payload.text);
-    expect(actions.insertItem(text).payload.isEdited).toEqual(expectedAction.payload.isEdited);
+
+    const newActionType = actions.insertItem(text).type;
+    const expectedActionType = expectedAction.type;
+
+    expect(newActionType).toEqual(expectedActionType);
+  });
+
+  it('should create an action to add todo item with correct text', () => {
+    const text = 'Make a coffee';
+    const expectedAction = {
+      type: types.TODO_LIST_ITEM_CREATE,
+      payload: {
+        id: generateId(),
+        text,
+        isEdited: false,
+      },
+    };
+
+    const newActionText = actions.insertItem(text).payload.text;
+    const expectedActionText = expectedAction.payload.text;
+
+    expect(newActionText).toEqual(expectedActionText);
+  });
+
+  it('should create an action to add todo item with correct isEdited value', () => {
+    const text = 'Make a coffee';
+    const expectedAction = {
+      type: types.TODO_LIST_ITEM_CREATE,
+      payload: {
+        id: generateId(),
+        text,
+        isEdited: false,
+      },
+    };
+
+    const newActionIsEdited = actions.insertItem(text).payload.isEdited;
+    const expectedActionIsEdited = expectedAction.payload.isEdited;
+
+    expect(newActionIsEdited).toEqual(expectedActionIsEdited);
   });
 
   it('should create an action to update todo item', () => {
@@ -33,7 +70,9 @@ describe('actions', () => {
       },
     };
 
-    expect(actions.updateItem(item)).toEqual(expectedAction);
+    const updateItemAction = actions.updateItem(item);
+
+    expect(updateItemAction).toEqual(expectedAction);
   });
 
   it('should create an action to delete todo item', () => {
@@ -45,7 +84,9 @@ describe('actions', () => {
       },
     };
 
-    expect(actions.deleteItem(id)).toEqual(expectedAction);
+    const deleteItemAction = actions.deleteItem(id);
+
+    expect(deleteItemAction).toEqual(expectedAction);
   });
 });
 
@@ -60,75 +101,98 @@ describe('reducers', () => {
     text: 'Do these tests',
     isEdited: false,
   };
-  const MyRecord = (itm) => Record({
-    id: itm.id,
-    text: itm.text,
+  const expectedItemAction = actions.insertItem(item.text);
+  const expectedItemAction2 = actions.insertItem(item2.text);
+  const ItemRecord = Record({
+    id: expectedItemAction.payload.id,
+    text: item.text,
     isEdited: false,
   });
+  const orderedMap = new OrderedMap([
+    [expectedItemAction.payload.id,
+      new ItemRecord()],
+  ]);
 
   it('should return the initial state', () => {
-    expect(items(undefined, {})).toEqual(
-      OrderedMap(),
-    );
+    const noAction = items(undefined, {});
+
+    expect(noAction).toEqual(OrderedMap());
   });
 
-  it('should handle ITEM_CREATE action', () => {
-    const expectedItem = actions.insertItem(item.text);
-
-    expect(items(
+  it('should handle ITEM_CREATE action when state is empty', () => {
+    const newState = items(
       undefined,
-      expectedItem
-    )).toEqual(
-      OrderedMap([
-        expectedItem.id,
-        MyRecord(expectedItem),
-      ])
-    );
-    expect(items(
-      OrderedMap([
-        item.id,
-        MyRecord(item),
-      ]),
-      expectedItem
-    )).toEqual(
-      OrderedMap([
-        [
-          item.id,
-          MyRecord(item),
-        ],
-        [
-          expectedItem.id,
-          MyRecord(expectedItem),
-        ]])
-    );
+      expectedItemAction
+    ).toJS();
+    const expectedState = orderedMap.toJS();
+
+    expect(newState).toEqual(expectedState);
   });
 
-  it('should handle ITEM_DELETE action', () => {
-    expect(items(
-      OrderedMap([
-        item.id,
-        MyRecord(item),
-      ]),
-      actions.deleteItem(item.id)
-    )).toEqual(OrderedMap());
-    expect(items(
+  it('should add record to non-empty store on ITEM_CREATE action', () => {
+    const newState = items(
+      orderedMap,
+      expectedItemAction2
+    ).toJS();
+
+    const expectedState = OrderedMap([
+      [
+        expectedItemAction.payload.id,
+        new ItemRecord(),
+      ],
+      [
+        expectedItemAction2.payload.id,
+        new ItemRecord({
+          id: expectedItemAction2.payload.id,
+          text: item2.text,
+          isEdited: false,
+        }),
+      ]]).toJS();
+
+    expect(newState).toEqual(expectedState);
+  });
+
+  it('should leave state empty when deleting last item ITEM_DELETE action', () => {
+    const newStateSize = items(
+      orderedMap,
+      actions.deleteItem(expectedItemAction.payload.id)
+    ).size;
+
+    expect(newStateSize).toBe(0);
+  });
+
+  it('should delete correct record after ITEM_DELETE action', () => {
+    const newState = items(
       OrderedMap([
         [
           item.id,
-          MyRecord(item),
+          new ItemRecord({
+            id: item.id,
+            text: item.text,
+            isEdited: item.isEdited,
+          }),
         ],
         [
           item2.id,
-          MyRecord(item2),
+          new ItemRecord({
+            id: item2.id,
+            text: item2.text,
+            isEdited: item2.isEdited,
+          }),
         ]]),
-      actions.deleteItem(
-        item.id)
-    )).toEqual(
-      OrderedMap([
+      actions.deleteItem(item.id))
+      .toJS();
+    const expectedState = OrderedMap([
+      [
         item2.id,
-        MyRecord(item2),
-      ])
-    );
+        new ItemRecord({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
+      ]]).toJS();
+
+    expect(newState).toEqual(expectedState);
   });
 
   it('should handle ITEM_UPDATE action', () => {
@@ -140,15 +204,65 @@ describe('reducers', () => {
 
     expect(items(
       OrderedMap([
-        item.id,
-        MyRecord(item),
-      ]),
-      actions.updateItem(item)
-    )).toEqual(
+        [
+          item.id,
+          new ItemRecord({
+            id: item.id,
+            text: item.text,
+            isEdited: item.isEdited,
+          }),
+        ]]),
+      actions.updateItem(updatedItem)
+    ).toJS()).toEqual(
       OrderedMap([
-        item.id,
-        MyRecord(updatedItem),
-      ])
+        [
+          updatedItem.id,
+          new ItemRecord({
+            id: updatedItem.id,
+            text: updatedItem.text,
+            isEdited: updatedItem.isEdited,
+          }),
+        ]]).toJS()
+    );
+    expect(items(
+      OrderedMap([
+        [
+          item.id,
+          new ItemRecord({
+            id: item.id,
+            text: item.text,
+            isEdited: item.isEdited,
+          }),
+        ],
+        [
+          item2.id,
+          new ItemRecord({
+            id: item2.id,
+            text: item2.text,
+            isEdited: item2.isEdited,
+          }),
+        ],
+      ]),
+      actions.updateItem(updatedItem)
+    ).toJS()).toEqual(
+      OrderedMap([
+        [
+          updatedItem.id,
+          new ItemRecord({
+            id: updatedItem.id,
+            text: updatedItem.text,
+            isEdited: updatedItem.isEdited,
+          }),
+        ],
+        [
+          item2.id,
+          new ItemRecord({
+            id: item2.id,
+            text: item2.text,
+            isEdited: item2.isEdited,
+          }),
+        ],
+      ]).toJS()
     );
   });
 });
