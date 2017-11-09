@@ -4,7 +4,7 @@ import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
 import { getMapOfItems } from '../utils/generateItems';
-import { ItemRecord } from '../utils/itemRecord';
+import { rItem } from '../models/itemRecord';
 
 export class List extends PureComponent {
   constructor(props) {
@@ -20,7 +20,7 @@ export class List extends PureComponent {
 
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord({
+        .set(guid, new rItem({
           id: guid,
           text: newText,
         })),
@@ -37,22 +37,15 @@ export class List extends PureComponent {
   saveItem = (guid, savedText) => {
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord({
-          id: guid,
-          text: savedText,
-        })),
+        .setIn([guid, 'text'], savedText)
+        .setIn([guid, 'isEdited'], false),
     }));
   };
 
   setIsEdited = (guid, isEdited) => {
     this.setState((prevState) => ({
       items: prevState.items
-        .set(guid, new ItemRecord({
-          id: guid,
-          text: this.state.items
-            .get(guid).text,
-          isEdited,
-        })),
+        .setIn([guid, 'isEdited'], isEdited),
     }));
   };
 

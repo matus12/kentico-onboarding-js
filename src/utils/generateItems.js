@@ -1,6 +1,6 @@
 import { OrderedMap } from 'immutable';
 import { generateId } from './generateId';
-import { ItemRecord } from './itemRecord';
+import { rItem } from '../models/itemRecord';
 
 export const itemNames = [
   'Make a coffee',
@@ -17,7 +17,7 @@ export const getMapOfItems = () => {
         return (
         [
           guid,
-          new ItemRecord({
+          new rItem({
             id: guid,
             text: itemText,
           }),

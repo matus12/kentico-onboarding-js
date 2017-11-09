@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
 
-export const ItemRecord = Record({
+export const rItem = Record({
   id: undefined,
   text: undefined,
   isEdited: false,
