@@ -1,11 +1,17 @@
 import { OrderedMap } from 'immutable';
-import { generateList } from './initItemList';
 import { generateId } from './generateId';
 import { ItemRecord } from './itemRecord';
 
-export const generateItems = () => {
+export const itemNames = [
+  'Make a coffee',
+  'Master ReactJS',
+  'Learn ReduxJS',
+  'Help making Kentico Cloud awesome!',
+];
+
+export const getMapOfItems = () => {
   return new OrderedMap(
-    generateList()
+    itemNames
       .map((itemText) => {
         const guid = generateId();
         return (

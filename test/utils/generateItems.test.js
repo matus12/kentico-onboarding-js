@@ -1,11 +1,10 @@
-import { generateItems } from '../../src/utils/generateItems';
+import { getMapOfItems, itemNames } from '../../src/utils/generateItems';
 import { OrderedMap } from 'immutable';
-import { generateList } from '../../src/utils/initItemList';
 import * as Guid from 'guid';
 
 describe('generate items', () => {
   it('returns ordered map', () => {
-    const maybeOrderedMap = generateItems();
+    const maybeOrderedMap = getMapOfItems();
 
     const isOrderedMap = OrderedMap.isOrderedMap(maybeOrderedMap);
 
@@ -13,16 +12,16 @@ describe('generate items', () => {
   });
 
   it('returns ordered map with size of initItemList', () => {
-    const orderedMap = generateItems();
+    const orderedMap = getMapOfItems();
 
     const orderedMapSize = orderedMap.size;
-    const numberOfItems = generateList().length;
+    const numberOfItems = itemNames.length;
 
     expect(orderedMapSize).toEqual(numberOfItems);
   });
 
   it('returns ordered map where keys are guids', () => {
-    const orderedMap = generateItems();
+    const orderedMap = getMapOfItems();
 
     orderedMap.keySeq().forEach((element) => {
       expect(Guid.isGuid(element)).toBe(true);
@@ -30,14 +29,13 @@ describe('generate items', () => {
   });
 
   it('returns ordered map where values are items', () => {
-    const orderedMap = generateItems();
-    const itemTexts = generateList();
+    const orderedMap = getMapOfItems();
 
     orderedMap.valueSeq().forEach((element) => {
       expect(typeof(element)).toEqual(typeof({}));
       expect(element.isEdited).toBe(false);
       expect(Guid.isGuid(element.id)).toBe(true);
-      expect(itemTexts).toContain(element.text);
+      expect(itemNames).toContain(element.text);
     });
   });
 });
