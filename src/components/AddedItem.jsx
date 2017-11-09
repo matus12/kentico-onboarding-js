@@ -35,7 +35,7 @@ export class AddedItem extends PureComponent {
   render() {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
-      : 'New rItem must consist of non-empty text';
+      : 'New item must consist of non-empty text';
 
     return (
       <li className="list-group-item">

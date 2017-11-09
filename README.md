@@ -72,7 +72,7 @@ You can then delete the `feature/task-0` branch and create a new one for the fol
 ## Task 1
 **Prerequisite: ** JS & React sections on [wiki](https://kentico.atlassian.net/wiki/display/KA/04+-+JS-related+tutorials).
 
-According to `assignment.gif` implement all the required functionality (keep in mind we want to be able to edit multiple list items at once). Store some pseudo-random identifier (id) for each rItem (use some util function for its generation, e.g: http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript)
+According to `assignment.gif` implement all the required functionality (keep in mind we want to be able to edit multiple list items at once). Store some pseudo-random identifier (id) for each item (use some util function for its generation, e.g: http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript)
 All the boilerplate is already there so you can dive into coding straight away. Feel free to use [Bootstrap](http://getbootstrap.com/) CSS classes. Get familiar with project structure. The entry file is `index.js`. Page layout can be found in `App.jsx`. It renders `List.jsx` in its body, where you are supposed to implement the rest of the functionality. 
 
 ## Task 2
@@ -125,7 +125,7 @@ Do not forget to tell the client app to [proxy your requests to the server](http
 **Requirements:**
 - show a loader ("točič") until items are asynchronously provided after application start
 - show an error message when loading fails/timeouts
-- only amend the way (list of) existing items are retrieved and a new rItem is added (for now)
+- only amend the way (list of) existing items are retrieved and a new item is added (for now)
 - stick with the Redux data flow design, read about [async actions](http://redux.js.org/docs/advanced/AsyncActions.html)
 - make sure you use [`redux-thunk`](https://github.com/gaearon/redux-thunk) middleware
 - do not forget about dependency injection and tests (see sample tests for inspiration)
