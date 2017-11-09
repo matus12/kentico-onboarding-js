@@ -13,7 +13,6 @@ export class EditedItem extends PureComponent {
     item: ImmutablePropTypes.contains({
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      isEdited: PropTypes.bool.isRequired,
     }).isRequired,
   };
 
