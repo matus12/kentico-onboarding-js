@@ -3,8 +3,8 @@ import { AddedItem } from './AddedItem';
 import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
-import { getMapOfItems } from '../utils/generateItems';
-import { ListItem } from '../models/itemRecord';
+import { getMapOfItems } from '../utils/getItems';
+import { ListItem } from '../models/ListItem';
 
 export class List extends PureComponent {
   constructor(props) {
@@ -49,7 +49,10 @@ export class List extends PureComponent {
   setIsEdited = (guid, isEdited) => {
     this.setState((prevState) => ({
       items: prevState.items
-        .setIn([guid, 'isEdited'], isEdited),
+        .setIn([
+          guid,
+          'isEdited',
+        ], isEdited),
     }));
   };
 

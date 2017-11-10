@@ -39,7 +39,7 @@ export class EditedItem extends PureComponent {
   render() {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
-      : 'Empty item cannot be stored. \n ' +
+      : 'Empty item cannot be stored. \n' +
         'Tip: Use delete button to remove an item';
 
     return (

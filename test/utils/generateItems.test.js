@@ -1,4 +1,4 @@
-import { getMapOfItems, itemNames } from '../../src/utils/generateItems';
+import { getMapOfItems, itemNames } from '../../src/utils/getItems';
 import { OrderedMap } from 'immutable';
 import * as Guid from 'guid';
 

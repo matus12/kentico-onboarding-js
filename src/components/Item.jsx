@@ -13,7 +13,6 @@ export class Item extends PureComponent {
     index: PropTypes.number.isRequired,
     item: ImmutablePropTypes.contains({
       id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
       isEdited: PropTypes.bool.isRequired,
     }).isRequired,
   };

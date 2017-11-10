@@ -1,6 +1,6 @@
 import { OrderedMap } from 'immutable';
 import { generateId } from './generateId';
-import { ListItem } from '../models/itemRecord';
+import { ListItem } from '../models/ListItem';
 
 export const itemNames = [
   'Make a coffee',
