@@ -195,36 +195,13 @@ describe('reducers', () => {
     expect(newState).toEqual(expectedState);
   });
 
-  it('should handle ITEM_UPDATE action', () => {
+  it('should update correct item after ITEM_UPDATE action', () => {
     const updatedItem = {
       id: item.id,
       text: 'updatedText',
       isEdited: !item.isEdited,
     };
-
-    expect(items(
-      OrderedMap([
-        [
-          item.id,
-          new ItemRecord({
-            id: item.id,
-            text: item.text,
-            isEdited: item.isEdited,
-          }),
-        ]]),
-      actions.updateItem(updatedItem)
-    ).toJS()).toEqual(
-      OrderedMap([
-        [
-          updatedItem.id,
-          new ItemRecord({
-            id: updatedItem.id,
-            text: updatedItem.text,
-            isEdited: updatedItem.isEdited,
-          }),
-        ]]).toJS()
-    );
-    expect(items(
+    const newState = items(
       OrderedMap([
         [
           item.id,
@@ -244,25 +221,50 @@ describe('reducers', () => {
         ],
       ]),
       actions.updateItem(updatedItem)
-    ).toJS()).toEqual(
-      OrderedMap([
-        [
-          updatedItem.id,
-          new ItemRecord({
-            id: updatedItem.id,
-            text: updatedItem.text,
-            isEdited: updatedItem.isEdited,
-          }),
-        ],
-        [
-          item2.id,
-          new ItemRecord({
-            id: item2.id,
-            text: item2.text,
-            isEdited: item2.isEdited,
-          }),
-        ],
-      ]).toJS()
-    );
+    ).toJS();
+    const expectedState = OrderedMap([
+      [
+        updatedItem.id,
+        new ItemRecord({
+          id: updatedItem.id,
+          text: updatedItem.text,
+          isEdited: updatedItem.isEdited,
+        }),
+      ],
+      [
+        item2.id,
+        new ItemRecord({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
+      ],
+    ]).toJS();
+
+    expect(newState).toEqual(expectedState);
+  });
+
+  it('should state with one item after ITEM_UPDATE action on empty state', () => {
+    const updatedItem = {
+      id: item.id,
+      text: 'updatedText',
+      isEdited: !item.isEdited,
+    };
+    const newState = items(
+      undefined,
+      actions.updateItem(updatedItem)
+    ).toJS();
+    const expectedState = OrderedMap([
+      [
+        updatedItem.id,
+        new ItemRecord({
+          id: updatedItem.id,
+          text: updatedItem.text,
+          isEdited: updatedItem.isEdited,
+        }),
+      ],
+    ]).toJS();
+
+    expect(newState).toEqual(expectedState);
   });
 });
