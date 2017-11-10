@@ -2,7 +2,7 @@ import { OrderedMap } from 'immutable';
 import { generateId } from './generateId';
 import { ListItem } from '../models/ListItem';
 
-export const itemNames = [
+const itemNames = [
   'Make a coffee',
   'Master ReactJS',
   'Learn ReduxJS',
