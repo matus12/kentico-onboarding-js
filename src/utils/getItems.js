@@ -9,7 +9,7 @@ export const itemNames = [
   'Help making Kentico Cloud awesome!',
 ];
 
-export const getMapOfItems = () => {
+export const getInitialItems = () => {
   return new OrderedMap(
     itemNames
       .map((itemText) => {
