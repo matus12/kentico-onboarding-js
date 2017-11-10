@@ -3,7 +3,7 @@ import { AddedItem } from './AddedItem';
 import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
-import { getInitialItems } from '../utils/getItems';
+import { getInitialState } from '../utils/getItems';
 import { ListItem } from '../models/ListItem';
 
 export class List extends PureComponent {
@@ -11,7 +11,7 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      items: getInitialItems(),
+      items: getInitialState(),
     };
   }
 

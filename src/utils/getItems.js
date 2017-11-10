@@ -9,20 +9,22 @@ const itemNames = [
   'Help making Kentico Cloud awesome!',
 ];
 
-export const getInitialItems = () => {
-  return new OrderedMap(
-    itemNames
-      .map((itemText) => {
-        const guid = generateId();
-        return (
-        [
-          guid,
-          new ListItem({
-            id: guid,
-            text: itemText,
-          }),
-        ]
-        );
-      })
-  );
-};
+export const getInitialState = () => ({
+  list: {
+    items: OrderedMap(
+      itemNames
+        .map((itemText) => {
+          const guid = generateId();
+          return (
+          [
+            guid,
+            new ListItem({
+              id: guid,
+              text: itemText,
+            }),
+          ]
+          );
+        })
+    ),
+  },
+});

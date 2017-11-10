@@ -1,6 +1,6 @@
 import './sticky-footer.css';
 import React, { PureComponent } from 'react';
-import { List } from './components/List';
+import { ListRedux } from './containers/todo-list/List';
 
 export class App extends PureComponent {
   render() {
@@ -20,12 +20,16 @@ export class App extends PureComponent {
             </p>
             <p>You can find all the relevant info in git repository.</p>
             <p>
-              <a className="btn btn-lg btn-success" href="https://github.com/Suzii/kentico-onboarding-js" role="button">Fork me on GitHub</a>
+              <a
+                className="btn btn-lg btn-success"
+                href="https://github.com/Suzii/kentico-onboarding-js"
+                role="button"
+              >Fork me on GitHub</a>
             </p>
           </div>
 
           <section id="app-content">
-            <List />
+            <ListRedux />
           </section>
         </div>
         <footer className="footer">
