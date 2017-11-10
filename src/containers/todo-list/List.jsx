@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSaveItem: (item) => dispatch(updateItem(item)),
+  onUpdateItem: (item) => dispatch(updateItem(item)),
   onDeleteItem: (id) => dispatch(deleteItem(id)),
   onAddItem: (text) => dispatch(insertItem(text)),
 });

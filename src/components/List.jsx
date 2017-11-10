@@ -27,14 +27,16 @@ export class List extends PureComponent {
     }));
   };
 
-  setIsEdited = (guid, isEdited) => {
-    this.setState((prevState) => ({
-      items: prevState.items
-        .setIn([
-          guid,
-          'isEdited',
-        ], isEdited),
-    }));
+  setIsEdited = (id, isEdited) => {
+    const item = this.props.items.get(id);
+
+    const editedItem = new ListItem({
+      id,
+      text: item.text,
+      isEdited,
+    });
+
+    this.props.onUpdateItem(editedItem);
   };
 
   cancel = (id) => {
