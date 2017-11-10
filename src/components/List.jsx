@@ -1,30 +1,12 @@
 import React, { PureComponent } from 'react';
 import { AddedItem } from './AddedItem';
+import { AddedItemRedux } from '../containers/todo-list/AddedItem';
 import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
 import { ListItem } from '../models/ListItem';
 
 export class List extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: props.items,
-    };
-  }
-
-  addItem = (newText) => {
-    const guid = generateId();
-
-    this.setState((prevState) => ({
-      items: prevState.items
-        .set(guid, new ListItem({
-          id: guid,
-          text: newText,
-        })),
-    }));
-  };
 
   deleteItem = (id) => {
     this.setState((prevState) => ({
@@ -73,7 +55,7 @@ export class List extends PureComponent {
         </div>
         <div className="col-sm-12 col-md-offset-2 col-md-8">
           <ul className="list-group">
-            {this.state.items
+            {this.props.items
               .entrySeq()
               .map(([uniqueKey, item], index) =>
                 <Item
@@ -87,7 +69,7 @@ export class List extends PureComponent {
                 />,
               )
             }
-            <AddedItem onAddItem={this.addItem} />
+            <AddedItemRedux />
           </ul>
         </div>
       </div>
