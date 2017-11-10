@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AddedItem } from './AddedItem';
 import { AddedItemRedux } from '../containers/todo-list/AddedItem';
-import { generateId } from '../utils/generateId';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from './Item';
 import { ListItem } from '../models/ListItem';
@@ -15,16 +13,14 @@ export class List extends PureComponent {
     }));
   };
 
-  saveItem = (guid, savedText) => {
-    const item = {
-      id: guid,
+  saveItem = (id, savedText) => {
+    const item = new ListItem({
+      id,
       text: savedText,
       isEdited: false,
-    };
-    this.setState((prevState) => ({
-      items: prevState.items
-        .mergeIn([guid], item),
-    }));
+    });
+
+    this.props.onUpdateItem(item);
   };
 
   setIsEdited = (id, isEdited) => {
