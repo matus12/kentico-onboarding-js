@@ -7,10 +7,7 @@ import { ListItem } from '../models/ListItem';
 export class List extends PureComponent {
 
   deleteItem = (id) => {
-    this.setState((prevState) => ({
-      items: prevState.items
-        .delete(id),
-    }));
+    this.props.onDeleteItem(id);
   };
 
   saveItem = (id, savedText) => {
