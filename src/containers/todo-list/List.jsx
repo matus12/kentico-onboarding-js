@@ -7,7 +7,7 @@ import {
 } from '../../actions/actionCreators';
 
 const mapStateToProps = (state) => ({
-  list: state.items,
+  items: state.list.items,
 });
 
 const mapDispatchToProps = (dispatch) => ({
