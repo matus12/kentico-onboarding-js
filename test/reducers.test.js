@@ -267,4 +267,19 @@ describe('reducers', () => {
 
     expect(newState).toEqual(expectedState);
   });
+
+  it('should return prevState on unknown action', () => {
+    const newState = items(
+      orderedMap,
+      {
+        type: 'TODO_LIST_ITEM_DUPLICATE',
+        payload: {
+          item: item2,
+        },
+      }
+    ).toJS();
+    const expectedState = orderedMap.toJS();
+
+    expect(newState).toEqual(expectedState);
+  });
 });
