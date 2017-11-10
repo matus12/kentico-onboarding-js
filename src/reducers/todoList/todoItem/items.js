@@ -20,8 +20,8 @@ export const items = (previousState = OrderedMap(), action) => {
       return previousState.delete(action.payload.id);
 
     case TODO_LIST_ITEM_UPDATE:
-      return previousState.set(
-        action.payload.item.id,
+      return previousState.mergeIn(
+        [action.payload.item.id],
         action.payload.item
       );
 

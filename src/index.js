@@ -10,6 +10,7 @@ import {
   createStore,
 } from 'redux';
 import { Provider } from 'react-redux';
+import { app } from './reducers/app';
 
 import { App } from './App.jsx';
 
@@ -22,7 +23,7 @@ const store = createStore(app, getInitialItems(), composeEnhancers(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />,
+    <App />
   </Provider>,
   document.getElementById('app-root')
 );
