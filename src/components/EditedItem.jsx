@@ -6,9 +6,6 @@ import { Input } from './Input';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
-    onSaveItem: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     item: ImmutablePropTypes.contains({
       id: PropTypes.string.isRequired,
@@ -33,7 +30,26 @@ export class EditedItem extends PureComponent {
   };
 
   saveItem = () => {
-    this.props.onSaveItem(this.state.editedText);
+    const newItem = {
+      id: this.props.item.id,
+      text: this.state.editedText,
+      isEdited: false,
+    };
+    this.props.onUpdateItem(
+      this.props.item.merge(newItem)
+    );
+  };
+
+  cancelChange = () => {
+    this.props.onUpdateItem(
+      this.props.item.setIn(['isEdited'], false)
+    );
+  };
+
+  deleteItem = () => {
+    this.props.onDeleteItem(
+      this.props.item.id
+    );
   };
 
   render() {
@@ -69,14 +85,14 @@ export class EditedItem extends PureComponent {
         <button
           type="button"
           className="btn btn-light"
-          onClick={this.props.onCancel}
+          onClick={this.cancelChange}
         >
           Cancel
         </button>
         <button
           type="button"
           className="btn btn-danger"
-          onClick={this.props.onDelete}
+          onClick={this.deleteItem}
         >
           Delete
         </button>
