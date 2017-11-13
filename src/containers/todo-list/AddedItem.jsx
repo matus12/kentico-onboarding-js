@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import { AddedItem } from '../../components/AddedItem';
 import { insertItem } from '../../actions/actionCreators';
 
-const mapStateToProps = () => ({
-  inputText: '',
-  isInputValid: false,
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   onAddItem: (text) => dispatch(insertItem(text)),
