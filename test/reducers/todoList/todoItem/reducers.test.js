@@ -17,7 +17,7 @@ describe('actions', () => {
       },
     };
 
-    const action = actions.insertItemFactory(id)(text);
+    const action = actions.insertItem(id, text);
     expect(action).toEqual(expectedAction);
   });
 
@@ -65,8 +65,8 @@ describe('reducers', () => {
     text: 'Do these tests',
     isEdited: false,
   };
-  const expectedItemAction = actions.insertItem(item.text);
-  const expectedItemAction2 = actions.insertItem(item2.text);
+  const expectedItemAction = actions.insertItem(generateId(), item.text);
+  const expectedItemAction2 = actions.insertItem(generateId(), item2.text);
   const ItemRecord = Record({
     id: expectedItemAction.payload.id,
     text: item.text,
