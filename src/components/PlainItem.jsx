@@ -1,22 +1,26 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-export class PlainItem extends PureComponent {
-  static propTypes = {
-    index: PropTypes.number.isRequired,
-    item: ImmutablePropTypes.contains({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    }).isRequired,
-    onClick: PropTypes.func.isRequired,
+export function PlainItem(props) {
+  const clickOnText = () => {
+    props.onUpdateItem(
+      props.item.setIn(['isEdited'], true),
+    );
   };
 
-  render() {
-    return (
-      <div onClick={this.props.onClick}>
-        {this.props.index + '. ' + this.props.item.text}
-      </div>
-    );
-  }
+  return (
+    <div onClick={clickOnText}>
+      {props.index + '. ' + props.item.text}
+    </div>
+  );
 }
+
+PlainItem.propTypes = {
+  item: ImmutablePropTypes.contains({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  onUpdateItem: PropTypes.func.isRequired,
+};
