@@ -7,16 +7,15 @@ import {
 } from '../constants/actionTypes';
 import { generateId } from '../utils/generateId';
 
-export const insertItemFactory = (dependencies) => (text) => ({
+export const insertItemFactory = (id) => (text) => ({
   type: TODO_LIST_ITEM_CREATE,
   payload: {
-    id: dependencies.generateId(),
+    id,
     text,
     isEdited: false,
   },
 });
-
-export const insertItem = insertItemFactory({ generateId });
+export const insertItem = insertItemFactory(generateId());
 
 export const updateItem = (item, newText) => ({
   type: TODO_LIST_ITEM_UPDATE,

@@ -1,60 +1,24 @@
-import * as types from '../src/constants/actionTypes';
-import * as actions from '../src/actions/actionCreators';
+import * as types from '../../../../src/constants/actionTypes';
+import * as actions from '../../../../src/actions/actionCreators';
 import { OrderedMap, Record } from 'immutable';
-import { items } from '../src/reducers/todoList/todoItem/items';
-import { generateId } from '../src/utils/generateId';
-// import { ItemRecord } from '../src/utils/itemRecord';
+import { items } from '../../../../src/reducers/todoList/todoItem/items';
+import { generateId } from '../../../../src/utils/generateId';
 
 describe('actions', () => {
-  it('should create an action to add todo item with correct type', () => {
+  it('should create an action to add item', () => {
     const text = 'Make a coffee';
+    const id = generateId();
     const expectedAction = {
       type: types.TODO_LIST_ITEM_CREATE,
       payload: {
-        id: generateId(),
+        id,
         text,
         isEdited: false,
       },
     };
 
-    const newActionType = actions.insertItem(text).type;
-    const expectedActionType = expectedAction.type;
-
-    expect(newActionType).toEqual(expectedActionType);
-  });
-
-  it('should create an action to add todo item with correct text', () => {
-    const text = 'Make a coffee';
-    const expectedAction = {
-      type: types.TODO_LIST_ITEM_CREATE,
-      payload: {
-        id: generateId(),
-        text,
-        isEdited: false,
-      },
-    };
-
-    const newActionText = actions.insertItem(text).payload.text;
-    const expectedActionText = expectedAction.payload.text;
-
-    expect(newActionText).toEqual(expectedActionText);
-  });
-
-  it('should create an action to add todo item with correct isEdited value', () => {
-    const text = 'Make a coffee';
-    const expectedAction = {
-      type: types.TODO_LIST_ITEM_CREATE,
-      payload: {
-        id: generateId(),
-        text,
-        isEdited: false,
-      },
-    };
-
-    const newActionIsEdited = actions.insertItem(text).payload.isEdited;
-    const expectedActionIsEdited = expectedAction.payload.isEdited;
-
-    expect(newActionIsEdited).toEqual(expectedActionIsEdited);
+    const action = actions.insertItemFactory(id)(text);
+    expect(action).toEqual(expectedAction);
   });
 
   it('should create an action to update todo item', () => {
@@ -199,7 +163,7 @@ describe('reducers', () => {
     const updatedItem = {
       id: item.id,
       text: 'updatedText',
-      isEdited: !item.isEdited,
+      isEdited: item.isEdited,
     };
     const newState = items(
       OrderedMap([
@@ -220,7 +184,7 @@ describe('reducers', () => {
           }),
         ],
       ]),
-      actions.updateItem(updatedItem)
+      actions.updateItem(item, 'updatedText')
     ).toJS();
     const expectedState = OrderedMap([
       [
@@ -237,30 +201,6 @@ describe('reducers', () => {
           id: item2.id,
           text: item2.text,
           isEdited: item2.isEdited,
-        }),
-      ],
-    ]).toJS();
-
-    expect(newState).toEqual(expectedState);
-  });
-
-  it('should state with one item after ITEM_UPDATE action on empty state', () => {
-    const updatedItem = {
-      id: item.id,
-      text: 'updatedText',
-      isEdited: !item.isEdited,
-    };
-    const newState = items(
-      undefined,
-      actions.updateItem(updatedItem)
-    ).toJS();
-    const expectedState = OrderedMap([
-      [
-        updatedItem.id,
-        new ItemRecord({
-          id: updatedItem.id,
-          text: updatedItem.text,
-          isEdited: updatedItem.isEdited,
         }),
       ],
     ]).toJS();
