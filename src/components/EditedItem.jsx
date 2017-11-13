@@ -36,19 +36,19 @@ export class EditedItem extends PureComponent {
       isEdited: false,
     };
     this.props.onUpdateItem(
-      this.props.item.merge(newItem)
+      this.props.item.merge(newItem),
     );
   };
 
   cancelChange = () => {
     this.props.onUpdateItem(
-      this.props.item.setIn(['isEdited'], false)
+      this.props.item.setIn(['isEdited'], false),
     );
   };
 
   deleteItem = () => {
     this.props.onDeleteItem(
-      this.props.item.id
+      this.props.item.id,
     );
   };
 
@@ -56,7 +56,7 @@ export class EditedItem extends PureComponent {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
       : 'Empty item cannot be stored. \n' +
-        'Tip: Use delete button to remove an item';
+      'Tip: Use delete button to remove an item';
 
     return (
       <div className="row">

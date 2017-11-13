@@ -18,12 +18,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [logger];
 
 const store = createStore(app, getInitialState(), composeEnhancers(
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware),
 ));
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('app-root')
+  document.getElementById('app-root'),
 );

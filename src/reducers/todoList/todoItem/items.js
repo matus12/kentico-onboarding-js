@@ -22,7 +22,7 @@ export const items = (previousState = OrderedMap(), action) => {
     case TODO_LIST_ITEM_UPDATE:
       return previousState.mergeIn(
         [action.payload.item.id],
-        action.payload.item
+        action.payload.item,
       );
 
     default:
