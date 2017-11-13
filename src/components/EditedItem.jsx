@@ -11,6 +11,9 @@ export class EditedItem extends PureComponent {
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
     }).isRequired,
+    onUpdateItem: PropTypes.func.isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
+    onEditStop: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -30,20 +33,15 @@ export class EditedItem extends PureComponent {
   };
 
   saveItem = () => {
-    const newItem = {
-      id: this.props.item.id,
-      text: this.state.editedText,
-      isEdited: false,
-    };
     this.props.onUpdateItem(
-      this.props.item.merge(newItem),
+      this.props.item,
+      this.state.editedText
     );
+    this.props.onEditStop(this.props.item);
   };
 
   cancelChange = () => {
-    this.props.onUpdateItem(
-      this.props.item.setIn(['isEdited'], false),
-    );
+    this.props.onEditStop(this.props.item);
   };
 
   deleteItem = () => {

@@ -4,9 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export function PlainItem(props) {
   const clickOnText = () => {
-    props.onUpdateItem(
-      props.item.setIn(['isEdited'], true),
-    );
+    props.onEditStart(props.item);
   };
 
   return (
@@ -22,5 +20,5 @@ PlainItem.propTypes = {
     text: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
-  onUpdateItem: PropTypes.func.isRequired,
+  onEditStart: PropTypes.func.isRequired,
 };
