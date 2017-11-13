@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import logger from 'redux-logger';
-import { getInitialState } from './utils/getItems';
+import { getInitialState } from './utils/getInitialState';
 import {
   applyMiddleware,
   compose,
