@@ -2,28 +2,12 @@ import * as types from '../../../../src/constants/actionTypes';
 import * as actions from '../../../../src/actions/actionCreators';
 import { OrderedMap, Record } from 'immutable';
 import { items } from '../../../../src/reducers/todoList/todoItem/items';
-import { generateId } from '../../../../src/utils/generateId';
+import { insertItemFactory } from '../../../../src/actions/insertItemFactory';
 
 describe('actions', () => {
-  it('should create an action to add item', () => {
-    const text = 'Make a coffee';
-    const id = generateId();
-    const expectedAction = {
-      type: types.TODO_LIST_ITEM_CREATE,
-      payload: {
-        id,
-        text,
-        isEdited: false,
-      },
-    };
-
-    const action = actions.insertItem(id, text);
-    expect(action).toEqual(expectedAction);
-  });
-
   it('should create an action to update todo item', () => {
     const item = {
-      id: generateId(),
+      id: 'e847925f-4c86-43c6-b274-ecd7412055f8',
       text: 'Make a coffee',
       isEdited: false,
     };
@@ -40,7 +24,7 @@ describe('actions', () => {
   });
 
   it('should create an action to delete todo item', () => {
-    const id = generateId();
+    const id = '0c63aa32-2bcc-4f91-9eb4-c0d540e97042';
     const expectedAction = {
       type: types.TODO_LIST_ITEM_DELETE,
       payload: {
@@ -55,18 +39,20 @@ describe('actions', () => {
 });
 
 describe('reducers', () => {
+  const insertItem = insertItemFactory(() => '16b1706c-1311-418d-aaaa-d6043f2e7f1f');
+
   const item = {
-    id: generateId(),
+    id: '16b1706c-1311-418d-aaaa-d6043f2e7f1f',
     text: 'Make a coffee',
     isEdited: false,
   };
   const item2 = {
-    id: generateId(),
+    id: '16b1706c-1311-418d-bdba-d6043f2e7f1f',
     text: 'Do these tests',
     isEdited: false,
   };
-  const expectedItemAction = actions.insertItem(generateId(), item.text);
-  const expectedItemAction2 = actions.insertItem(generateId(), item2.text);
+  const expectedItemAction = insertItem(item.text);
+  const expectedItemAction2 = insertItem(item2.text);
   const ItemRecord = Record({
     id: expectedItemAction.payload.id,
     text: item.text,

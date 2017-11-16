@@ -1,19 +1,13 @@
 import {
-  TODO_LIST_ITEM_CREATE,
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
   TODO_LIST_ITEM_EDIT_START,
   TODO_LIST_ITEM_EDIT_END,
 } from '../constants/actionTypes';
+import { generateId } from '../utils/generateId';
+import { insertItemFactory } from './insertItemFactory';
 
-export const insertItem = (id, text) => ({
-  type: TODO_LIST_ITEM_CREATE,
-  payload: {
-    id,
-    text,
-    isEdited: false,
-  },
-});
+export const insertItem = insertItemFactory(generateId);
 
 export const updateItem = (item, newText) => ({
   type: TODO_LIST_ITEM_UPDATE,
