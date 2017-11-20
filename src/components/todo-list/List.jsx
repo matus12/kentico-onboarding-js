@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddedItem } from '../containers/todo-list/AddedItem';
+import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent.tsx';
-import { Item } from '../containers/todo-list/Item';
+import { Item } from '../../containers/todo-list/Item';
 import PropTypes from 'prop-types';
 import { OrderedMap } from 'immutable';
 

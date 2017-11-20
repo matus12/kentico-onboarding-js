@@ -1,6 +1,6 @@
 import {
   validateText,
-} from '../../src/utils/textValidation';
+} from './textValidation';
 
 describe('validateText', () => {
   it('returns true for non-empty string', () => {

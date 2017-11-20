@@ -5,8 +5,8 @@ import {
   TODO_LIST_ITEM_UPDATE,
   TODO_LIST_ITEM_EDIT_START,
   TODO_LIST_ITEM_EDIT_END,
-} from '../../../constants/actionTypes';
-import { ListItem } from '../../../models/ListItem';
+} from '../../../../constants/actionTypes';
+import { ListItem } from '../../../../models/ListItem';
 
 export const items = (previousState = OrderedMap(), action) => {
   switch (action.type) {

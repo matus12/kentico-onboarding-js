@@ -1,7 +1,7 @@
-import * as actions from '../../../../src/actions/actionCreators';
+import * as actions from '../../../../actions/actionCreators';
 import { OrderedMap, Record } from 'immutable';
-import { items } from '../../../../src/reducers/todoList/todoItem/items';
-import { insertItemFactory } from '../../../../src/actions/insertItemFactory';
+import { items } from './items';
+import { insertItemFactory } from '../../../../actions/insertItemFactory';
 
 describe('reducers', () => {
   const insertItem = insertItemFactory(() => '16b1706c-1311-418d-aaaa-d6043f2e7f1f');
@@ -135,7 +135,7 @@ describe('reducers', () => {
           }),
         ],
       ]),
-      actions.updateItem(item, 'updatedText')
+      actions.updateItem(item.id, 'updatedText')
     ).toJS();
     const expectedState = OrderedMap([
       [

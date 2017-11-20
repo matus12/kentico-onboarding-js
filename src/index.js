@@ -10,7 +10,7 @@ import {
   createStore,
 } from 'redux';
 import { Provider } from 'react-redux';
-import { app } from './reducers/app';
+import { app } from './reducers/todo-list/todo-list';
 
 import { App } from './App.jsx';
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { AddedItem } from '../../components/AddedItem';
+import { AddedItem } from '../../components/todo-list/AddedItem';
 import { insertItem } from '../../actions/actionCreators';
 
 const mapDispatchToProps = (dispatch) => ({

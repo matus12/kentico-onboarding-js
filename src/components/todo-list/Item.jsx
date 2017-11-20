@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { PlainItem } from '../containers/todo-list/PlainItem';
-import { EditedItem } from '../containers/todo-list/EditedItem';
+import { PlainItem } from '../../containers/todo-list/PlainItem';
+import { EditedItem } from '../../containers/todo-list/EditedItem';
 
 export const Item = props =>
   <li className="list-group-item">

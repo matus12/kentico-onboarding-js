@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { EditedItem } from '../../components/EditedItem';
+import { EditedItem } from '../../components/todo-list/EditedItem';
 import {
   updateItem,
   deleteItem,

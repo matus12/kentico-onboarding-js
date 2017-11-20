@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { PlainItem } from '../../components/PlainItem';
+import { PlainItem } from '../../components/todo-list/PlainItem';
 import { startEdit } from '../../actions/actionCreators';
 
 const mapStateToProps = (state, ownProps) => ({
