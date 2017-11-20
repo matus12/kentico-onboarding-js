@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditStart: (item) => dispatch(startEdit(item)),
+  onEditStart: (id) => dispatch(startEdit(id)),
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

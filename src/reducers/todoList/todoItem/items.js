@@ -23,15 +23,15 @@ export const items = (previousState = OrderedMap(), action) => {
 
     case TODO_LIST_ITEM_UPDATE:
       return previousState.mergeIn(
-        [action.payload.item.id, 'text'],
+        [action.payload.id, 'text'],
         action.payload.newText,
       );
 
     case TODO_LIST_ITEM_EDIT_START:
     case TODO_LIST_ITEM_EDIT_END:
       return previousState.mergeIn(
-        [action.payload.item.id, 'isEdited'],
-        action.payload.item.isEdited,
+        [action.payload.id, 'isEdited'],
+        action.payload.isEdited,
       );
 
     default:

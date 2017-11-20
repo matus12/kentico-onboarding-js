@@ -9,10 +9,10 @@ import { insertItemFactory } from './insertItemFactory';
 
 export const insertItem = insertItemFactory(generateId);
 
-export const updateItem = (item, newText) => ({
+export const updateItem = (id, newText) => ({
   type: TODO_LIST_ITEM_UPDATE,
   payload: {
-    item,
+    id,
     newText,
   },
 });
@@ -24,22 +24,18 @@ export const deleteItem = (id) => ({
   },
 });
 
-export const startEdit = (item) => ({
+export const startEdit = (id) => ({
   type: TODO_LIST_ITEM_EDIT_START,
   payload: {
-    item: {
-      id: item.id,
-      isEdited: true,
-    },
+    id,
+    isEdited: true,
   },
 });
 
-export const endEdit = (item) => ({
+export const endEdit = (id) => ({
   type: TODO_LIST_ITEM_EDIT_END,
   payload: {
-    item: {
-      id: item.id,
-      isEdited: false,
-    },
+    id,
+    isEdited: false,
   },
 });

@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export function PlainItem(props) {
   const clickOnText = () => {
-    props.onEditStart(props.item);
+    props.onEditStart(props.item.id);
   };
 
   return (

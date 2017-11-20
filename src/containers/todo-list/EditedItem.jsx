@@ -12,9 +12,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateItem: (item, text) => dispatch(updateItem(item, text)),
+  onUpdateItem: (id, text) => dispatch(updateItem(id, text)),
   onDeleteItem: (id) => dispatch(deleteItem(id)),
-  onEditStop: (item) => dispatch(endEdit(item)),
+  onEditStop: (id) => dispatch(endEdit(id)),
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

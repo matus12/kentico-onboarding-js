@@ -34,14 +34,14 @@ export class EditedItem extends PureComponent {
 
   saveItem = () => {
     this.props.onUpdateItem(
-      this.props.item,
+      this.props.item.id,
       this.state.editedText
     );
-    this.props.onEditStop(this.props.item);
+    this.props.onEditStop(this.props.item.id);
   };
 
   cancelChange = () => {
-    this.props.onEditStop(this.props.item);
+    this.props.onEditStop(this.props.item.id);
   };
 
   deleteItem = () => {
