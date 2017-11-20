@@ -1,42 +1,7 @@
-import * as types from '../../../../src/constants/actionTypes';
 import * as actions from '../../../../src/actions/actionCreators';
 import { OrderedMap, Record } from 'immutable';
 import { items } from '../../../../src/reducers/todoList/todoItem/items';
 import { insertItemFactory } from '../../../../src/actions/insertItemFactory';
-
-describe('actions', () => {
-  it('should create an action to update todo item', () => {
-    const item = {
-      id: 'e847925f-4c86-43c6-b274-ecd7412055f8',
-      text: 'Make a coffee',
-      isEdited: false,
-    };
-    const expectedAction = {
-      type: types.TODO_LIST_ITEM_UPDATE,
-      payload: {
-        item,
-      },
-    };
-
-    const updateItemAction = actions.updateItem(item);
-
-    expect(updateItemAction).toEqual(expectedAction);
-  });
-
-  it('should create an action to delete todo item', () => {
-    const id = '0c63aa32-2bcc-4f91-9eb4-c0d540e97042';
-    const expectedAction = {
-      type: types.TODO_LIST_ITEM_DELETE,
-      payload: {
-        id,
-      },
-    };
-
-    const deleteItemAction = actions.deleteItem(id);
-
-    expect(deleteItemAction).toEqual(expectedAction);
-  });
-});
 
 describe('reducers', () => {
   const insertItem = insertItemFactory(() => '16b1706c-1311-418d-aaaa-d6043f2e7f1f');
