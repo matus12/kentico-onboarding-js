@@ -2,17 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-export const PlainItem = props => {
-  const clickOnText = () => {
-    props.onEditStart(props.item.id);
-  };
-
-  return (
-    <div onClick={clickOnText}>
-      {props.index + '. ' + props.item.text}
-    </div>
-  );
-};
+export const PlainItem = props =>
+  <div onClick={props.onEditStart}>
+    {props.index + '. ' + props.item.text}
+  </div>;
 
 PlainItem.propTypes = {
   item: ImmutablePropTypes.contains({
