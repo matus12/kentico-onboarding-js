@@ -4,22 +4,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { PlainItem } from '../containers/todo-list/PlainItem';
 import { EditedItem } from '../containers/todo-list/EditedItem';
 
-export function Item(props) {
-  return (
-    <li className="list-group-item">
-      {(props.item.isEdited) ?
-        <EditedItem
-          item={props.item}
-          index={props.index}
-        /> :
-        <PlainItem
-          index={props.index}
-          item={props.item}
-        />
-      }
-    </li>
-  );
-}
+export const Item = props =>
+  <li className="list-group-item">
+    {(props.item.isEdited) ?
+      <EditedItem
+        item={props.item}
+        index={props.index}
+      /> :
+      <PlainItem
+        index={props.index}
+        item={props.item}
+      />
+    }
+  </li>;
 
 Item.propTypes = {
   item: ImmutablePropTypes.contains({
