@@ -29,7 +29,6 @@ export const startEdit = (item) => ({
   payload: {
     item: {
       id: item.id,
-      text: item.text,
       isEdited: true,
     },
   },
@@ -40,7 +39,6 @@ export const endEdit = (item) => ({
   payload: {
     item: {
       id: item.id,
-      text: item.text,
       isEdited: false,
     },
   },

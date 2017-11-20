@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   items: state.list.items,
 });
 
-const enhancer = connect(mapStateToProps, undefined);
+const enhancer = connect(mapStateToProps);
 const connectedComponent = enhancer(List);
 
 export { connectedComponent as ListRedux };

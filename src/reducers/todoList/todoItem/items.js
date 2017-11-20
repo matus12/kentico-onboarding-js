@@ -1,6 +1,6 @@
 import { OrderedMap } from 'immutable';
 import {
-  TODO_LIST_ITEM_CREATE,
+  TODO_LIST_ITEM_INSERT,
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
   TODO_LIST_ITEM_EDIT_START,
@@ -10,7 +10,7 @@ import { ListItem } from '../../../models/ListItem';
 
 export const items = (previousState = OrderedMap(), action) => {
   switch (action.type) {
-    case TODO_LIST_ITEM_CREATE:
+    case TODO_LIST_ITEM_INSERT:
       return previousState.set(
         action.payload.id,
         new ListItem({
@@ -26,6 +26,7 @@ export const items = (previousState = OrderedMap(), action) => {
         [action.payload.item.id, 'text'],
         action.payload.newText,
       );
+
     case TODO_LIST_ITEM_EDIT_START:
     case TODO_LIST_ITEM_EDIT_END:
       return previousState.mergeIn(
