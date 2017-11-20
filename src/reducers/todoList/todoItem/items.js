@@ -28,10 +28,14 @@ export const items = (previousState = OrderedMap(), action) => {
       );
 
     case TODO_LIST_ITEM_EDIT_START:
+      return previousState.mergeIn(
+        [action.payload.id, 'isEdited'],
+        true,
+      );
     case TODO_LIST_ITEM_EDIT_END:
       return previousState.mergeIn(
         [action.payload.id, 'isEdited'],
-        action.payload.isEdited,
+        false,
       );
 
     default:

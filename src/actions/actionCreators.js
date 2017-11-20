@@ -28,7 +28,6 @@ export const startEdit = (id) => ({
   type: TODO_LIST_ITEM_EDIT_START,
   payload: {
     id,
-    isEdited: true,
   },
 });
 
@@ -36,6 +35,5 @@ export const endEdit = (id) => ({
   type: TODO_LIST_ITEM_EDIT_END,
   payload: {
     id,
-    isEdited: false,
   },
 });
