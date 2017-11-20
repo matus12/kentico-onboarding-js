@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddedItemRedux } from '../containers/todo-list/AddedItem';
+import { AddedItem } from '../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent.tsx';
-import { ItemRedux } from '../containers/todo-list/Item';
+import { Item } from '../containers/todo-list/Item';
 import PropTypes from 'prop-types';
 import { OrderedMap } from 'immutable';
 
@@ -18,14 +18,14 @@ export function List(props) {
           {props.items
             .entrySeq()
             .map(([uniqueKey, item], index) =>
-              <ItemRedux
+              <Item
                 key={uniqueKey}
                 item={item}
                 index={index + 1}
               />,
             )
           }
-          <AddedItemRedux />
+          <AddedItem />
         </ul>
       </div>
     </div>

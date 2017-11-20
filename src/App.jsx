@@ -1,6 +1,6 @@
 import './sticky-footer.css';
 import React, { PureComponent } from 'react';
-import { ListRedux } from './containers/todo-list/List';
+import { List } from './containers/todo-list/List';
 
 export class App extends PureComponent {
   render() {
@@ -29,7 +29,7 @@ export class App extends PureComponent {
           </div>
 
           <section id="app-content">
-            <ListRedux />
+            <List />
           </section>
         </div>
         <footer className="footer">

@@ -9,4 +9,4 @@ const mapStateToProps = (state, ownProps) => ({
 const enhancer = connect(mapStateToProps, undefined);
 const connectedComponent = enhancer(Item);
 
-export { connectedComponent as ItemRedux };
+export { connectedComponent as Item };

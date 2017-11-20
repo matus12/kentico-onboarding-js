@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
 const enhancer = connect(mapStateToProps, mapDispatchToProps);
 const connectedComponent = enhancer(PlainItem);
 
-export { connectedComponent as PlainItemRedux };
+export { connectedComponent as PlainItem };

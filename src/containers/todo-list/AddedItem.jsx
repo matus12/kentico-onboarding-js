@@ -9,4 +9,4 @@ const mapDispatchToProps = (dispatch) => ({
 const enhancer = connect(undefined, mapDispatchToProps);
 const connectedComponent = enhancer(AddedItem);
 
-export { connectedComponent as AddedItemRedux };
+export { connectedComponent as AddedItem };
