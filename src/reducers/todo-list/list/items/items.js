@@ -3,8 +3,7 @@ import {
   TODO_LIST_ITEM_INSERT,
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
-  TODO_LIST_ITEM_EDIT_START,
-  TODO_LIST_ITEM_EDIT_END,
+  TODO_LIST_ITEM_TOGGLE,
 } from '../../../../constants/actionTypes';
 import { item } from './item';
 
@@ -21,22 +20,15 @@ export const items = (previousState = OrderedMap(), action) => {
       return previousState.delete(action.payload.id);
 
     case TODO_LIST_ITEM_UPDATE:
-      return previousState.set(
-        action.payload.id,
-        item(previousState.get(action.payload.id), action),
-      );
+    case TODO_LIST_ITEM_TOGGLE: {
+      const existingItem = previousState.get(action.payload.id);
+      const updatedItem = item(existingItem, action);
 
-    case TODO_LIST_ITEM_EDIT_START:
       return previousState.set(
-        action.payload.id,
-        item(previousState.get(action.payload.id), action),
+        updatedItem.id,
+        updatedItem,
       );
-
-    case TODO_LIST_ITEM_EDIT_END:
-      return previousState.set(
-        action.payload.id,
-        item(previousState.get(action.payload.id), action),
-      );
+    }
 
     default:
       return previousState;

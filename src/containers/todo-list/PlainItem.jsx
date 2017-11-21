@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { PlainItem } from '../../components/todo-list/PlainItem';
-import { startEdit } from '../../actions/actionCreators';
+import {
+  toggleItem,
+} from '../../actions/actionCreators';
 
 const mapStateToProps = (state, ownProps) => ({
   item: ownProps.item,
@@ -8,7 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onEditStart: () => dispatch(startEdit(ownProps.item.id)),
+  onEditStart: () => dispatch(toggleItem(ownProps.item.id, true)),
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

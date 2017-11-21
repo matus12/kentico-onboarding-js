@@ -1,30 +1,28 @@
 import {
   TODO_LIST_ITEM_UPDATE,
-  TODO_LIST_ITEM_EDIT_START,
-  TODO_LIST_ITEM_EDIT_END,
   TODO_LIST_ITEM_INSERT,
+  TODO_LIST_ITEM_TOGGLE,
 } from '../../../../constants/actionTypes';
 import { ListItem } from '../../../../models/ListItem';
 
 export const item = (previousState = ListItem(), action) => {
   switch (action.type) {
-    case TODO_LIST_ITEM_EDIT_START:
+    case TODO_LIST_ITEM_TOGGLE:
       return previousState.setIn(
         ['isEdited'],
-        true,
+        action.payload.isEdited,
       );
 
-    case TODO_LIST_ITEM_EDIT_END:
-      return previousState.setIn(
-        ['isEdited'],
-        false,
-      );
+    case TODO_LIST_ITEM_UPDATE: {
+      const updatedItem = {
+        text: action.payload.text,
+        isEdited: false,
+      };
 
-    case TODO_LIST_ITEM_UPDATE:
-      return previousState.setIn(
-        ['text'],
-        action.payload.newText,
+      return previousState.merge(
+        updatedItem,
       );
+    }
 
     case TODO_LIST_ITEM_INSERT:
       return new ListItem({

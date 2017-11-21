@@ -1,19 +1,18 @@
 import {
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
-  TODO_LIST_ITEM_EDIT_START,
-  TODO_LIST_ITEM_EDIT_END,
+  TODO_LIST_ITEM_TOGGLE,
 } from '../constants/actionTypes';
 import { generateId } from '../utils/generateId';
 import { insertItemFactory } from './insertItemFactory';
 
 export const insertItem = insertItemFactory(generateId);
 
-export const updateItem = (id, newText) => ({
+export const updateItem = (id, text) => ({
   type: TODO_LIST_ITEM_UPDATE,
   payload: {
     id,
-    newText,
+    text,
   },
 });
 
@@ -24,16 +23,10 @@ export const deleteItem = (id) => ({
   },
 });
 
-export const startEdit = (id) => ({
-  type: TODO_LIST_ITEM_EDIT_START,
+export const toggleItem = (id, isEdited) => ({
+  type: TODO_LIST_ITEM_TOGGLE,
   payload: {
     id,
-  },
-});
-
-export const endEdit = (id) => ({
-  type: TODO_LIST_ITEM_EDIT_END,
-  payload: {
-    id,
+    isEdited,
   },
 });

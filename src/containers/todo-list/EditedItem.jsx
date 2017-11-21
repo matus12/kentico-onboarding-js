@@ -3,7 +3,7 @@ import { EditedItem } from '../../components/todo-list/EditedItem';
 import {
   updateItem,
   deleteItem,
-  endEdit,
+  toggleItem,
 } from '../../actions/actionCreators';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onUpdateItem: (text) => dispatch(updateItem(ownProps.item.id, text)),
   onDeleteItem: () => dispatch(deleteItem(ownProps.item.id)),
-  onEditStop: () => dispatch(endEdit(ownProps.item.id)),
+  onEditStop: () => dispatch(toggleItem(ownProps.item.id, false)),
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);
