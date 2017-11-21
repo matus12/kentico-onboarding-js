@@ -3,7 +3,7 @@ import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent.tsx';
 import { Item } from '../../containers/todo-list/Item';
 import PropTypes from 'prop-types';
-import { OrderedMap } from 'immutable';
+import { Seq } from 'immutable';
 
 export const List = props =>
   <div className="row">
@@ -14,12 +14,11 @@ export const List = props =>
     </div>
     <div className="col-sm-12 col-md-offset-2 col-md-8">
       <ul className="list-group">
-        {props.items
-          .entrySeq()
-          .map(([uniqueKey, item], index) =>
+        {props.ids
+          .map((id, index) =>
             <Item
-              key={uniqueKey}
-              item={item}
+              key={id}
+              id={id}
               index={index + 1}
             />,
           )
@@ -30,5 +29,5 @@ export const List = props =>
   </div>;
 
 List.propTypes = {
-  items: PropTypes.instanceOf(OrderedMap).isRequired,
+  ids: PropTypes.instanceOf(Seq).isRequired,
 };
