@@ -23,19 +23,19 @@ export const items = (previousState = OrderedMap(), action) => {
     case TODO_LIST_ITEM_UPDATE:
       return previousState.set(
         action.payload.id,
-        item(previousState.get(action.payload.id), action)
+        item(previousState.get(action.payload.id), action),
       );
 
     case TODO_LIST_ITEM_EDIT_START:
       return previousState.set(
         action.payload.id,
-        item(previousState.get(action.payload.id), action)
+        item(previousState.get(action.payload.id), action),
       );
 
     case TODO_LIST_ITEM_EDIT_END:
       return previousState.set(
         action.payload.id,
-        item(previousState.get(action.payload.id), action)
+        item(previousState.get(action.payload.id), action),
       );
 
     default:

@@ -1,7 +1,6 @@
 import * as actions from '../../../../actions/actionCreators';
 import {
   OrderedMap,
-  Record,
 } from 'immutable';
 import { items } from './items';
 import { insertItemFactory } from '../../../../actions/insertItemFactory';

@@ -34,7 +34,7 @@ export class EditedItem extends PureComponent {
 
   saveItem = () => {
     this.props.onUpdateItem(
-      this.state.editedText
+      this.state.editedText,
     );
     this.props.onEditStop();
   };
