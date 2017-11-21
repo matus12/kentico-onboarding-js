@@ -9,16 +9,10 @@ import { item } from './item';
 
 export const items = (previousState = OrderedMap(), action) => {
   switch (action.type) {
-    case TODO_LIST_ITEM_INSERT: {
-      const newItem = item(undefined, action);
-      return previousState.set(
-        newItem.id,
-        newItem);
-    }
-
     case TODO_LIST_ITEM_DELETE:
       return previousState.delete(action.payload.id);
 
+    case TODO_LIST_ITEM_INSERT:
     case TODO_LIST_ITEM_UPDATE:
     case TODO_LIST_ITEM_TOGGLE: {
       const existingItem = previousState.get(action.payload.id);
