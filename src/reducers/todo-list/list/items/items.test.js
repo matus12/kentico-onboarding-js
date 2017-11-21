@@ -1,31 +1,55 @@
 import * as actions from '../../../../actions/actionCreators';
-import { OrderedMap, Record } from 'immutable';
+import {
+  OrderedMap,
+  Record,
+} from 'immutable';
 import { items } from './items';
 import { insertItemFactory } from '../../../../actions/insertItemFactory';
+import { ListItem } from '../../../../models/ListItem';
 
 describe('reducers', () => {
-  const insertItem = insertItemFactory(() => '16b1706c-1311-418d-aaaa-d6043f2e7f1f');
+  const itemId = '16b1706c-1311-418d-aaaa-d6043f2e7f1f';
+  const item2Id = '16b1706c-1311-418d-bdba-d6043f2e7f1f';
+  const itemText = 'Make a coffee';
+  const item2Text = 'Do these tests';
 
   const item = {
-    id: '16b1706c-1311-418d-aaaa-d6043f2e7f1f',
-    text: 'Make a coffee',
+    id: itemId,
+    text: itemText,
     isEdited: false,
   };
   const item2 = {
-    id: '16b1706c-1311-418d-bdba-d6043f2e7f1f',
-    text: 'Do these tests',
+    id: item2Id,
+    text: item2Text,
     isEdited: false,
   };
-  const expectedItemAction = insertItem(item.text);
-  const expectedItemAction2 = insertItem(item2.text);
-  const ItemRecord = Record({
-    id: expectedItemAction.payload.id,
-    text: item.text,
-    isEdited: false,
-  });
-  const orderedMap = new OrderedMap([
-    [expectedItemAction.payload.id,
-      new ItemRecord()],
+
+  const insertItem = insertItemFactory(() => itemId);
+  const insertItem2 = insertItemFactory(() => item2Id);
+
+  const insertItemAction = insertItem(item.text);
+  const insertItem2Action = insertItem2(item2.text);
+  const onlyItemState = new OrderedMap([
+    [
+      itemId,
+      new ListItem(item),
+    ],
+  ]);
+  const onlyItem2State = new OrderedMap([
+    [
+      item2Id,
+      new ListItem(item2),
+    ],
+  ]);
+  const twoItemState = new OrderedMap([
+    [
+      itemId,
+      new ListItem(item),
+    ],
+    [
+      item2Id,
+      new ListItem(item2),
+    ],
   ]);
 
   it('should return the initial state', () => {
@@ -35,77 +59,43 @@ describe('reducers', () => {
   });
 
   it('should handle ITEM_CREATE action when state is empty', () => {
+    const expectedState = onlyItemState.toJS();
+
     const newState = items(
       undefined,
-      expectedItemAction
+      insertItemAction,
     ).toJS();
-    const expectedState = orderedMap.toJS();
 
     expect(newState).toEqual(expectedState);
   });
 
   it('should add record to non-empty store on ITEM_CREATE action', () => {
-    const newState = items(
-      orderedMap,
-      expectedItemAction2
-    ).toJS();
+    const expectedState = twoItemState.toJS();
 
-    const expectedState = OrderedMap([
-      [
-        expectedItemAction.payload.id,
-        new ItemRecord(),
-      ],
-      [
-        expectedItemAction2.payload.id,
-        new ItemRecord({
-          id: expectedItemAction2.payload.id,
-          text: item2.text,
-          isEdited: false,
-        }),
-      ]]).toJS();
+    const newState = items(
+      onlyItemState,
+      insertItem2Action,
+    ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
 
   it('should leave state empty when deleting last item ITEM_DELETE action', () => {
     const newStateSize = items(
-      orderedMap,
-      actions.deleteItem(expectedItemAction.payload.id)
+      onlyItemState,
+      actions.deleteItem(item.id),
     ).size;
 
     expect(newStateSize).toBe(0);
   });
 
   it('should delete correct record after ITEM_DELETE action', () => {
+    const expectedState = onlyItem2State.toJS();
+
     const newState = items(
-      OrderedMap([
-        [
-          item.id,
-          new ItemRecord({
-            id: item.id,
-            text: item.text,
-            isEdited: item.isEdited,
-          }),
-        ],
-        [
-          item2.id,
-          new ItemRecord({
-            id: item2.id,
-            text: item2.text,
-            isEdited: item2.isEdited,
-          }),
-        ]]),
+      twoItemState,
       actions.deleteItem(item.id))
       .toJS();
-    const expectedState = OrderedMap([
-      [
-        item2.id,
-        new ItemRecord({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
-      ]]).toJS();
 
     expect(newState).toEqual(expectedState);
   });
@@ -116,60 +106,38 @@ describe('reducers', () => {
       text: 'updatedText',
       isEdited: item.isEdited,
     };
-    const newState = items(
-      OrderedMap([
-        [
-          item.id,
-          new ItemRecord({
-            id: item.id,
-            text: item.text,
-            isEdited: item.isEdited,
-          }),
-        ],
-        [
-          item2.id,
-          new ItemRecord({
-            id: item2.id,
-            text: item2.text,
-            isEdited: item2.isEdited,
-          }),
-        ],
-      ]),
-      actions.updateItem(item.id, 'updatedText')
-    ).toJS();
     const expectedState = OrderedMap([
       [
         updatedItem.id,
-        new ItemRecord({
-          id: updatedItem.id,
-          text: updatedItem.text,
-          isEdited: updatedItem.isEdited,
-        }),
+        new ListItem(updatedItem),
       ],
       [
         item2.id,
-        new ItemRecord({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
+        new ListItem(item2),
       ],
     ]).toJS();
+
+    const newState = items(
+      twoItemState,
+      actions.updateItem(item.id, 'updatedText'),
+    ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
 
   it('should return prevState on unknown action', () => {
+    const unknownAction = {
+      type: 'TODO_LIST_ITEM_DUPLICATE',
+      payload: {
+        item: item2,
+      },
+    };
+    const expectedState = onlyItemState.toJS();
+
     const newState = items(
-      orderedMap,
-      {
-        type: 'TODO_LIST_ITEM_DUPLICATE',
-        payload: {
-          item: item2,
-        },
-      }
+      onlyItemState,
+      unknownAction,
     ).toJS();
-    const expectedState = orderedMap.toJS();
 
     expect(newState).toEqual(expectedState);
   });
