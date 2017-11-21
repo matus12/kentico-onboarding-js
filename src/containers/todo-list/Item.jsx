@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
 
-const mapStateToProps = (state, ownProps) => ({
-  item: state.list.items.get(ownProps.id),
-  index: ownProps.index,
+const mapStateToProps = ({ list: { items } }, ownProps) => ({
+  item: items.get(ownProps.id),
 });
 
 const enhancer = connect(mapStateToProps);

@@ -7,10 +7,10 @@ import { Input } from './Input';
 export class EditedItem extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
-    // item: ImmutablePropTypes.contains({
-    //   id: PropTypes.string.isRequired,
-    //   text: PropTypes.string.isRequired,
-    // }).isRequired,
+    item: ImmutablePropTypes.contains({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    }).isRequired,
     onUpdateItem: PropTypes.func.isRequired,
     onDeleteItem: PropTypes.func.isRequired,
     onEditStop: PropTypes.func.isRequired,

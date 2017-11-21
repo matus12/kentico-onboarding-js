@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { List } from '../../components/todo-list/List';
 
-const mapStateToProps = (state) => ({
-  ids: state.list.items.keySeq(),
+const mapStateToProps = ({ list: { items } }) => ({
+  ids: items.keySeq(),
 });
 
 const enhancer = connect(mapStateToProps);
