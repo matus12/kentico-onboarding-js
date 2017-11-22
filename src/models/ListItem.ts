@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
-import { IListItem } from './IItem';
 import { defaultId } from '../utils/generateId';
+import { IListItem } from './IListItem';
 
 const emptyItem: IListItem = {
   id: defaultId,

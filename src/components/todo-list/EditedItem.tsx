@@ -1,21 +1,24 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
+import { IListItem } from '../../models/IListItem';
 
-export class EditedItem extends PureComponent {
-  static propTypes = {
-    item: ImmutablePropTypes.contains({
-      index: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-    }).isRequired,
-    onUpdateItem: PropTypes.func.isRequired,
-    onDeleteItem: PropTypes.func.isRequired,
-    onEditStop: PropTypes.func.isRequired,
-  };
+interface IProps {
+  item: IListItem;
+  index: number;
+  onUpdateItem: (text: string) => void;
+  onEditStop: () => void;
+  onDeleteItem: () => void;
+}
 
-  constructor(props) {
+interface IState {
+  editedText: string;
+  isInputValid: boolean;
+}
+
+export class EditedItem extends React.PureComponent<IProps, IState> {
+
+  constructor(props: IProps) {
     super(props);
 
     this.state = {
@@ -24,10 +27,10 @@ export class EditedItem extends PureComponent {
     };
   }
 
-  changeItemText = ({ currentTarget: { value } }) => {
+  changeItemText = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({
-      editedText: value,
-      isInputValid: validateText(value),
+      editedText: event.currentTarget.value,
+      isInputValid: validateText(event.currentTarget.value),
     });
   };
 

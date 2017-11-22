@@ -1,16 +1,20 @@
-import React, { PureComponent } from 'react';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as classnames from 'classnames';
 
-export class Input extends PureComponent {
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-    isValid: PropTypes.bool.isRequired,
-    title: PropTypes.string,
-  };
+interface IProps {
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  value: string;
+  isValid: boolean;
+  title: string | undefined;
+}
 
-  constructor(props) {
+interface IState {
+  isFocused: boolean;
+}
+
+export class Input extends React.PureComponent<IProps, IState> {
+
+  constructor(props: IProps) {
     super(props);
 
     this.state = ({
@@ -33,7 +37,8 @@ export class Input extends PureComponent {
   render() {
     return (
       <div
-        className={classnames('input-group',
+        className={classnames(
+          'input-group',
           this.state.isFocused && {
             'has-success': this.props.isValid,
             'has-error': !this.props.isValid,

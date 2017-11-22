@@ -1,14 +1,19 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import  * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 
-export class AddedItem extends PureComponent {
-  static propTypes = {
-    onAddItem: PropTypes.func.isRequired,
-  };
+interface IState {
+  inputText: string;
+  isInputValid: boolean;
+}
 
-  constructor(props) {
+interface IProps {
+  onAddItem: (text: string) => void;
+}
+
+export class AddedItem extends React.PureComponent<IProps, IState> {
+
+  constructor(props: IProps) {
     super(props);
 
     this.state = ({
@@ -17,10 +22,10 @@ export class AddedItem extends PureComponent {
     });
   }
 
-  changeItemText = ({ currentTarget: { value } }) => {
+  changeItemText = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({
-      inputText: value,
-      isInputValid: validateText(value),
+      inputText: event.currentTarget.value,
+      isInputValid: validateText(event.currentTarget.value),
     });
   };
 
