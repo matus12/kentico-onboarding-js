@@ -4,7 +4,7 @@ import {
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
   TODO_LIST_ITEM_TOGGLE,
-} from '../../../../constants/actionTypes';
+} from '../../../constants/actionTypes';
 import { item } from './item';
 
 export const items = (previousState = OrderedMap(), action) => {

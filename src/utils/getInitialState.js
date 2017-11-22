@@ -10,7 +10,7 @@ const itemNames = [
 ];
 
 export const getInitialState = () => ({
-  list: {
+  todoList: {
     items: OrderedMap(
       itemNames
         .map((itemText) => {

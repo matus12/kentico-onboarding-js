@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
 
-const mapStateToProps = ({ list: { items } }, ownProps) => ({
+const mapStateToProps = ({ todoList: { items } }, ownProps) => ({
   item: items.get(ownProps.id),
 });
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { List } from '../../components/todo-list/List';
 
-const mapStateToProps = ({ list: { items } }) => ({
+const mapStateToProps = ({ todoList: { items } }) => ({
   ids: items.keySeq(),
 });
 

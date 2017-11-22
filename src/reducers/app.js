@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { list } from './list/list';
+import { todoList } from './todo-list/todoList';
 
 export const app = combineReducers({
-  list,
+  todoList,
 });

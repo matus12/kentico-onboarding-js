@@ -1,10 +1,10 @@
-import * as actions from '../../../../actions/actionCreators';
+import * as actions from '../../../actions/actionCreators';
 import {
   OrderedMap,
 } from 'immutable';
 import { items } from './items';
-import { insertItemFactory } from '../../../../actions/insertItemFactory';
-import { ListItem } from '../../../../models/ListItem';
+import { insertItemFactory } from '../../../actions/insertItemFactory';
+import { ListItem } from '../../../models/ListItem';
 
 describe('reducers', () => {
   const itemId = '16b1706c-1311-418d-aaaa-d6043f2e7f1f';
