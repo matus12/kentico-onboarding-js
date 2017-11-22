@@ -2,7 +2,7 @@ import { Collection } from 'immutable';
 import { ListItem } from './models/ListItem';
 
 export interface IAppState {
-  list: {
+  todoList: {
     items: Collection<string, ListItem>;
   };
 }

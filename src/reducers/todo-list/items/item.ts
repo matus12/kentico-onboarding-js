@@ -5,8 +5,9 @@ import {
   TODO_LIST_ITEM_CANCEL_EDIT,
 } from '../../../constants/actionTypes';
 import { ListItem } from '../../../models/ListItem';
+import { IAction } from '../../../actions/IAction';
 
-export const item = (previousState = ListItem(), action) => {
+export const item = (previousState = new ListItem(), action: IAction) => {
   switch (action.type) {
     case TODO_LIST_ITEM_EDIT:
     case TODO_LIST_ITEM_CANCEL_EDIT: {
@@ -30,6 +31,7 @@ export const item = (previousState = ListItem(), action) => {
       return new ListItem({
         id: action.payload.id,
         text: action.payload.text,
+        isEdited: false,
       });
 
     default:
