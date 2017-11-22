@@ -8,4 +8,16 @@ const emptyItem: IListItem = {
   isEdited: false,
 };
 
-export const ListItem: Record<string, any> = Record(emptyItem);
+export class ListItem extends Record(emptyItem) {
+  id: string;
+  text: string;
+  isEdited: boolean;
+
+  constructor(params?: IListItem) {
+    params ? super(params) : super();
+  }
+
+  with(values: IListItem) {
+    return this.merge(values) as this;
+  }
+}

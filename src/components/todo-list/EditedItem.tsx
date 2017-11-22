@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
-import { IListItem } from '../../models/IListItem';
 import { IAction } from '../../actions/IAction';
+import { ListItem } from '../../models/ListItem';
 
 interface IProps {
-  item: IListItem;
+  item: ListItem;
   index: number;
   onUpdateItem: (text: string) => IAction;
   onEditStop: () => IAction;

@@ -1,8 +1,8 @@
 import { Collection } from 'immutable';
-import { IListItem } from './models/IListItem';
+import { ListItem } from './models/ListItem';
 
 export interface IAppState {
   list: {
-    items: Collection<string, IListItem>;
+    items: Collection<string, ListItem>;
   };
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
-import { IListItem } from '../../models/IListItem';
+import { ListItem } from '../../models/ListItem';
 
 interface IProps {
-  item: IListItem;
+  item: ListItem;
   index: number;
 }
 

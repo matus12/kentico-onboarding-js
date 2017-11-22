@@ -3,14 +3,14 @@ import { PlainItem } from '../../components/todo-list/PlainItem';
 import {
   editItem,
 } from '../../actions/actionCreators';
-import { IListItem } from '../../models/IListItem';
+import { ListItem } from '../../models/ListItem';
 
 interface IState {
 
 }
 
 interface IProps {
-  item: IListItem;
+  item: ListItem;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>, ownProps: IProps) => ({
