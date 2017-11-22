@@ -2,9 +2,10 @@ import * as React from 'react';
 import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent';
 import { Item } from '../../containers/todo-list/Item';
+import { Seq } from 'immutable';
 
 interface IProps {
-  ids: string[];
+  ids: Seq.Indexed<string>;
 }
 
 export const List = (props: IProps) =>

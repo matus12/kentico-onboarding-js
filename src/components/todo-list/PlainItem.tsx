@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { IListItem } from '../../models/IListItem';
+import { IAction } from '../../actions/IAction';
 
 interface IProps {
   index: number;
   item: IListItem;
-  onEditStart: () => void;
+  onEditStart: () => IAction;
 }
 
 export const PlainItem = (props: IProps) =>

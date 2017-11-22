@@ -1,9 +1,13 @@
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import { AddedItem } from '../../components/todo-list/AddedItem';
 import { insertItem } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch) => ({
-  onAddItem: (text) => dispatch(insertItem(text)),
+interface IState {
+
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<IState>) => ({
+  onAddItem: (text: string) => dispatch(insertItem(text)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);

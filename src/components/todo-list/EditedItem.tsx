@@ -2,13 +2,14 @@ import * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IListItem } from '../../models/IListItem';
+import { IAction } from '../../actions/IAction';
 
 interface IProps {
   item: IListItem;
   index: number;
-  onUpdateItem: (text: string) => void;
-  onEditStop: () => void;
-  onDeleteItem: () => void;
+  onUpdateItem: (text: string) => IAction;
+  onEditStop: () => IAction;
+  onDeleteItem: () => IAction;
 }
 
 interface IState {

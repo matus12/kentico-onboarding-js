@@ -1,6 +1,7 @@
 import  * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
+import { IAction } from '../../actions/IAction';
 
 interface IState {
   inputText: string;
@@ -8,7 +9,7 @@ interface IState {
 }
 
 interface IProps {
-  onAddItem: (text: string) => void;
+  onAddItem: (text: string) => IAction;
 }
 
 export class AddedItem extends React.PureComponent<IProps, IState> {
