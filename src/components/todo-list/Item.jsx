@@ -20,7 +20,6 @@ export const Item = props =>
 
 Item.propTypes = {
   item: ImmutablePropTypes.contains({
-    id: PropTypes.string.isRequired,
     isEdited: PropTypes.bool.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,

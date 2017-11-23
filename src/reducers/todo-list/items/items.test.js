@@ -57,17 +57,6 @@ describe('reducers', () => {
     expect(noAction).toEqual(OrderedMap());
   });
 
-  it('should handle ITEM_CREATE action when state is empty', () => {
-    const expectedState = onlyItemState.toJS();
-
-    const newState = items(
-      undefined,
-      insertItemAction,
-    ).toJS();
-
-    expect(newState).toEqual(expectedState);
-  });
-
   it('should add record to non-empty store on ITEM_CREATE action', () => {
     const expectedState = twoItemState.toJS();
 
@@ -77,15 +66,6 @@ describe('reducers', () => {
     ).toJS();
 
     expect(newState).toEqual(expectedState);
-  });
-
-  it('should leave state empty when deleting last item ITEM_DELETE action', () => {
-    const newStateSize = items(
-      onlyItemState,
-      actions.deleteItem(item.id),
-    ).size;
-
-    expect(newStateSize).toBe(0);
   });
 
   it('should delete correct record after ITEM_DELETE action', () => {
