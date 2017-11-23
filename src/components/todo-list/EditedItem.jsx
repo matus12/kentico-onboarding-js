@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { validateText } from '../../utils/textValidation';
+import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 
 export class EditedItem extends PureComponent {
