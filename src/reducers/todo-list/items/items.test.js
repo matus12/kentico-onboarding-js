@@ -24,11 +24,10 @@ describe('reducers', () => {
     isEdited: false,
   };
 
-  const insertItem = insertItemFactory(() => itemId);
-  const insertItem2 = insertItemFactory(() => item2Id);
+  const insertItem = id => insertItemFactory(() => id);
 
-  const insertItemAction = insertItem(item.text);
-  const insertItem2Action = insertItem2(item2.text);
+  // const insertItemAction = insertItem(item.id);
+  const insertItem2Action = insertItem(item2.id);
   const onlyItemState = new OrderedMap([
     [
       itemId,
@@ -59,11 +58,18 @@ describe('reducers', () => {
   });
 
   it('should add record to non-empty store on ITEM_CREATE action', () => {
+    const singleItemState = new OrderedMap([
+      [
+        item.id,
+        new ListItem(item),
+      ],
+    ]);
     const expectedState = twoItemState.toJS();
+    const insertItemAction = insertItem(item2.id);
 
     const newState = items(
-      onlyItemState,
-      insertItem2Action,
+      singleItemState,
+      insertItemAction(item2.text),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
@@ -80,15 +86,21 @@ describe('reducers', () => {
         }),
       ],
     ]).toJS();
+    const singleItemState = new OrderedMap([
+      [
+        item.id,
+        new ListItem(item),
+      ],
+    ]);
 
     const newState = items(
-      onlyItemState,
+      singleItemState,
       actions.editItem(item.id))
       .toJS();
 
     expect(newState).toEqual(expectedState);
   });
-
+  /* TODO: opravit nasledujuce testy */
   it('should make item non-editable on ITEM_CANCEL_EDIT action', () => {
     const singleItemState = new OrderedMap([
       [
