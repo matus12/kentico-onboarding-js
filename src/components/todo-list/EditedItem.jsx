@@ -8,7 +8,6 @@ export class EditedItem extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
     item: ImmutablePropTypes.contains({
-      id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
     }).isRequired,
     onUpdateItem: PropTypes.func.isRequired,

@@ -3,7 +3,8 @@ import {
   TODO_LIST_ITEM_INSERT,
   TODO_LIST_ITEM_DELETE,
   TODO_LIST_ITEM_UPDATE,
-  TODO_LIST_ITEM_TOGGLE,
+  TODO_LIST_ITEM_EDIT,
+  TODO_LIST_ITEM_CANCEL_EDIT,
 } from '../../../constants/actionTypes';
 import { item } from './item';
 
@@ -14,7 +15,8 @@ export const items = (previousState = OrderedMap(), action) => {
 
     case TODO_LIST_ITEM_INSERT:
     case TODO_LIST_ITEM_UPDATE:
-    case TODO_LIST_ITEM_TOGGLE: {
+    case TODO_LIST_ITEM_EDIT:
+    case TODO_LIST_ITEM_CANCEL_EDIT: {
       const existingItem = previousState.get(action.payload.id);
       const updatedItem = item(existingItem, action);
 

@@ -1,5 +1,5 @@
 import * as actions from '../../../actions/actionCreators';
-import { UNKOWN_ACTION_DUPLICATE } from '../../../constants/actionTypes';
+import { UNKNOWN_ACTION_DUPLICATE } from '../../../constants/actionTypes';
 import {
   OrderedMap,
 } from 'immutable';
@@ -84,7 +84,7 @@ describe('reducers', () => {
     const updatedItem = {
       id: item.id,
       text: 'updatedText',
-      isEdited: item.isEdited,
+      isEdited: !item.isEdited,
     };
     const expectedState = OrderedMap([
       [
@@ -107,7 +107,7 @@ describe('reducers', () => {
 
   it('should return prevState on unknown action', () => {
     const unknownAction = {
-      type: UNKOWN_ACTION_DUPLICATE,
+      type: UNKNOWN_ACTION_DUPLICATE,
       payload: {
         item: item2,
       },
