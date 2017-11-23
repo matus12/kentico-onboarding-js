@@ -38,14 +38,6 @@ export class EditedItem extends PureComponent {
     );
   };
 
-  cancelChange = () => {
-    this.props.onEditStop();
-  };
-
-  deleteItem = () => {
-    this.props.onDeleteItem();
-  };
-
   render() {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
@@ -79,14 +71,14 @@ export class EditedItem extends PureComponent {
         <button
           type="button"
           className="btn btn-light"
-          onClick={this.cancelChange}
+          onClick={this.props.onEditStop}
         >
           Cancel
         </button>
         <button
           type="button"
           className="btn btn-danger"
-          onClick={this.deleteItem}
+          onClick={this.props.onDeleteItem}
         >
           Delete
         </button>
