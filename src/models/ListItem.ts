@@ -8,7 +8,7 @@ const emptyItem: IListItem = {
   isEdited: false,
 };
 
-export class ListItem extends Record(emptyItem) {
+export class ListItem extends Record(emptyItem) implements IListItem {
   id: string;
   text: string;
   isEdited: boolean;
@@ -18,6 +18,6 @@ export class ListItem extends Record(emptyItem) {
   }
 
   with(values: IListItem) {
-    return this.merge(values) as this;
+    return this.merge(values) as any as this;
   }
 }
