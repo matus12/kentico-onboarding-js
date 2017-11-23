@@ -4,8 +4,8 @@ import {
   toggleItem,
 } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onEditStart: () => dispatch(toggleItem(ownProps.item.id, true)),
+const mapDispatchToProps = (dispatch, { item: { id } }) => ({
+  onEditStart: () => dispatch(toggleItem(id, true)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);
