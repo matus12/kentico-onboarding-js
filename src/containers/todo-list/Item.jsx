@@ -1,8 +1,12 @@
 import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
+import { IndexedItem } from '../../models/IndexedItem';
 
-const mapStateToProps = ({ todoList: { items } }, { id }) => ({
-  item: items.get(id),
+const mapStateToProps = ({ todoList: { items } }, { id, index }) => ({
+  item: new IndexedItem({
+    index,
+    payload: items.get(id),
+  }),
 });
 
 const enhancer = connect(mapStateToProps);

@@ -17,10 +17,10 @@ export class AddedItem extends PureComponent {
     });
   }
 
-  changeOfInput = (event) => {
+  changeOfInput = ({ currentTarget: { value } }) => {
     this.setState({
-      inputText: event.currentTarget.value,
-      isInputValid: validateText(event.currentTarget.value),
+      inputText: value,
+      isInputValid: validateText(value),
     });
   };
 

@@ -4,7 +4,7 @@ import {
   editItem,
 } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch, { item: { id } }) => ({
+const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
   onEditStart: () => dispatch(editItem(id)),
 });
 

@@ -6,7 +6,7 @@ import {
   cancelEditItem,
 } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch, { item: { id } }) => ({
+const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
   onUpdateItem: (text) => dispatch(updateItem(id, text)),
   onDeleteItem: () => dispatch(deleteItem(id)),
   onEditStop: () => dispatch(cancelEditItem(id)),

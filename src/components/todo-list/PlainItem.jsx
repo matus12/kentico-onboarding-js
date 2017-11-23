@@ -4,14 +4,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export const PlainItem = props =>
   <div onClick={props.onEditStart}>
-    {props.index + '. ' + props.item.text}
+    {props.item.index + '. ' + props.item.payload.text}
   </div>;
 
 PlainItem.propTypes = {
   item: ImmutablePropTypes.contains({
-    id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    payload: ImmutablePropTypes.contains({
+      text: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
-  index: PropTypes.number.isRequired,
   onEditStart: PropTypes.func.isRequired,
 };

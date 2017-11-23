@@ -6,28 +6,30 @@ import { Input } from './Input';
 
 export class EditedItem extends PureComponent {
   static propTypes = {
-    index: PropTypes.number.isRequired,
     item: ImmutablePropTypes.contains({
-      text: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired,
+      payload: ImmutablePropTypes.contains({
+        text: PropTypes.string.isRequired,
+      }).isRequired,
     }).isRequired,
     onUpdateItem: PropTypes.func.isRequired,
     onDeleteItem: PropTypes.func.isRequired,
     onEditStop: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
+  constructor({ item: { payload: { text } } }) {
+    super();
 
     this.state = {
-      editedText: props.item.text,
+      editedText: text,
       isInputValid: true,
     };
   }
 
-  changeItemText = (event) => {
+  changeItemText = ({ currentTarget: { value } }) => {
     this.setState({
-      editedText: event.currentTarget.value,
-      isInputValid: validateText(event.currentTarget.value),
+      editedText: value,
+      isInputValid: validateText(value),
     });
   };
 
@@ -47,7 +49,7 @@ export class EditedItem extends PureComponent {
         <div className="col-xs-4">
           <div className="input-group">
             <span className="input-group-addon">
-              {this.props.index}.
+              {this.props.item.index}.
             </span>
             <Input
               value={this.state.editedText}
