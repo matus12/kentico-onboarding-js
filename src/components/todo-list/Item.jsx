@@ -5,18 +5,15 @@ import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
 
 export const Item = props =>
-  <li className="list-group-item">
-    {(props.item.isEdited) ?
-      <EditedItem
-        item={props.item}
-        index={props.index}
-      /> :
-      <PlainItem
-        index={props.index}
-        item={props.item}
-      />
-    }
-  </li>;
+  ((props.item.isEdited) ?
+    <EditedItem
+      item={props.item}
+      index={props.index}
+    /> :
+    <PlainItem
+      index={props.index}
+      item={props.item}
+    />);
 
 Item.propTypes = {
   item: ImmutablePropTypes.contains({

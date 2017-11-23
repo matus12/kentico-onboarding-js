@@ -16,11 +16,15 @@ export const List = props =>
       <ul className="list-group">
         {props.ids
           .map((id, index) =>
-            <Item
+            <li
+              className="list-group-item"
               key={id}
-              id={id}
-              index={index + 1}
-            />,
+            >
+              <Item
+                id={id}
+                index={index + 1}
+              />
+            </li>,
           )
         }
         <AddedItem />
