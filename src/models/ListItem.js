@@ -1,7 +1,8 @@
 import { Record } from 'immutable';
+import { defaultId } from '../utils/generateId';
 
 const emptyItem = {
-  id: '00000000-0000-0000-0000-000000000000',
+  id: defaultId,
   text: '',
   isEdited: false,
 };
