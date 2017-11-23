@@ -69,6 +69,56 @@ describe('reducers', () => {
     expect(newState).toEqual(expectedState);
   });
 
+  it('should make item editable on ITEM_EDIT action', () => {
+    const expectedState = new OrderedMap([
+      [
+        itemId,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: true,
+        }),
+      ],
+    ]).toJS();
+
+    const newState = items(
+      onlyItemState,
+      actions.editItem(item.id))
+      .toJS();
+
+    expect(newState).toEqual(expectedState);
+  });
+
+  it('should make item non-editable on ITEM_CANCEL_EDIT action', () => {
+    const singleItemState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: true,
+        }),
+      ],
+    ]);
+    const expectedState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: false,
+        }),
+      ],
+    ]).toJS();
+
+    const newState = items(
+      singleItemState,
+      actions.cancelEditItem(item.id))
+      .toJS();
+
+    expect(newState).toEqual(expectedState);
+  });
+
   it('should delete correct record after ITEM_DELETE action', () => {
     const expectedState = onlyItem2State.toJS();
 
