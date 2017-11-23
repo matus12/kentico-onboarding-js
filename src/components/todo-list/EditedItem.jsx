@@ -25,7 +25,7 @@ export class EditedItem extends PureComponent {
     };
   }
 
-  changeOfInput = (event) => {
+  changeItemText = (event) => {
     this.setState({
       editedText: event.currentTarget.value,
       isInputValid: validateText(event.currentTarget.value),
@@ -41,8 +41,7 @@ export class EditedItem extends PureComponent {
   render() {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
-      : 'Empty item cannot be stored. \n' +
-      'Tip: Use delete button to remove an item';
+      : 'Empty item cannot be stored.\nTip: Use delete button to remove an item';
 
     return (
       <div className="row">
@@ -54,7 +53,7 @@ export class EditedItem extends PureComponent {
             <Input
               value={this.state.editedText}
               isValid={this.state.isInputValid}
-              onChange={this.changeOfInput}
+              onChange={this.changeItemText}
               title={invalidTextTitle}
             />
           </div>
