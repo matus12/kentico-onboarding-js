@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import logger from 'redux-logger';
+import * as logger from 'redux-logger';
 import { getInitialState } from './utils/getInitialState';
 import {
   applyMiddleware,
@@ -14,7 +14,7 @@ import { app } from './reducers/app';
 
 import { App } from './App.jsx';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [logger];
 
 const store = createStore(app, getInitialState(), composeEnhancers(
