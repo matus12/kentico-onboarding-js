@@ -1,7 +1,8 @@
 import { Record } from 'immutable';
 import { defaultId } from '../utils/generateId';
+import { IIndexedItem } from './IIndexedItem';
 
-const emptyIndexedItem = {
+const emptyIndexedItem: IIndexedItem = {
   index: null,
   id: defaultId,
   text: '',
