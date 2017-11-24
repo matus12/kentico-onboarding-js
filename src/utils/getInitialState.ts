@@ -1,5 +1,6 @@
 import { OrderedMap } from 'immutable';
 import { generateId } from './generateId';
+import { IListItem } from '../models/IListItem';
 import { ListItem } from '../models/ListItem';
 
 const itemNames = [
@@ -15,13 +16,15 @@ export const getInitialState = () => ({
       itemNames
         .map((itemText) => {
           const guid = generateId();
+          const listItem: IListItem = {
+            id: guid,
+            text: itemText,
+            isEdited: false,
+          };
           return (
           [
             guid,
-            new ListItem({
-              id: guid,
-              text: itemText,
-            }),
+            new ListItem(listItem),
           ]
           );
         })
