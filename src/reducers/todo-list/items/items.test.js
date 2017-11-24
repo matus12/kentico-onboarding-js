@@ -8,48 +8,18 @@ import { insertItemFactory } from '../../../actions/insertItemFactory';
 import { ListItem } from '../../../models/ListItem';
 
 describe('reducers', () => {
-  const itemId = '16b1706c-1311-418d-aaaa-d6043f2e7f1f';
-  const item2Id = '16b1706c-1311-418d-bdba-d6043f2e7f1f';
-  const itemText = 'Make a coffee';
-  const item2Text = 'Do these tests';
-
   const item = {
-    id: itemId,
-    text: itemText,
+    id: '16b1706c-1311-418d-aaaa-d6043f2e7f1f',
+    text: 'Make a coffee',
     isEdited: false,
   };
   const item2 = {
-    id: item2Id,
-    text: item2Text,
+    id: '16b1706c-1311-418d-bdba-d6043f2e7f1f',
+    text: 'Do these tests',
     isEdited: false,
   };
 
   const insertItem = id => insertItemFactory(() => id);
-
-  // const insertItemAction = insertItem(item.id);
-  const insertItem2Action = insertItem(item2.id);
-  const onlyItemState = new OrderedMap([
-    [
-      itemId,
-      new ListItem(item),
-    ],
-  ]);
-  const onlyItem2State = new OrderedMap([
-    [
-      item2Id,
-      new ListItem(item2),
-    ],
-  ]);
-  const twoItemState = new OrderedMap([
-    [
-      itemId,
-      new ListItem(item),
-    ],
-    [
-      item2Id,
-      new ListItem(item2),
-    ],
-  ]);
 
   it('should return the initial state', () => {
     const noAction = items(undefined, {});
@@ -64,7 +34,24 @@ describe('reducers', () => {
         new ListItem(item),
       ],
     ]);
-    const expectedState = twoItemState.toJS();
+    const expectedState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: item.isEdited,
+        }),
+      ],
+      [
+        item2.id,
+        new ListItem({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
+      ],
+    ]).toJS();
     const insertItemAction = insertItem(item2.id);
 
     const newState = items(
@@ -78,7 +65,7 @@ describe('reducers', () => {
   it('should make item editable on ITEM_EDIT action', () => {
     const expectedState = new OrderedMap([
       [
-        itemId,
+        item.id,
         new ListItem({
           id: item.id,
           text: item.text,
@@ -100,7 +87,7 @@ describe('reducers', () => {
 
     expect(newState).toEqual(expectedState);
   });
-  /* TODO: opravit nasledujuce testy */
+
   it('should make item non-editable on ITEM_CANCEL_EDIT action', () => {
     const singleItemState = new OrderedMap([
       [
@@ -131,11 +118,29 @@ describe('reducers', () => {
     expect(newState).toEqual(expectedState);
   });
 
-  it('should delete correct record after ITEM_DELETE action', () => {
-    const expectedState = onlyItem2State.toJS();
+  it('should delete record after ITEM_DELETE action', () => {
+    const twoItemsState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: item.isEdited,
+        }),
+      ],
+      [
+        item2.id,
+        new ListItem({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
+      ],
+    ]);
+    const expectedState = twoItemsState.delete(item.id).toJS();
 
     const newState = items(
-      twoItemState,
+      twoItemsState,
       actions.deleteItem(item.id))
       .toJS();
 
@@ -148,6 +153,24 @@ describe('reducers', () => {
       text: 'updatedText',
       isEdited: !item.isEdited,
     };
+    const twoItemsState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: item.isEdited,
+        }),
+      ],
+      [
+        item2.id,
+        new ListItem({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
+      ],
+    ]);
     const expectedState = OrderedMap([
       [
         updatedItem.id,
@@ -155,12 +178,16 @@ describe('reducers', () => {
       ],
       [
         item2.id,
-        new ListItem(item2),
+        new ListItem({
+          id: item2.id,
+          text: item2.text,
+          isEdited: item2.isEdited,
+        }),
       ],
     ]).toJS();
 
     const newState = items(
-      twoItemState,
+      twoItemsState,
       actions.updateItem(item.id, 'updatedText'),
     ).toJS();
 
@@ -174,10 +201,20 @@ describe('reducers', () => {
         item: item2,
       },
     };
-    const expectedState = onlyItemState.toJS();
+    const singleItemState = new OrderedMap([
+      [
+        item.id,
+        new ListItem({
+          id: item.id,
+          text: item.text,
+          isEdited: true,
+        }),
+      ],
+    ]);
+    const expectedState = singleItemState.toJS();
 
     const newState = items(
-      onlyItemState,
+      singleItemState,
       unknownAction,
     ).toJS();
 
