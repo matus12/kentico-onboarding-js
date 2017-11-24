@@ -2,20 +2,21 @@ import { OrderedMap } from 'immutable';
 import { generateId } from './generateId';
 import { IListItem } from '../models/IListItem';
 import { ListItem } from '../models/ListItem';
+import { IAppState } from '../IAppState';
 
-const itemNames = [
+const itemNames: string[] = [
   'Make a coffee',
   'Master ReactJS',
   'Learn ReduxJS',
   'Help making Kentico Cloud awesome!',
 ];
 
-export const getInitialState = () => ({
+export const getInitialState = (): IAppState => ({
   todoList: {
     items: OrderedMap(
       itemNames
-        .map((itemText) => {
-          const guid = generateId();
+        .map((itemText: string) => {
+          const guid: string = generateId();
           const listItem: IListItem = {
             id: guid,
             text: itemText,
