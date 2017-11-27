@@ -13,8 +13,6 @@ const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
 const enhancer = connect(undefined, mapDispatchToProps);
 const connectedComponent = enhancer(PlainItem);
 
-export { connectedComponent as PlainItem };
-
 connectedComponent.propTypes = {
   item: ImmutablePropTypes.contains({
     index: PropTypes.number.isRequired,
@@ -23,3 +21,5 @@ connectedComponent.propTypes = {
     }).isRequired,
   }).isRequired,
 };
+
+export { connectedComponent as PlainItem };

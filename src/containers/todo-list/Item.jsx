@@ -13,9 +13,9 @@ const mapStateToProps = ({ todoList: { items } }, { id, index }) => ({
 const enhancer = connect(mapStateToProps);
 const connectedComponent = enhancer(Item);
 
-export { connectedComponent as Item };
-
 connectedComponent.propTypes = {
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
 };
+
+export { connectedComponent as Item };
