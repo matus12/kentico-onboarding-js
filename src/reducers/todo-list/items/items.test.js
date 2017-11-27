@@ -1,5 +1,4 @@
 import * as actions from '../../../actions/actionCreators';
-import { UNKNOWN_ACTION_DUPLICATE } from '../../../constants/actionTypes';
 import {
   OrderedMap,
 } from 'immutable';
@@ -195,6 +194,7 @@ describe('reducers', () => {
   });
 
   it('should return prevState on unknown action', () => {
+    const UNKNOWN_ACTION_DUPLICATE = 'UNKNOWN_ACTION_DUPLICATE';
     const unknownAction = {
       type: UNKNOWN_ACTION_DUPLICATE,
       payload: {
