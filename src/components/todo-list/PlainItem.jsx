@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export const PlainItem = props =>
   <div onClick={props.onEditStart}>
-    {props.item.index + '. ' + props.item.payload.text}
+    {props.item.index}. {props.item.payload.text}
   </div>;
 
 PlainItem.propTypes = {
