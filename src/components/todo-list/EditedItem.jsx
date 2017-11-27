@@ -8,9 +8,7 @@ export class EditedItem extends PureComponent {
   static propTypes = {
     item: ImmutablePropTypes.contains({
       index: PropTypes.number.isRequired,
-      payload: ImmutablePropTypes.contains({
-        text: PropTypes.string.isRequired,
-      }).isRequired,
+      text: PropTypes.string.isRequired,
     }).isRequired,
     onUpdateItem: PropTypes.func.isRequired,
     onDeleteItem: PropTypes.func.isRequired,
@@ -21,7 +19,7 @@ export class EditedItem extends PureComponent {
     super(props);
 
     this.state = {
-      editedText: props.item.payload.text,
+      editedText: props.item.text,
       isInputValid: true,
     };
   }

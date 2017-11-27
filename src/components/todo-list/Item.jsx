@@ -5,7 +5,7 @@ import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
 
 export const Item = ({ item }) => {
-  return ((item.payload.isEdited) ?
+  return ((item.isEdited) ?
     <EditedItem
       item={item}
     /> :
@@ -17,8 +17,6 @@ export const Item = ({ item }) => {
 Item.propTypes = {
   item: ImmutablePropTypes.contains({
     index: PropTypes.number.isRequired,
-    payload: ImmutablePropTypes.contains({
-      isEdited: PropTypes.bool.isRequired,
-    }).isRequired,
+    isEdited: PropTypes.bool.isRequired,
   }).isRequired,
 };

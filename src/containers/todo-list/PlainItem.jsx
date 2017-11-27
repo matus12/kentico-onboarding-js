@@ -6,7 +6,7 @@ import {
   editItem,
 } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
+const mapDispatchToProps = (dispatch, { item: { id } }) => ({
   onEditStart: () => dispatch(editItem(id)),
 });
 
@@ -16,9 +16,7 @@ const connectedComponent = enhancer(PlainItem);
 connectedComponent.propTypes = {
   item: ImmutablePropTypes.contains({
     index: PropTypes.number.isRequired,
-    payload: ImmutablePropTypes.contains({
-      text: PropTypes.string.isRequired,
-    }).isRequired,
+    text: PropTypes.string.isRequired,
   }).isRequired,
 };
 

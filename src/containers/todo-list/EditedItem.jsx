@@ -8,7 +8,7 @@ import {
   cancelItemEditing,
 } from '../../actions/actionCreators';
 
-const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
+const mapDispatchToProps = (dispatch, { item: { id } }) => ({
   onUpdateItem: (text) => dispatch(updateItem(id, text)),
   onDeleteItem: () => dispatch(deleteItem(id)),
   onEditStop: () => dispatch(cancelItemEditing(id)),
@@ -20,9 +20,7 @@ const connectedComponent = enhancer(EditedItem);
 connectedComponent.propTypes = {
   item: ImmutablePropTypes.contains({
     index: PropTypes.number.isRequired,
-    payload: ImmutablePropTypes.contains({
-      text: PropTypes.string.isRequired,
-    }).isRequired,
+    text: PropTypes.string.isRequired,
   }).isRequired,
 };
 
