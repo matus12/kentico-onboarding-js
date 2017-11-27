@@ -4,6 +4,10 @@ import { Item } from '../../components/todo-list/Item';
 import { IndexedItem } from '../../models/IndexedItem';
 
 const memoize = require('memoizee');
+const memProfile = require('memoizee/profile');
+
+const selector = (items, id) => items.get(id);
+const memoizedSelector = memoize(selector);
 
 const createIndexedItem = (item, index) => ({
   item: new IndexedItem({
@@ -18,8 +22,18 @@ const createIndexedItemMemoized = memoize(createIndexedItem);
 
 const mapStateToProps = ({ todoList: { items } }, { id, index }) => {
   const retrievedItem = items.get(id);
+  // const retrievedItem = memoizedSelector(items, id);
+  console.log(memProfile.log());
 
   return createIndexedItemMemoized(retrievedItem, index);
+  // return ({
+  //   item: new IndexedItem({
+  //     index,
+  //     id: retrievedItem.id,
+  //     text: retrievedItem.text,
+  //     isEdited: retrievedItem.isEdited,
+  //   }),
+  // });
 };
 
 const enhancer = connect(mapStateToProps);
