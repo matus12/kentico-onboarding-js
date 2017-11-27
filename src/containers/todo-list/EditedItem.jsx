@@ -5,13 +5,13 @@ import { EditedItem } from '../../components/todo-list/EditedItem';
 import {
   updateItem,
   deleteItem,
-  cancelEditItem,
+  cancelItemEditing,
 } from '../../actions/actionCreators';
 
 const mapDispatchToProps = (dispatch, { item: { payload: { id } } }) => ({
   onUpdateItem: (text) => dispatch(updateItem(id, text)),
   onDeleteItem: () => dispatch(deleteItem(id)),
-  onEditStop: () => dispatch(cancelEditItem(id)),
+  onEditStop: () => dispatch(cancelItemEditing(id)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);

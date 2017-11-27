@@ -112,7 +112,7 @@ describe('reducers', () => {
 
     const newState = items(
       singleItemState,
-      actions.cancelEditItem(item.id))
+      actions.cancelItemEditing(item.id))
       .toJS();
 
     expect(newState).toEqual(expectedState);

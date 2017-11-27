@@ -31,7 +31,7 @@ export const editItem = (id) => ({
   },
 });
 
-export const cancelEditItem = (id) => ({
+export const cancelItemEditing = (id) => ({
   type: TODO_LIST_ITEM_CANCEL_EDIT,
   payload: {
     id,
