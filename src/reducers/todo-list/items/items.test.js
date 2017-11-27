@@ -17,11 +17,18 @@ describe('reducers', () => {
     text: 'Do these tests',
     isEdited: false,
   };
+  const UNKNOWN_ACTION_DUPLICATE = 'UNKNOWN_ACTION_DUPLICATE';
+  const unknownAction = {
+    type: UNKNOWN_ACTION_DUPLICATE,
+    payload: {
+      item: item2,
+    },
+  };
 
   const insertItem = id => insertItemFactory(() => id);
 
   it('should return the initial state', () => {
-    const noAction = items(undefined, {});
+    const noAction = items(undefined, unknownAction);
 
     expect(noAction).toEqual(OrderedMap());
   });
@@ -36,19 +43,11 @@ describe('reducers', () => {
     const expectedState = new OrderedMap([
       [
         item.id,
-        new ListItem({
-          id: item.id,
-          text: item.text,
-          isEdited: item.isEdited,
-        }),
+        new ListItem(item),
       ],
       [
         item2.id,
-        new ListItem({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
+        new ListItem(item2),
       ],
     ]).toJS();
     const insertItemAction = insertItem(item2.id);
@@ -66,8 +65,7 @@ describe('reducers', () => {
       [
         item.id,
         new ListItem({
-          id: item.id,
-          text: item.text,
+          ...item,
           isEdited: true,
         }),
       ],
@@ -81,8 +79,8 @@ describe('reducers', () => {
 
     const newState = items(
       singleItemState,
-      actions.editItem(item.id))
-      .toJS();
+      actions.editItem(item.id),
+    ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
@@ -92,8 +90,7 @@ describe('reducers', () => {
       [
         item.id,
         new ListItem({
-          id: item.id,
-          text: item.text,
+          ...item,
           isEdited: true,
         }),
       ],
@@ -102,8 +99,7 @@ describe('reducers', () => {
       [
         item.id,
         new ListItem({
-          id: item.id,
-          text: item.text,
+          ...item,
           isEdited: false,
         }),
       ],
@@ -111,8 +107,8 @@ describe('reducers', () => {
 
     const newState = items(
       singleItemState,
-      actions.cancelItemEditing(item.id))
-      .toJS();
+      actions.cancelItemEditing(item.id),
+    ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
@@ -121,27 +117,19 @@ describe('reducers', () => {
     const twoItemsState = new OrderedMap([
       [
         item.id,
-        new ListItem({
-          id: item.id,
-          text: item.text,
-          isEdited: item.isEdited,
-        }),
+        new ListItem(item),
       ],
       [
         item2.id,
-        new ListItem({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
+        new ListItem(item2),
       ],
     ]);
     const expectedState = twoItemsState.delete(item.id).toJS();
 
     const newState = items(
       twoItemsState,
-      actions.deleteItem(item.id))
-      .toJS();
+      actions.deleteItem(item.id),
+    ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
@@ -155,19 +143,11 @@ describe('reducers', () => {
     const twoItemsState = new OrderedMap([
       [
         item.id,
-        new ListItem({
-          id: item.id,
-          text: item.text,
-          isEdited: item.isEdited,
-        }),
+        new ListItem(item),
       ],
       [
         item2.id,
-        new ListItem({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
+        new ListItem(item2),
       ],
     ]);
     const expectedState = OrderedMap([
@@ -177,11 +157,7 @@ describe('reducers', () => {
       ],
       [
         item2.id,
-        new ListItem({
-          id: item2.id,
-          text: item2.text,
-          isEdited: item2.isEdited,
-        }),
+        new ListItem(item2),
       ],
     ]).toJS();
 
@@ -194,19 +170,11 @@ describe('reducers', () => {
   });
 
   it('should return prevState on unknown action', () => {
-    const UNKNOWN_ACTION_DUPLICATE = 'UNKNOWN_ACTION_DUPLICATE';
-    const unknownAction = {
-      type: UNKNOWN_ACTION_DUPLICATE,
-      payload: {
-        item: item2,
-      },
-    };
     const singleItemState = new OrderedMap([
       [
         item.id,
         new ListItem({
-          id: item.id,
-          text: item.text,
+          ...item,
           isEdited: true,
         }),
       ],
