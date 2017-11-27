@@ -9,4 +9,13 @@ const emptyIndexedItem: IIndexedItem = {
   isEdited: false,
 };
 
-export const IndexedItem = Record(emptyIndexedItem);
+export class IndexedItem extends Record(emptyIndexedItem) implements IIndexedItem {
+  index: number | null;
+  id: string;
+  text: string;
+  isEdited: boolean;
+
+  constructor(params?: IIndexedItem) {
+    params ? super(params) : super();
+  }
+}

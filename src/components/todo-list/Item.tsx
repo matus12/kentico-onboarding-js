@@ -1,21 +1,16 @@
 import React from 'react';
 import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
-import { ListItem } from '../../models/ListItem';
+import { IndexedItem } from '../../models/IndexedItem';
 
-interface IProps {
-  item: ListItem;
-  index: number;
-}
-
-export const Item = (props: IProps) =>
+export const Item = (props: IndexedItem) =>
   <li className="list-group-item">
-    {(props.item.isEdited) ?
+    {(props.payload.isEdited) ?
       <EditedItem
-        item={props.item}
+        item={props}
       /> :
       <PlainItem
-        item={props.item}
+        item={props}
       />
     }
   </li>;

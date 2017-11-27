@@ -5,11 +5,11 @@ import {
   deleteItem,
   cancelItemEditing,
 } from '../../actions/actionCreators';
-import { IListItem } from '../../models/IListItem';
 import { IAppState } from '../../IAppState';
+import { IndexedItem } from '../../models/IndexedItem';
 
 interface IProps {
-  item: IListItem;
+  item: IndexedItem;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => ({
@@ -17,7 +17,6 @@ const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => 
   onDeleteItem: () => dispatch(deleteItem(ownProps.item.id)),
   onEditStop: () => dispatch(cancelItemEditing(ownProps.item.id)),
 });
-
 
 const enhancer = connect(undefined, mapDispatchToProps);
 const connectedComponent = enhancer(EditedItem);

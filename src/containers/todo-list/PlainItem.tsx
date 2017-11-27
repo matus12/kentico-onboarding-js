@@ -3,18 +3,11 @@ import { PlainItem } from '../../components/todo-list/PlainItem';
 import {
   editItem,
 } from '../../actions/actionCreators';
-import { ListItem } from '../../models/ListItem';
+import { IAppState } from '../../IAppState';
+import { IndexedItem } from '../../models/IndexedItem';
 
-interface IState {
-
-}
-
-interface IProps {
-  item: ListItem;
-}
-
-const mapDispatchToProps = (dispatch: Dispatch<IState>, ownProps: IProps) => ({
-  onEditStart: () => dispatch(editItem(ownProps.item.id)),
+const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IndexedItem) => ({
+  onEditStart: () => dispatch(editItem(ownProps.payload.id)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);

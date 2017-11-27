@@ -2,11 +2,10 @@ import * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IAction } from '../../actions/IAction';
-import { ListItem } from '../../models/ListItem';
+import { IndexedItem } from '../../models/IndexedItem';
 
 interface IProps {
-  item: ListItem;
-  index: number;
+  item: IndexedItem;
   onUpdateItem: (text: string) => IAction;
   onEditStop: () => IAction;
   onDeleteItem: () => IAction;
@@ -23,7 +22,7 @@ export class EditedItem extends React.PureComponent<IProps, IState> {
     super(props);
 
     this.state = {
-      editedText: props.item.text,
+      editedText: props.item.payload.text,
       isInputValid: true,
     };
   }
