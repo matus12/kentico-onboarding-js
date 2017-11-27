@@ -17,11 +17,11 @@ export class EditedItem extends PureComponent {
     onEditStop: PropTypes.func.isRequired,
   };
 
-  constructor({ item: { payload: { text } } }) {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      editedText: text,
+      editedText: props.item.payload.text,
       isInputValid: true,
     };
   }
