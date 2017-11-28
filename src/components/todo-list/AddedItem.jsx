@@ -17,7 +17,7 @@ export class AddedItem extends PureComponent {
     });
   }
 
-  changeOfInput = ({ currentTarget: { value } }) => {
+  changeItemText = ({ currentTarget: { value } }) => {
     this.setState({
       inputText: value,
       isInputValid: validateText(value),
@@ -43,7 +43,7 @@ export class AddedItem extends PureComponent {
           <Input
             value={this.state.inputText}
             isValid={this.state.isInputValid}
-            onChange={this.changeOfInput}
+            onChange={this.changeItemText}
             title={invalidTextTitle}
           />
         </div>
