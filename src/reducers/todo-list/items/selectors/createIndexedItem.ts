@@ -1,6 +1,7 @@
 import { IndexedItem } from '../../../../models/IndexedItem';
+import { ListItem } from '../../../../models/ListItem';
 
-export const createIndexedItem = (item, index) => ({
+export const createIndexedItem = (item: ListItem, index: number): { item: IndexedItem } => ({
   item: new IndexedItem({
     index,
     id: item.id,

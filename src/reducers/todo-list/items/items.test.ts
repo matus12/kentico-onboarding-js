@@ -5,7 +5,6 @@ import {
 import { items } from './items';
 import { insertItemFactory } from '../../../actions/insertItemFactory';
 import { ListItem } from '../../../models/ListItem';
-import { IAction } from '../../../actions/IAction';
 
 describe('reducers', () => {
   const item: ListItem = new ListItem({
@@ -17,7 +16,7 @@ describe('reducers', () => {
     id: '16b1706c-1311-418d-bdba-d6043f2e7f1f',
     text: 'Do these tests',
     isEdited: false,
-  };
+  });
   const UNKNOWN_ACTION_DUPLICATE = 'UNKNOWN_ACTION_DUPLICATE';
   const unknownAction = {
     type: UNKNOWN_ACTION_DUPLICATE,

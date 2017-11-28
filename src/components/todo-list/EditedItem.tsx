@@ -22,7 +22,7 @@ export class EditedItem extends React.PureComponent<IProps, IState> {
     super(props);
 
     this.state = {
-      editedText: props.item.payload.text,
+      editedText: props.item.text,
       isInputValid: true,
     };
   }

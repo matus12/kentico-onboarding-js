@@ -1,4 +1,4 @@
-// import * as React from 'react';
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
@@ -12,9 +12,9 @@ import {
 import { Provider } from 'react-redux';
 import { app } from './reducers/app';
 
-import { App } from './App.jsx';
+import { App } from './App.tsx';
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [logger];
 
 const store = createStore(app, getInitialState(), composeEnhancers(

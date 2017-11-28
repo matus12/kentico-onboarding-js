@@ -7,7 +7,7 @@ import { IAppState } from '../../IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IndexedItem) => ({
-  onEditStart: () => dispatch(editItem(ownProps.payload.id)),
+  onEditStart: () => dispatch(editItem(ownProps.id)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);
