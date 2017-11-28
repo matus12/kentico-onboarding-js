@@ -1,39 +1,17 @@
 import PropTypes from 'prop-types';
+import memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
-import { IndexedItem } from '../../models/IndexedItem';
-
-const memoize = require('memoizee');
-const memProfile = require('memoizee/profile');
-
-const selector = (items, id) => items.get(id);
-const memoizedSelector = memoize(selector);
-
-const createIndexedItem = (item, index) => ({
-  item: new IndexedItem({
-    index,
-    id: item.id,
-    text: item.text,
-    isEdited: item.isEdited,
-  }),
-});
+import {
+  createIndexedItem,
+} from '../../reducers/todo-list/items/selectors/createIndexedItem';
 
 const createIndexedItemMemoized = memoize(createIndexedItem);
 
 const mapStateToProps = ({ todoList: { items } }, { id, index }) => {
   const retrievedItem = items.get(id);
-  // const retrievedItem = memoizedSelector(items, id);
-  console.log(memProfile.log());
 
   return createIndexedItemMemoized(retrievedItem, index);
-  // return ({
-  //   item: new IndexedItem({
-  //     index,
-  //     id: retrievedItem.id,
-  //     text: retrievedItem.text,
-  //     isEdited: retrievedItem.isEdited,
-  //   }),
-  // });
 };
 
 const enhancer = connect(mapStateToProps);

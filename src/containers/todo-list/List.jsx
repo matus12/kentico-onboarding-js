@@ -1,8 +1,7 @@
+import memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { List } from '../../components/todo-list/List';
 import { Seq } from 'immutable';
-
-const memoize = require('memoizee');
 
 const getIds = items => ({ ids: Seq(items) });
 const getIdsMemoized = memoize(getIds, { primitive: true });
