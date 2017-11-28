@@ -33,7 +33,6 @@ describe('reducers', () => {
     expect(noAction).toEqual(OrderedMap());
   });
 
-
   it('should add record to non-empty store on ITEM_CREATE action', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
@@ -65,12 +64,14 @@ describe('reducers', () => {
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
       [
         item.id,
-        new ListItem({
-          ...item,
+        item.with({
+          id: item.id,
+          text: item.text,
           isEdited: true,
         }),
-      ],
-    ]).toJS();
+  ],
+  ]).
+    toJS();
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
         item.id,
@@ -90,8 +91,9 @@ describe('reducers', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
         item.id,
-        new ListItem({
-          ...item,
+        item.with({
+          id: item.id,
+          text: item.text,
           isEdited: true,
         }),
       ],
@@ -99,8 +101,9 @@ describe('reducers', () => {
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
       [
         item.id,
-        new ListItem({
-          ...item,
+        item.with({
+          id: item.id,
+          text: item.text,
           isEdited: false,
         }),
       ],
@@ -174,8 +177,9 @@ describe('reducers', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
         item.id,
-        new ListItem({
-          ...item,
+        item.with({
+          id: item.id,
+          text: item.text,
           isEdited: true,
         }),
       ],
