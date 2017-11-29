@@ -5,13 +5,14 @@ import {
 } from '../../actions/actionCreators';
 import { IAppState } from '../../IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
+import { IAction } from '../../actions/IAction';
 
 interface IProps {
   item: IndexedItem;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => ({
-  onEditStart: () => dispatch(editItem(ownProps.item.id)),
+  onEditStart: (): IAction => dispatch(editItem(ownProps.item.id)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);

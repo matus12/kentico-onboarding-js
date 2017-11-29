@@ -8,7 +8,7 @@ const getIds = (items: string[]) => ({ids: Seq(items)});
 const getIdsMemoized = memoize(getIds, {primitive: true});
 
 const mapStateToProps = ({todoList: {items}}: IAppState) => {
-  const ids = items.keySeq().toArray();
+  const ids: string[] = items.keySeq().toArray();
 
   return getIdsMemoized(ids);
 };

@@ -7,15 +7,16 @@ import {
 } from '../../actions/actionCreators';
 import { IAppState } from '../../IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
+import { IAction } from '../../actions/IAction';
 
 interface IProps {
   item: IndexedItem;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => ({
-  onUpdateItem: (text: string) => dispatch(updateItem(ownProps.item.id, text)),
-  onDeleteItem: () => dispatch(deleteItem(ownProps.item.id)),
-  onEditStop: () => dispatch(cancelItemEditing(ownProps.item.id)),
+  onUpdateItem: (text: string): IAction => dispatch(updateItem(ownProps.item.id, text)),
+  onDeleteItem: (): IAction => dispatch(deleteItem(ownProps.item.id)),
+  onEditStop: (): IAction => dispatch(cancelItemEditing(ownProps.item.id)),
 });
 
 const enhancer = connect(undefined, mapDispatchToProps);
