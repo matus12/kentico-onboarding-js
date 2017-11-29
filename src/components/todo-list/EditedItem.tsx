@@ -3,6 +3,7 @@ import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IAction } from '../../actions/IAction';
 import { IndexedItem } from '../../models/IndexedItem';
+import { PropTypes } from 'react';
 
 interface IProps {
   item: IndexedItem;
@@ -17,6 +18,15 @@ interface IState {
 }
 
 export class EditedItem extends React.PureComponent<IProps, IState> {
+  static propTypes = {
+    item: PropTypes.shape({
+      index: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+    }).isRequired,
+    onUpdateItem: PropTypes.func.isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
+    onEditStop: PropTypes.func.isRequired,
+  };
 
   constructor(props: IProps) {
     super(props);

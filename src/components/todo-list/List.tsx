@@ -3,12 +3,13 @@ import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent';
 import { Item } from '../../containers/todo-list/Item';
 import { Seq } from 'immutable';
+import { PropTypes } from 'react';
 
 interface IProps {
   ids: Seq.Indexed<string>;
 }
 
-export const List = (props: IProps) =>
+export const List: React.SFC<IProps> = (props: IProps) =>
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">
@@ -34,3 +35,7 @@ export const List = (props: IProps) =>
       </ul>
     </div>
   </div>;
+
+List.propTypes = {
+  ids: PropTypes.instanceOf(Seq).isRequired,
+};

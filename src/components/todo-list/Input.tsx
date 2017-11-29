@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
+import { PropTypes } from 'react';
 
 interface IProps {
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;
@@ -13,6 +14,12 @@ interface IState {
 }
 
 export class Input extends React.PureComponent<IProps, IState> {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    title: PropTypes.string,
+  };
 
   constructor(props: IProps) {
     super(props);

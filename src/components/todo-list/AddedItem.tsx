@@ -2,6 +2,7 @@ import  * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IAction } from '../../actions/IAction';
+import { PropTypes } from 'react';
 
 interface IState {
   inputText: string;
@@ -13,6 +14,9 @@ interface IProps {
 }
 
 export class AddedItem extends React.PureComponent<IProps, IState> {
+  static propTypes = {
+    onAddItem: PropTypes.func.isRequired,
+  };
 
   constructor(props: IProps) {
     super(props);

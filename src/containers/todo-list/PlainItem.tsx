@@ -6,6 +6,7 @@ import {
 import { IAppState } from '../../IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
+import { PropTypes } from 'react';
 
 interface IProps {
   item: IndexedItem;
@@ -17,5 +18,12 @@ const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => 
 
 const enhancer = connect(undefined, mapDispatchToProps);
 const connectedComponent = enhancer(PlainItem);
+
+connectedComponent.propTypes = {
+  item: PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export { connectedComponent as PlainItem };
