@@ -10,8 +10,11 @@ const createIndexedItemMemoized = memoize(createIndexedItem);
 
 const mapStateToProps = ({ todoList: { items } }, { id, index }) => {
   const retrievedItem = items.get(id);
+  const indexedItem = createIndexedItemMemoized(
+    retrievedItem,
+    index);
 
-  return createIndexedItemMemoized(retrievedItem, index);
+  return { item: indexedItem };
 };
 
 const enhancer = connect(mapStateToProps);
