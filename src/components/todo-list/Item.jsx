@@ -4,14 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
 
-Item.propTypes = {
-  item: ImmutablePropTypes.contains({
-    index: PropTypes.number.isRequired,
-    isEdited: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
-export const Item = ({ item }) => {
+const Item = ({ item }) => {
   return ((item.isEdited) ?
     <EditedItem
       item={item}
@@ -20,3 +13,12 @@ export const Item = ({ item }) => {
       item={item}
     />);
 };
+
+Item.propTypes = {
+  item: ImmutablePropTypes.contains({
+    index: PropTypes.number.isRequired,
+    isEdited: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+export { Item };

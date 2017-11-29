@@ -5,11 +5,7 @@ import { Item } from '../../containers/todo-list/Item';
 import PropTypes from 'prop-types';
 import { Seq } from 'immutable';
 
-List.propTypes = {
-  ids: PropTypes.instanceOf(Seq).isRequired,
-};
-
-export const List = props =>
+const List = props =>
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">
@@ -35,3 +31,9 @@ export const List = props =>
       </ul>
     </div>
   </div>;
+
+List.propTypes = {
+  ids: PropTypes.instanceOf(Seq).isRequired,
+};
+
+export { List };
