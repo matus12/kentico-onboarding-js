@@ -1,4 +1,4 @@
-import { IndexedItem } from '../../../../models/IndexedItem';
+import { IndexedItem } from '../models/IndexedItem';
 
 export const createIndexedItem = (item, index) => ({
   item: new IndexedItem({

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
 import {
   createIndexedItem,
-} from '../../reducers/todo-list/items/selectors/createIndexedItem';
+} from '../../selectors/createIndexedItem';
 
 const createIndexedItemMemoized = memoize(createIndexedItem);
 
