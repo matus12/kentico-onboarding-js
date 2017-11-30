@@ -25,14 +25,14 @@ export const deleteItem = (id: string): IAction => ({
   },
 });
 
-export const editItem = (id: string) => ({
+export const editItem = (id: string): IAction => ({
   type: TODO_LIST_ITEM_EDIT,
   payload: {
     id,
   },
 });
 
-export const cancelItemEditing = (id: string) => ({
+export const cancelItemEditing = (id: string): IAction => ({
   type: TODO_LIST_ITEM_CANCEL_EDIT,
   payload: {
     id,

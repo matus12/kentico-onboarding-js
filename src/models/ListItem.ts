@@ -18,6 +18,6 @@ export class ListItem extends Record(emptyItem) implements IListItem {
   }
 
   with(values: IListItem) {
-    return this.merge(values) as any as this;
+    return this.merge(values) as this;
   }
 }
