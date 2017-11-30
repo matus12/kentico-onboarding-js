@@ -7,7 +7,7 @@ interface IProps {
   item: IndexedItem;
 }
 
-export const Item: React.SFC<IProps> = (props: IProps) =>
+const Item: React.SFC<IProps> = (props: IProps) =>
   <li className="list-group-item">
     {(props.item.isEdited) ?
       <EditedItem
@@ -25,3 +25,5 @@ Item.propTypes = {
     isEdited: PropTypes.bool.isRequired,
   }).isRequired,
 };
+
+export { Item }

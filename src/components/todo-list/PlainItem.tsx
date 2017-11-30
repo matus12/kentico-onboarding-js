@@ -8,7 +8,7 @@ interface IProps {
   onEditStart: () => IAction;
 }
 
-export const PlainItem: React.SFC<IProps> = (props: IProps) =>
+const PlainItem: React.SFC<IProps> = (props: IProps) =>
   <div onClick={props.onEditStart}>
     {props.item.index + '. ' + props.item.text}
   </div>;
@@ -20,3 +20,5 @@ PlainItem.propTypes = {
   }).isRequired,
   onEditStart: PropTypes.func.isRequired,
 };
+
+export { PlainItem }

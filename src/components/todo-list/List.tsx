@@ -9,7 +9,7 @@ interface IProps {
   ids: Seq.Indexed<string>;
 }
 
-export const List: React.SFC<IProps> = (props: IProps) =>
+const List: React.SFC<IProps> = (props: IProps) =>
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">
@@ -39,3 +39,5 @@ export const List: React.SFC<IProps> = (props: IProps) =>
 List.propTypes = {
   ids: PropTypes.instanceOf(Seq).isRequired,
 };
+
+export { List }
