@@ -9,16 +9,16 @@ interface IState {
   isInputValid: boolean;
 }
 
-interface IProps {
+export interface IAddedItemCallbackProps {
   onAddItem: (text: string) => IAction;
 }
 
-export class AddedItem extends React.PureComponent<IProps, IState> {
+export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, IState> {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
   };
 
-  constructor(props: IProps) {
+  constructor(props: IAddedItemCallbackProps) {
     super(props);
 
     this.state = ({

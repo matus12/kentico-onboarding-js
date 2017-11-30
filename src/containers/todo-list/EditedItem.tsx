@@ -1,5 +1,5 @@
 import { connect, Dispatch } from 'react-redux';
-import { EditedItem } from '../../components/todo-list/EditedItem';
+import { EditedItem, IEditedItemCallbackProps } from '../../components/todo-list/EditedItem';
 import {
   updateItem,
   deleteItem,
@@ -14,7 +14,7 @@ interface IProps {
   item: IndexedItem;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps): IEditedItemCallbackProps => ({
   onUpdateItem: (text: string): IAction => dispatch(updateItem(ownProps.item.id, text)),
   onDeleteItem: (): IAction => dispatch(deleteItem(ownProps.item.id)),
   onEditStop: (): IAction => dispatch(cancelItemEditing(ownProps.item.id)),

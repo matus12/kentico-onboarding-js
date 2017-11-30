@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as memoize from 'memoizee';
-import { Item } from '../../components/todo-list/Item';
+import { IItemDataProps, Item } from '../../components/todo-list/Item';
 import { IAppState } from '../../IAppState';
 import {
   createIndexedItem,
@@ -16,7 +16,7 @@ interface IProps {
   index: number;
 }
 
-const mapStateToProps = ({todoList: {items}}: IAppState, {id, index}: IProps) => {
+const mapStateToProps = ({todoList: {items}}: IAppState, {id, index}: IProps): IItemDataProps => {
   const retrievedItem: ListItem = items.get(id);
   const indexedItem: IndexedItem = createIndexedItemMemoized(
     retrievedItem,

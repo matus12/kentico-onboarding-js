@@ -4,11 +4,11 @@ import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
 import { IndexedItem } from '../../models/IndexedItem';
 
-interface IProps {
+export interface IItemDataProps {
   item: IndexedItem;
 }
 
-const Item: React.SFC<IProps> = (props: IProps) =>
+const Item: React.SFC<IItemDataProps> = (props: IItemDataProps) =>
   (props.item.isEdited) ?
     <EditedItem
       item={props.item}

@@ -5,11 +5,14 @@ import { IAction } from '../../actions/IAction';
 import { IndexedItem } from '../../models/IndexedItem';
 import * as PropTypes from 'prop-types';
 
-interface IProps {
-  item: IndexedItem;
+export interface IEditedItemCallbackProps {
   onUpdateItem: (text: string) => IAction;
   onEditStop: () => IAction;
   onDeleteItem: () => IAction;
+}
+
+export interface IEditedItemDataProps {
+  item: IndexedItem;
 }
 
 interface IState {
@@ -17,7 +20,7 @@ interface IState {
   isInputValid: boolean;
 }
 
-export class EditedItem extends React.PureComponent<IProps, IState> {
+export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & IEditedItemDataProps, IState> {
   static propTypes = {
     item: PropTypes.shape({
       index: PropTypes.number.isRequired,
@@ -28,7 +31,7 @@ export class EditedItem extends React.PureComponent<IProps, IState> {
     onEditStop: PropTypes.func.isRequired,
   };
 
-  constructor(props: IProps) {
+  constructor(props: IEditedItemCallbackProps & IEditedItemDataProps) {
     super(props);
 
     this.state = {

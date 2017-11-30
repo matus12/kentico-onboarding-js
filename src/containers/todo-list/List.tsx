@@ -1,13 +1,13 @@
 import * as memoize from 'memoizee';
 import { connect } from 'react-redux';
-import { List } from '../../components/todo-list/List';
+import { IListDataProps, List } from '../../components/todo-list/List';
 import { IAppState } from '../../IAppState';
 import { Seq } from 'immutable';
 
 const getIds = (items: string[]) => ({ids: Seq(items)});
 const getIdsMemoized = memoize(getIds, {primitive: true});
 
-const mapStateToProps = ({todoList: {items}}: IAppState) => {
+const mapStateToProps = ({todoList: {items}}: IAppState): IListDataProps => {
   const ids: string[] = items.keySeq().toArray();
 
   return getIdsMemoized(ids);

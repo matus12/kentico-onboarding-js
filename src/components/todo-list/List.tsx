@@ -5,11 +5,11 @@ import { Item } from '../../containers/todo-list/Item';
 import { Seq } from 'immutable';
 import * as PropTypes from 'prop-types';
 
-interface IProps {
+export interface IListDataProps {
   ids: Seq.Indexed<string>;
 }
 
-const List: React.SFC<IProps> = (props: IProps) =>
+const List: React.SFC<IListDataProps> = (props: IListDataProps) =>
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">

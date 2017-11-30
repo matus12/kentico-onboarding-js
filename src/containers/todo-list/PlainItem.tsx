@@ -1,5 +1,5 @@
 import { connect, Dispatch } from 'react-redux';
-import { PlainItem } from '../../components/todo-list/PlainItem';
+import { IPlainItemCallbackProps, PlainItem } from '../../components/todo-list/PlainItem';
 import {
   editItem,
 } from '../../actions/actionCreators';
@@ -12,7 +12,7 @@ interface IProps {
   item: IndexedItem;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps): IPlainItemCallbackProps => ({
   onEditStart: (): IAction => dispatch(editItem(ownProps.item.id)),
 });
 
