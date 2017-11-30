@@ -4,9 +4,10 @@ import { Item } from '../../components/todo-list/Item';
 import { IAppState } from '../../IAppState';
 import {
   createIndexedItem,
-} from '../../reducers/todo-list/items/selectors/createIndexedItem';
+} from '../../selectors/createIndexedItem';
 import { ListItem } from '../../models/ListItem';
 import { PropTypes } from 'react';
+import { IndexedItem } from '../../models/IndexedItem';
 
 const createIndexedItemMemoized = memoize(createIndexedItem);
 
@@ -17,8 +18,11 @@ interface IProps {
 
 const mapStateToProps = ({todoList: {items}}: IAppState, {id, index}: IProps) => {
   const retrievedItem: ListItem = items.get(id);
+  const indexedItem: IndexedItem = createIndexedItemMemoized(
+    retrievedItem,
+    index);
 
-  return createIndexedItemMemoized(retrievedItem, index);
+  return { item: indexedItem };
 };
 
 const enhancer = connect(mapStateToProps);
