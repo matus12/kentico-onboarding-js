@@ -15,7 +15,7 @@ const Item: React.SFC<IProps> = (props: IProps) =>
     /> :
     <PlainItem
       item={props.item}
-    />
+    />;
 
 
 Item.propTypes = {

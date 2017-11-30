@@ -27,14 +27,14 @@ export class AddedItem extends React.PureComponent<IProps, IState> {
     });
   }
 
-  changeItemText = (event: React.FormEvent<HTMLInputElement>) => {
+  changeItemText = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       inputText: event.currentTarget.value,
       isInputValid: validateText(event.currentTarget.value),
     });
   };
 
-  addItem = () => {
+  addItem = (): void => {
     this.props.onAddItem(this.state.inputText);
     this.setState({
       inputText: '',
@@ -42,7 +42,7 @@ export class AddedItem extends React.PureComponent<IProps, IState> {
     });
   };
 
-  render() {
+  render(): JSX.Element {
     const invalidTextTitle: string | undefined = (this.state.isInputValid)
       ? undefined
       : 'New item must consist of non-empty text';

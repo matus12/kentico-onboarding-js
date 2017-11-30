@@ -37,20 +37,20 @@ export class EditedItem extends React.PureComponent<IProps, IState> {
     };
   }
 
-  changeItemText = (event: React.FormEvent<HTMLInputElement>) => {
+  changeItemText = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       editedText: event.currentTarget.value,
       isInputValid: validateText(event.currentTarget.value),
     });
   };
 
-  saveItem = () => {
+  saveItem = (): void => {
     this.props.onUpdateItem(
       this.state.editedText,
     );
   };
 
-  render() {
+  render(): JSX.Element {
     const invalidTextTitle: string | undefined = (this.state.isInputValid)
       ? undefined
       : 'Empty item cannot be stored.\nTip: Use delete button to remove an item';

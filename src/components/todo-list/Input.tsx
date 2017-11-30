@@ -29,19 +29,19 @@ export class Input extends React.PureComponent<IProps, IState> {
     });
   }
 
-  focus = () => {
+  focus = (): void => {
     this.setState({
       isFocused: true,
     });
   };
 
-  blur = () => {
+  blur = (): void => {
     this.setState({
       isFocused: false,
     });
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <div
         className={classnames(
