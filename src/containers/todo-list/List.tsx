@@ -1,4 +1,4 @@
-import memoize from 'memoizee';
+import * as memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { List } from '../../components/todo-list/List';
 import { IAppState } from '../../IAppState';

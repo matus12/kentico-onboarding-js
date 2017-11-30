@@ -8,7 +8,7 @@ import {
 import { IAppState } from '../../IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 
 interface IProps {
   item: IndexedItem;

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import memoize from 'memoizee';
+import * as memoize from 'memoizee';
 import { Item } from '../../components/todo-list/Item';
 import { IAppState } from '../../IAppState';
 import {
   createIndexedItem,
 } from '../../selectors/createIndexedItem';
 import { ListItem } from '../../models/ListItem';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 import { IndexedItem } from '../../models/IndexedItem';
 
 const createIndexedItemMemoized = memoize(createIndexedItem);

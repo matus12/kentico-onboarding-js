@@ -2,7 +2,7 @@ import  * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IAction } from '../../actions/IAction';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 
 interface IState {
   inputText: string;

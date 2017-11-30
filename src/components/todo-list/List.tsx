@@ -3,7 +3,7 @@ import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent';
 import { Item } from '../../containers/todo-list/Item';
 import { Seq } from 'immutable';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 
 interface IProps {
   ids: Seq.Indexed<string>;

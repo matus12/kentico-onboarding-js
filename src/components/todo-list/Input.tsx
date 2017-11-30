@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 
 interface IProps {
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;

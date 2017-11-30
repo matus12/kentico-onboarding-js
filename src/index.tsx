@@ -15,7 +15,7 @@ import { App } from './App';
 
 interface IDevTools {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: <R>(a: R) => R;
-};
+}
 
 const composeEnhancers = (window as IDevTools).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

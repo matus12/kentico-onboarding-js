@@ -3,7 +3,7 @@ import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IAction } from '../../actions/IAction';
 import { IndexedItem } from '../../models/IndexedItem';
-import { PropTypes } from 'react';
+import * as PropTypes from 'prop-types';
 
 interface IProps {
   item: IndexedItem;

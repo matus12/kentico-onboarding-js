@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { PlainItem } from '../../containers/todo-list/PlainItem';
 import { EditedItem } from '../../containers/todo-list/EditedItem';
 import { IndexedItem } from '../../models/IndexedItem';
@@ -8,16 +9,14 @@ interface IProps {
 }
 
 const Item: React.SFC<IProps> = (props: IProps) =>
-  <li className="list-group-item">
-    {(props.item.isEdited) ?
-      <EditedItem
-        item={props.item}
-      /> :
-      <PlainItem
-        item={props.item}
-      />
-    }
-  </li>;
+  (props.item.isEdited) ?
+    <EditedItem
+      item={props.item}
+    /> :
+    <PlainItem
+      item={props.item}
+    />
+
 
 Item.propTypes = {
   item: PropTypes.shape({
