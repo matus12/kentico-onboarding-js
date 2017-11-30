@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import * as memoize from 'memoizee';
 import { IItemDataProps, Item } from '../../components/todo-list/Item';
-import { IAppState } from '../../IAppState';
+import { IAppState } from '../../reducers/IAppState';
 import {
   createIndexedItem,
 } from '../../selectors/createIndexedItem';

@@ -1,7 +1,7 @@
 import * as memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { IListDataProps, List } from '../../components/todo-list/List';
-import { IAppState } from '../../IAppState';
+import { IAppState } from '../../reducers/IAppState';
 import { Seq } from 'immutable';
 
 const getIds = (items: string[]) => ({ids: Seq(items)});

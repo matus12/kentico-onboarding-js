@@ -5,7 +5,7 @@ import {
   deleteItem,
   cancelItemEditing,
 } from '../../actions/actionCreators';
-import { IAppState } from '../../IAppState';
+import { IAppState } from '../../reducers/IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
 import * as PropTypes from 'prop-types';

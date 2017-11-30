@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { items } from './items/items';
-import { IAppState } from '../../IAppState';
+import { IAppState } from '../IAppState';
 
 export const todoList = combineReducers<IAppState['todoList']>({
   items,
