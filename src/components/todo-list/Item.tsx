@@ -8,7 +8,7 @@ export interface IItemDataProps {
   item: IndexedItem;
 }
 
-const Item: React.SFC<IItemDataProps> = (props: IItemDataProps) =>
+const Item: React.SFC<IItemDataProps> = (props: IItemDataProps): JSX.Element =>
   (props.item.isEdited) ?
     <EditedItem
       item={props.item}

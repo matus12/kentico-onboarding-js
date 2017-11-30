@@ -9,7 +9,7 @@ export interface IListDataProps {
   ids: Seq.Indexed<string>;
 }
 
-const List: React.SFC<IListDataProps> = (props: IListDataProps) =>
+const List: React.SFC<IListDataProps> = (props: IListDataProps): JSX.Element =>
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">

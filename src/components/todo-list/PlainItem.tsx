@@ -11,7 +11,7 @@ export interface IPlainItemCallbackProps {
   onEditStart: () => IAction;
 }
 
-const PlainItem: React.SFC<IPlainItemCallbackProps & IPlainItemDataProps> = (props: IPlainItemCallbackProps & IPlainItemDataProps) =>
+const PlainItem: React.SFC<IPlainItemCallbackProps & IPlainItemDataProps> = (props: IPlainItemCallbackProps & IPlainItemDataProps): JSX.Element =>
   <div onClick={props.onEditStart}>
     {props.item.index + '. ' + props.item.text}
   </div>;
