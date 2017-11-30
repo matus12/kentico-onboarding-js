@@ -1,5 +1,5 @@
 import { OrderedMap } from 'immutable';
-import { generateId } from './generateId';
+import { generateId, uuId } from './generateId';
 import { IListItem } from '../models/IListItem';
 import { ListItem } from '../models/ListItem';
 import { IAppState } from '../IAppState';
@@ -16,7 +16,7 @@ export const getInitialState = (): IAppState => ({
     items: OrderedMap(
       itemNames
         .map((itemText: string) => {
-          const guid: string = generateId();
+          const guid: uuId = generateId();
           const listItem: IListItem = {
             id: guid,
             text: itemText,
