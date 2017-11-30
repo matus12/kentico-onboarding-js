@@ -51,7 +51,7 @@ export class EditedItem extends React.PureComponent<IProps, IState> {
   };
 
   render() {
-    const invalidTextTitle = (this.state.isInputValid)
+    const invalidTextTitle: string | undefined = (this.state.isInputValid)
       ? undefined
       : 'Empty item cannot be stored.\nTip: Use delete button to remove an item';
 

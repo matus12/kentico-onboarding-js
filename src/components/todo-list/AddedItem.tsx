@@ -43,7 +43,7 @@ export class AddedItem extends React.PureComponent<IProps, IState> {
   };
 
   render() {
-    const invalidTextTitle = (this.state.isInputValid)
+    const invalidTextTitle: string | undefined = (this.state.isInputValid)
       ? undefined
       : 'New item must consist of non-empty text';
 
