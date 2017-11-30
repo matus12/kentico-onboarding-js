@@ -1,16 +1,10 @@
-import memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { List } from '../../components/todo-list/List';
-import { Seq } from 'immutable';
+import { getItemIds } from '../../selectors/getItemIds';
 
-const getIds = items => ({ ids: Seq(items) });
-const getIdsMemoized = memoize(getIds, { primitive: true });
-
-const mapStateToProps = ({ todoList: { items } }) => {
-  const ids = items.keySeq().toArray();
-
-  return getIdsMemoized(ids);
-};
+const mapStateToProps = (state) => ({
+  ids: getItemIds(state),
+});
 
 const enhancer = connect(mapStateToProps);
 const connectedComponent = enhancer(List);

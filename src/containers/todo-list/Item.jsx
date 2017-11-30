@@ -1,21 +1,11 @@
 import PropTypes from 'prop-types';
-import memoize from 'memoizee';
 import { connect } from 'react-redux';
 import { Item } from '../../components/todo-list/Item';
-import {
-  createIndexedItem,
-} from '../../selectors/createIndexedItem';
+import { getIndexedItem } from '../../selectors/getIndexedItem';
 
-const createIndexedItemMemoized = memoize(createIndexedItem);
-
-const mapStateToProps = ({ todoList: { items } }, { id, index }) => {
-  const retrievedItem = items.get(id);
-  const indexedItem = createIndexedItemMemoized(
-    retrievedItem,
-    index);
-
-  return { item: indexedItem };
-};
+const mapStateToProps = (state, { id, index }) => ({
+  item: getIndexedItem(state, index, id),
+});
 
 const enhancer = connect(mapStateToProps);
 const connectedComponent = enhancer(Item);
