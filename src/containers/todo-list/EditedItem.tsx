@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types';
 import { connect, Dispatch } from 'react-redux';
 import { EditedItem, IEditedItemCallbackProps } from '../../components/todo-list/EditedItem';
 import {
@@ -8,7 +9,6 @@ import {
 import { IAppState } from '../../reducers/IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
-import * as PropTypes from 'prop-types';
 
 interface IProps {
   item: IndexedItem;
