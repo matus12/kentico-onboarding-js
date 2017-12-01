@@ -6,55 +6,55 @@ import { items } from './items';
 import { insertItemFactory } from '../../../actions/insertItemFactory';
 import { ListItem } from '../../../models/ListItem';
 
-describe('reducers', () => {
-  const item: ListItem = new ListItem({
+describe('items reducers', () => {
+  const plainItem1 = {
     id: '16b1706c-1311-418d-aaaa-d6043f2e7f1f',
     text: 'Make a coffee',
     isEdited: false,
-  });
-  const item2: ListItem = new ListItem({
+  };
+  const plainItem2 = {
     id: '16b1706c-1311-418d-bdba-d6043f2e7f1f',
     text: 'Do these tests',
     isEdited: false,
-  });
+  };
   const UNKNOWN_ACTION_DUPLICATE = 'UNKNOWN_ACTION_DUPLICATE';
   const unknownAction = {
     type: UNKNOWN_ACTION_DUPLICATE,
     payload: {
-      item: item2,
+      item: plainItem2,
     },
   };
 
   const insertItem = (id: string) => insertItemFactory(() => id);
 
   it('should return the initial state', () => {
-    const noAction = items(undefined, unknownAction);
+    const initialState = items(undefined, unknownAction);
 
-    expect(noAction).toEqual(OrderedMap());
+    expect(initialState).toEqual(OrderedMap());
   });
 
   it('should add record to non-empty store on ITEM_CREATE action', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        new ListItem(item),
+        plainItem1.id,
+        new ListItem(plainItem1),
       ],
     ]);
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        new ListItem(item),
+        plainItem1.id,
+        new ListItem(plainItem1),
       ],
       [
-        item2.id,
-        new ListItem(item2),
+        plainItem2.id,
+        new ListItem(plainItem2),
       ],
     ]).toJS();
-    const insertItemAction = insertItem(item2.id);
+    const insertItemAction = insertItem(plainItem2.id);
 
     const newState: OrderedMap<string, ListItem> = items(
       singleItemState,
-      insertItemAction(item2.text),
+      insertItemAction(plainItem2.text),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
@@ -63,25 +63,23 @@ describe('reducers', () => {
   it('should make item editable on ITEM_EDIT action', () => {
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        item.with({
-          id: item.id,
-          text: item.text,
+        plainItem1.id,
+        new ListItem({
+          ...plainItem1,
           isEdited: true,
         }),
   ],
-  ]).
-    toJS();
+  ]).toJS();
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        new ListItem(item),
+        plainItem1.id,
+        new ListItem(plainItem1),
       ],
     ]);
 
     const newState: OrderedMap<string, ListItem> = items(
       singleItemState,
-      actions.editItem(item.id),
+      actions.editItem(plainItem1.id),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
@@ -90,20 +88,18 @@ describe('reducers', () => {
   it('should make item non-editable on ITEM_CANCEL_EDIT action', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        item.with({
-          id: item.id,
-          text: item.text,
+        plainItem1.id,
+        new ListItem({
+          ...plainItem1,
           isEdited: true,
         }),
       ],
     ]);
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        item.with({
-          id: item.id,
-          text: item.text,
+        plainItem1.id,
+        new ListItem({
+          ...plainItem1,
           isEdited: false,
         }),
       ],
@@ -111,7 +107,7 @@ describe('reducers', () => {
 
     const newState: OrderedMap<string, ListItem> = items(
       singleItemState,
-      actions.cancelItemEditing(item.id),
+      actions.cancelItemEditing(plainItem1.id),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
@@ -120,38 +116,39 @@ describe('reducers', () => {
   it('should delete record after ITEM_DELETE action', () => {
     const twoItemsState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        new ListItem(item),
+        plainItem1.id,
+        new ListItem(plainItem1),
       ],
       [
-        item2.id,
-        new ListItem(item2),
+        plainItem2.id,
+        new ListItem(plainItem2),
       ],
     ]);
-    const expectedState: OrderedMap<string, ListItem> = twoItemsState.delete(item.id).toJS();
+    const expectedState: OrderedMap<string, ListItem> = twoItemsState.delete(plainItem1.id).toJS();
 
     const newState: OrderedMap<string, ListItem> = items(
       twoItemsState,
-      actions.deleteItem(item.id),
+      actions.deleteItem(plainItem1.id),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
   });
 
   it('should update correct item after ITEM_UPDATE action', () => {
+    const updatedText: string = 'updatedText';
     const updatedItem: ListItem = new ListItem({
-      id: item.id,
-      text: 'updatedText',
-      isEdited: !item.isEdited,
+      id: plainItem1.id,
+      text: updatedText,
+      isEdited: !plainItem1.isEdited,
     });
     const twoItemsState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        new ListItem(item),
+        plainItem1.id,
+        new ListItem(plainItem1),
       ],
       [
-        item2.id,
-        new ListItem(item2),
+        plainItem2.id,
+        new ListItem(plainItem2),
       ],
     ]);
     const expectedState: OrderedMap<string, ListItem> = OrderedMap([
@@ -160,14 +157,14 @@ describe('reducers', () => {
         new ListItem(updatedItem),
       ],
       [
-        item2.id,
-        new ListItem(item2),
+        plainItem2.id,
+        new ListItem(plainItem2),
       ],
     ]).toJS();
 
     const newState: OrderedMap<string, ListItem> = items(
       twoItemsState,
-      actions.updateItem(item.id, 'updatedText'),
+      actions.updateItem(plainItem1.id, updatedText),
     ).toJS();
 
     expect(newState).toEqual(expectedState);
@@ -176,10 +173,9 @@ describe('reducers', () => {
   it('should return prevState on unknown action', () => {
     const singleItemState: OrderedMap<string, ListItem> = OrderedMap([
       [
-        item.id,
-        item.with({
-          id: item.id,
-          text: item.text,
+        plainItem1.id,
+        new ListItem({
+          ...plainItem1,
           isEdited: true,
         }),
       ],
