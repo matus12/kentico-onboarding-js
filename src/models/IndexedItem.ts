@@ -10,10 +10,10 @@ const emptyIndexedItem: IIndexedItem = {
 };
 
 export class IndexedItem extends Record(emptyIndexedItem) implements IIndexedItem {
-  index: number | null;
-  id: string;
-  text: string;
-  isEdited: boolean;
+  readonly index: number | null;
+  readonly id: string;
+  readonly text: string;
+  readonly isEdited: boolean;
 
   constructor(params?: IIndexedItem) {
     params ? super(params) : super();
