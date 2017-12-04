@@ -14,8 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "target": "es5",
-    "jsx": "react",
-    "allowJs": true
+    "jsx": "react"
   },
   "include": [
     "src/**/*.ts",

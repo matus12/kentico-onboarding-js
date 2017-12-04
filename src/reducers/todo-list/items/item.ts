@@ -8,7 +8,7 @@ import { ListItem } from '../../../models/ListItem';
 import { IAction } from '../../../actions/IAction';
 import { IListItem } from '../../../models/IListItem';
 
-export const item = (previousState = new ListItem(), action: IAction): ListItem => {
+export const item = (previousState: ListItem, action: IAction): ListItem => {
   switch (action.type) {
     case TODO_LIST_ITEM_EDIT:
     case TODO_LIST_ITEM_CANCEL_EDIT: {
