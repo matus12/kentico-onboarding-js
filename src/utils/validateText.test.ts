@@ -4,25 +4,25 @@ import {
 
 describe('validateText', () => {
   it('returns true for non-empty string', () => {
-    const validString: string = 'asdfasf';
+    const validString = 'asdfasf';
 
-    const isStringValid: boolean = validateText(validString);
+    const isStringValid = validateText(validString);
 
     expect(isStringValid).toEqual(true);
   });
 
   it('returns false for empty string', () => {
-    const emptyString: string = '';
+    const emptyString = '';
 
-    const isStringValid: boolean = validateText(emptyString);
+    const isStringValid = validateText(emptyString);
 
     expect(isStringValid).toBe(false);
   });
 
   it('returns false for string with whitespaces only', () => {
-    const invalidString: string = '          ';
+    const invalidString = '          ';
 
-    const isStringValid: boolean = validateText(invalidString);
+    const isStringValid = validateText(invalidString);
 
     expect(isStringValid).toBe(false);
   });

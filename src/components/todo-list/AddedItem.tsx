@@ -42,7 +42,7 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
   };
 
   render(): JSX.Element {
-    const invalidTextTitle: string | undefined = (this.state.isInputValid)
+    const invalidTextTitle = (this.state.isInputValid)
       ? undefined
       : 'New item must consist of non-empty text';
 

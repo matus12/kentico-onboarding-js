@@ -4,7 +4,7 @@ import { IListItem } from '../models/IListItem';
 import { ListItem } from '../models/ListItem';
 import { IAppState } from '../models/IAppState';
 
-const itemNames: string[] = [
+const itemNames = [
   'Make a coffee',
   'Master ReactJS',
   'Learn ReduxJS',
