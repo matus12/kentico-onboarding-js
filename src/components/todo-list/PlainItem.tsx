@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IAction } from '../../actions/IAction';
 import { IndexedItem } from '../../models/IndexedItem';
 import * as PropTypes from 'prop-types';
 
@@ -8,7 +7,7 @@ interface IPlainItemDataProps {
 }
 
 export interface IPlainItemCallbackProps {
-  onEditStart: () => IAction;
+  onEditStart: () => void;
 }
 
 const PlainItem: React.SFC<IPlainItemCallbackProps & IPlainItemDataProps> = (props: IPlainItemCallbackProps & IPlainItemDataProps): JSX.Element =>

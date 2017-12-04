@@ -1,7 +1,6 @@
 import  * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
-import { IAction } from '../../actions/IAction';
 import * as PropTypes from 'prop-types';
 
 interface IState {
@@ -10,7 +9,7 @@ interface IState {
 }
 
 export interface IAddedItemCallbackProps {
-  onAddItem: (text: string) => IAction;
+  onAddItem: (text: string) => void;
 }
 
 export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, IState> {

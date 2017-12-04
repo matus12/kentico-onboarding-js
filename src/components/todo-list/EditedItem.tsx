@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
-import { IAction } from '../../actions/IAction';
 import { IndexedItem } from '../../models/IndexedItem';
 import * as PropTypes from 'prop-types';
 
 export interface IEditedItemCallbackProps {
-  onUpdateItem: (text: string) => IAction;
-  onEditStop: () => IAction;
-  onDeleteItem: () => IAction;
+  onUpdateItem: (text: string) => void;
+  onEditStop: () => void;
+  onDeleteItem: () => void;
 }
 
 export interface IEditedItemDataProps {
