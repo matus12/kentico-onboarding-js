@@ -13,11 +13,11 @@ export class ListItem extends Record(emptyItem) implements IListItem {
   text: string;
   isEdited: boolean;
 
-  constructor(params?: IListItem) {
+  constructor(params?: Partial<IListItem>) {
     params ? super(params) : super();
   }
 
-  with(values: IListItem) {
+  with(values: Partial<IListItem>) {
     return this.merge(values) as this;
   }
 }

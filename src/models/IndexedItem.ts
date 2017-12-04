@@ -15,7 +15,7 @@ export class IndexedItem extends Record(emptyIndexedItem) implements IIndexedIte
   readonly text: string;
   readonly isEdited: boolean;
 
-  constructor(params?: IIndexedItem) {
+  constructor(params?: Partial<IIndexedItem>) {
     params ? super(params) : super();
   }
 }
