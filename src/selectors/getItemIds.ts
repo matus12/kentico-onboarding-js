@@ -1,6 +1,6 @@
 import * as memoize from 'memoizee';
 import { Seq } from 'immutable';
-import { IAppState } from '../reducers/IAppState';
+import { IAppState } from '../models/IAppState';
 
 const getIds = (items: string[]): Seq.Indexed<string> => Seq(items);
 

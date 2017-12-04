@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { IListDataProps, List } from '../../components/todo-list/List';
-import { IAppState } from '../../reducers/IAppState';
+import { IAppState } from '../../models/IAppState';
 import { getItemIds } from '../../selectors/getItemIds';
 
 const mapStateToProps = (state: IAppState): IListDataProps => ({

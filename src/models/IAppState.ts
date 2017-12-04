@@ -1,5 +1,5 @@
 import { Collection } from 'immutable';
-import { ListItem } from '../models/ListItem';
+import { ListItem } from './ListItem';
 
 export interface IAppState {
   readonly todoList: {

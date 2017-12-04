@@ -6,7 +6,7 @@ import {
   deleteItem,
   cancelItemEditing,
 } from '../../actions/actionCreators';
-import { IAppState } from '../../reducers/IAppState';
+import { IAppState } from '../../models/IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
 

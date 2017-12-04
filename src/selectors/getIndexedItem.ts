@@ -1,6 +1,6 @@
 import * as memoize from 'memoizee';
 import { IndexedItem } from '../models/IndexedItem';
-import { IAppState } from '../reducers/IAppState';
+import { IAppState } from '../models/IAppState';
 import { uuId } from '../utils/generateId';
 import { ListItem } from '../models/ListItem';
 

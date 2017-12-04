@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IItemDataProps, Item } from '../../components/todo-list/Item';
-import { IAppState } from '../../reducers/IAppState';
+import { IAppState } from '../../models/IAppState';
 import { getIndexedItem } from '../../selectors/getIndexedItem';
 
 interface IProps {

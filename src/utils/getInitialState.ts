@@ -2,7 +2,7 @@ import { OrderedMap } from 'immutable';
 import { generateId, uuId } from './generateId';
 import { IListItem } from '../models/IListItem';
 import { ListItem } from '../models/ListItem';
-import { IAppState } from '../reducers/IAppState';
+import { IAppState } from '../models/IAppState';
 
 const itemNames: string[] = [
   'Make a coffee',

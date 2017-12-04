@@ -4,7 +4,7 @@ import { IPlainItemCallbackProps, PlainItem } from '../../components/todo-list/P
 import {
   editItem,
 } from '../../actions/actionCreators';
-import { IAppState } from '../../reducers/IAppState';
+import { IAppState } from '../../models/IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
 
