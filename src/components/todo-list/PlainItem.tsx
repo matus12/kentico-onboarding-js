@@ -4,7 +4,7 @@ import { IndexedItem } from '../../models/IndexedItem';
 import * as PropTypes from 'prop-types';
 
 interface IPlainItemDataProps {
-  item: IndexedItem;
+  readonly item: IndexedItem;
 }
 
 export interface IPlainItemCallbackProps {

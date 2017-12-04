@@ -1,5 +1,5 @@
 export interface IListItem {
-  id: string;
-  text: string;
-  isEdited: boolean;
+  readonly id: string;
+  readonly text: string;
+  readonly isEdited: boolean;
 }

@@ -6,7 +6,7 @@ import { Seq } from 'immutable';
 import * as PropTypes from 'prop-types';
 
 export interface IListDataProps {
-  ids: Seq.Indexed<string>;
+  readonly ids: Seq.Indexed<string>;
 }
 
 const List: React.SFC<IListDataProps> = (props: IListDataProps): JSX.Element =>

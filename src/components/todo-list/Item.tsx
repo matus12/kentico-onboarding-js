@@ -5,7 +5,7 @@ import { EditedItem } from '../../containers/todo-list/EditedItem';
 import { IndexedItem } from '../../models/IndexedItem';
 
 export interface IItemDataProps {
-  item: IndexedItem;
+  readonly item: IndexedItem;
 }
 
 const Item: React.SFC<IItemDataProps> = (props: IItemDataProps): JSX.Element =>

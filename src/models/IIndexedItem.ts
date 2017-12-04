@@ -1,6 +1,6 @@
 export interface IIndexedItem {
-  index: number | null;
-  id: string;
-  text: string;
-  isEdited: boolean;
+  readonly index: number | null;
+  readonly id: string;
+  readonly text: string;
+  readonly isEdited: boolean;
 }

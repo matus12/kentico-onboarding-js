@@ -5,8 +5,8 @@ import { IAppState } from '../../reducers/IAppState';
 import { getIndexedItem } from '../../selectors/getIndexedItem';
 
 interface IProps {
-  id: string;
-  index: number;
+  readonly id: string;
+  readonly index: number;
 }
 
 const mapStateToProps = (state: IAppState, { id, index }: IProps): IItemDataProps => ({

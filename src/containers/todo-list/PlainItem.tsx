@@ -9,7 +9,7 @@ import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
 
 interface IProps {
-  item: IndexedItem;
+  readonly item: IndexedItem;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps): IPlainItemCallbackProps => ({

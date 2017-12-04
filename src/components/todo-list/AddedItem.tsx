@@ -5,8 +5,8 @@ import { IAction } from '../../actions/IAction';
 import * as PropTypes from 'prop-types';
 
 interface IState {
-  inputText: string;
-  isInputValid: boolean;
+  readonly inputText: string;
+  readonly isInputValid: boolean;
 }
 
 export interface IAddedItemCallbackProps {

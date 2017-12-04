@@ -12,12 +12,12 @@ export interface IEditedItemCallbackProps {
 }
 
 export interface IEditedItemDataProps {
-  item: IndexedItem;
+  readonly item: IndexedItem;
 }
 
 interface IState {
-  editedText: string;
-  isInputValid: boolean;
+  readonly editedText: string;
+  readonly isInputValid: boolean;
 }
 
 export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & IEditedItemDataProps, IState> {

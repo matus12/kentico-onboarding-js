@@ -4,13 +4,13 @@ import * as PropTypes from 'prop-types';
 
 interface IProps {
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;
-  value: string;
-  isValid: boolean;
-  title: string | undefined;
+  readonly value: string;
+  readonly isValid: boolean;
+  readonly title: string | undefined;
 }
 
 interface IState {
-  isFocused: boolean;
+  readonly isFocused: boolean;
 }
 
 export class Input extends React.PureComponent<IProps, IState> {
