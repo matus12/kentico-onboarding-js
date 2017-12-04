@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { defaultId } from '../utils/generateId';
+import { defaultId, Uuid } from '../utils/generateId';
 import { IIndexedItem } from './IIndexedItem';
 
 const emptyIndexedItem: IIndexedItem = {
@@ -11,7 +11,7 @@ const emptyIndexedItem: IIndexedItem = {
 
 export class IndexedItem extends Record(emptyIndexedItem) implements IIndexedItem {
   readonly index: number | null;
-  readonly id: string;
+  readonly id: Uuid;
   readonly text: string;
   readonly isEdited: boolean;
 

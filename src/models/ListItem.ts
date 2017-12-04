@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { defaultId } from '../utils/generateId';
+import { defaultId, Uuid } from '../utils/generateId';
 import { IListItem } from './IListItem';
 
 const emptyItem: IListItem = {
@@ -9,7 +9,7 @@ const emptyItem: IListItem = {
 };
 
 export class ListItem extends Record(emptyItem) implements IListItem {
-  id: string;
+  id: Uuid;
   text: string;
   isEdited: boolean;
 

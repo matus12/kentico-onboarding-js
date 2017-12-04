@@ -9,8 +9,9 @@ import {
 import { item } from './item';
 import { IAction } from '../../../actions/IAction';
 import { ListItem } from '../../../models/ListItem';
+import { Uuid } from '../../../utils/generateId';
 
-export const items = (previousState: OrderedMap<string, ListItem> = OrderedMap<string, ListItem>(), action: IAction): OrderedMap<string, ListItem> => {
+export const items = (previousState: OrderedMap<Uuid, ListItem> = OrderedMap<Uuid, ListItem>(), action: IAction): OrderedMap<Uuid, ListItem> => {
   switch (action.type) {
     case TODO_LIST_ITEM_DELETE:
       return previousState.delete(action.payload.id);

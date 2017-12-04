@@ -1,6 +1,8 @@
+import { Uuid } from '../utils/generateId';
+
 export interface IIndexedItem {
   readonly index: number | null;
-  readonly id: string;
+  readonly id: Uuid;
   readonly text: string;
   readonly isEdited: boolean;
 }

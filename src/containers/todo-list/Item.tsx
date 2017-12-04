@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { IItemDataProps, Item } from '../../components/todo-list/Item';
 import { IAppState } from '../../models/IAppState';
 import { getIndexedItem } from '../../selectors/getIndexedItem';
+import { Uuid } from '../../utils/generateId';
 
 interface IProps {
-  readonly id: string;
+  readonly id: Uuid;
   readonly index: number;
 }
 

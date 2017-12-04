@@ -1,7 +1,7 @@
 import * as memoize from 'memoizee';
 import { IndexedItem } from '../models/IndexedItem';
 import { IAppState } from '../models/IAppState';
-import { uuId } from '../utils/generateId';
+import { Uuid } from '../utils/generateId';
 import { ListItem } from '../models/ListItem';
 
 const createIndexedItem = (item: ListItem, index: number): IndexedItem =>
@@ -14,7 +14,7 @@ const createIndexedItem = (item: ListItem, index: number): IndexedItem =>
 
 const createIndexedItemMemoized = memoize(createIndexedItem);
 
-export const getIndexedItem = (state: IAppState, index: number, id: uuId) => {
+export const getIndexedItem = (state: IAppState, index: number, id: Uuid) => {
   const retrievedItem: ListItem = state.todoList.items.get(id);
 
   return createIndexedItemMemoized(retrievedItem, index);

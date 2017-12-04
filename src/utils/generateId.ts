@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
-export type uuId = string;
+export type Uuid = string;
 
-export const generateId = (): uuId => uuid();
+export const generateId = (): Uuid => uuid();
 
-export const defaultId: string = '00000000-0000-0000-0000-000000000000';
+export const defaultId: Uuid = '00000000-0000-0000-0000-000000000000';

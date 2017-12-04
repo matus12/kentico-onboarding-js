@@ -4,9 +4,10 @@ import { TsComponent } from './TsComponent';
 import { Item } from '../../containers/todo-list/Item';
 import { Seq } from 'immutable';
 import * as PropTypes from 'prop-types';
+import { Uuid } from '../../utils/generateId';
 
 export interface IListDataProps {
-  readonly ids: Seq.Indexed<string>;
+  readonly ids: Seq.Indexed<Uuid>;
 }
 
 const List: React.SFC<IListDataProps> = (props: IListDataProps): JSX.Element =>
@@ -19,7 +20,7 @@ const List: React.SFC<IListDataProps> = (props: IListDataProps): JSX.Element =>
     <div className="col-sm-12 col-md-offset-2 col-md-8">
       <ul className="list-group">
         {props.ids
-          .map((id: string, index: number) =>
+          .map((id: Uuid, index: number) =>
             <li
               className="list-group-item"
               key={id}
