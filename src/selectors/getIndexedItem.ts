@@ -15,7 +15,7 @@ const createIndexedItem = (item: ListItem, index: number): IndexedItem =>
 const createIndexedItemMemoized = memoize(createIndexedItem);
 
 export const getIndexedItem = (state: IAppState, index: number, id: Uuid) => {
-  const retrievedItem: ListItem = state.todoList.items.get(id);
+  const retrievedItem = state.todoList.items.get(id);
 
   return createIndexedItemMemoized(retrievedItem, index);
 };
