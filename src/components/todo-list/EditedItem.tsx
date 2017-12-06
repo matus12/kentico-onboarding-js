@@ -39,10 +39,10 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
     };
   }
 
-  changeItemText = (event: React.FormEvent<HTMLInputElement>): void => {
+  changeItemText = ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
-      editedText: event.currentTarget.value,
-      isInputValid: validateText(event.currentTarget.value),
+      editedText: value,
+      isInputValid: validateText(value),
     });
   };
 

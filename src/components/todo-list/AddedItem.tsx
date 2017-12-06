@@ -26,10 +26,10 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
     });
   }
 
-  changeItemText = (event: React.FormEvent<HTMLInputElement>): void => {
+  changeItemText = ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
-      inputText: event.currentTarget.value,
-      isInputValid: validateText(event.currentTarget.value),
+      inputText: value,
+      isInputValid: validateText(value),
     });
   };
 
