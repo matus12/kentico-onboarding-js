@@ -20,13 +20,8 @@ export const items = (previousState: OrderedMap<Uuid, ListItem> = OrderedMap<Uui
     case TODO_LIST_ITEM_UPDATE:
     case TODO_LIST_ITEM_EDIT:
     case TODO_LIST_ITEM_CANCEL_EDIT: {
-      const existingItem: ListItem = previousState.get(action.payload.id);
-      const updatedItem: ListItem = item(existingItem, action);
-
-      return previousState.set(
-        updatedItem.id,
-        updatedItem,
-      );
+      return previousState
+        .update(action.payload.id, existingItem => item(existingItem, action));
     }
 
     default:
