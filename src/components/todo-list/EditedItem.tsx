@@ -39,19 +39,6 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
     };
   }
 
-  changeItemText = ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>): void => {
-    this.setState({
-      editedText: value,
-      isInputValid: validateText(value),
-    });
-  };
-
-  saveItem = (): void => {
-    this.props.onUpdateItem(
-      this.state.editedText,
-    );
-  };
-
   render(): JSX.Element {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
@@ -67,7 +54,7 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
             <Input
               value={this.state.editedText}
               isValid={this.state.isInputValid}
-              onChange={this.changeItemText}
+              onChange={this._changeItemText}
               title={invalidTextTitle}
             />
           </div>
@@ -75,7 +62,7 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
         <button
           type="button"
           className="btn btn-primary"
-          onClick={this.saveItem}
+          onClick={this._saveItem}
           title={invalidTextTitle}
           disabled={!this.state.isInputValid}
         >
@@ -98,4 +85,17 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
       </div>
     );
   }
+
+  private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
+    this.setState({
+      editedText: value,
+      isInputValid: validateText(value),
+    });
+  };
+
+  private _saveItem = (): void => {
+    this.props.onUpdateItem(
+      this.state.editedText,
+    );
+  };
 }

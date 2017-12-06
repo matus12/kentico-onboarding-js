@@ -26,21 +26,6 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
     });
   }
 
-  changeItemText = ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>): void => {
-    this.setState({
-      inputText: value,
-      isInputValid: validateText(value),
-    });
-  };
-
-  addItem = (): void => {
-    this.props.onAddItem(this.state.inputText);
-    this.setState({
-      inputText: '',
-      isInputValid: false,
-    });
-  };
-
   render(): JSX.Element {
     const invalidTextTitle = (this.state.isInputValid)
       ? undefined
@@ -52,7 +37,7 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
           <Input
             value={this.state.inputText}
             isValid={this.state.isInputValid}
-            onChange={this.changeItemText}
+            onChange={this._changeItemText}
             title={invalidTextTitle}
           />
         </div>
@@ -61,11 +46,26 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
           title={invalidTextTitle}
           className="btn btn-primary"
           disabled={!this.state.isInputValid}
-          onClick={this.addItem}
+          onClick={this._addItem}
         >
           Add
         </button>
       </li>
     );
   }
+
+  private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
+    this.setState({
+      inputText: value,
+      isInputValid: validateText(value),
+    });
+  };
+
+  private _addItem = (): void => {
+    this.props.onAddItem(this.state.inputText);
+    this.setState({
+      inputText: '',
+      isInputValid: false,
+    });
+  };
 }
