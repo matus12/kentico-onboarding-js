@@ -29,6 +29,18 @@ export class Input extends React.PureComponent<IProps, IState> {
     });
   }
 
+  private _focusGained = (): void => {
+    this.setState({
+      isFocused: true,
+    });
+  };
+
+  private _focusLost = (): void => {
+    this.setState({
+      isFocused: false,
+    });
+  };
+
   render(): JSX.Element {
     return (
       <div
@@ -44,23 +56,11 @@ export class Input extends React.PureComponent<IProps, IState> {
           className="form-control"
           value={this.props.value}
           onChange={this.props.onChange}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
+          onFocus={this._focusGained}
+          onBlur={this._focusLost}
           title={this.props.title}
         />
       </div>
     );
   }
-
-  private _onFocus = (): void => {
-    this.setState({
-      isFocused: true,
-    });
-  };
-
-  private _onBlur = (): void => {
-    this.setState({
-      isFocused: false,
-    });
-  };
 }
