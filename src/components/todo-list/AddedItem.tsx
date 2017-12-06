@@ -1,7 +1,7 @@
-import  * as React from 'react';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
-import * as PropTypes from 'prop-types';
 
 interface IState {
   readonly inputText: string;

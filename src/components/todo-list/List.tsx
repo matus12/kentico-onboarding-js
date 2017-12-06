@@ -1,9 +1,9 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { AddedItem } from '../../containers/todo-list/AddedItem';
 import { TsComponent } from './TsComponent';
 import { Item } from '../../containers/todo-list/Item';
 import { Seq } from 'immutable';
-import * as PropTypes from 'prop-types';
 import { Uuid } from '../../utils/generateId';
 
 export interface IListDataProps {
