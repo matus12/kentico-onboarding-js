@@ -9,7 +9,7 @@ interface IState {
 }
 
 export interface IAddedItemCallbackProps {
-  onAddItem: (text: string) => void;
+  readonly onAddItem: (text: string) => void;
 }
 
 export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, IState> {

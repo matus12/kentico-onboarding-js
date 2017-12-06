@@ -3,7 +3,7 @@ import * as classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 
 interface IProps {
-  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  readonly onChange: (event: React.FormEvent<HTMLInputElement>) => void;
   readonly value: string;
   readonly isValid: boolean;
   readonly title: string | undefined;

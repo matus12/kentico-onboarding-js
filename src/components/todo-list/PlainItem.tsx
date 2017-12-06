@@ -7,7 +7,7 @@ interface IPlainItemDataProps {
 }
 
 export interface IPlainItemCallbackProps {
-  onEditStart: () => void;
+  readonly onEditStart: () => void;
 }
 
 const PlainItem: React.SFC<IPlainItemCallbackProps & IPlainItemDataProps> = (props: IPlainItemCallbackProps & IPlainItemDataProps): JSX.Element =>

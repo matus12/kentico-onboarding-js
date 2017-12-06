@@ -5,9 +5,9 @@ import { IndexedItem } from '../../models/IndexedItem';
 import * as PropTypes from 'prop-types';
 
 export interface IEditedItemCallbackProps {
-  onUpdateItem: (text: string) => void;
-  onEditStop: () => void;
-  onDeleteItem: () => void;
+  readonly onUpdateItem: (text: string) => void;
+  readonly onEditStop: () => void;
+  readonly onDeleteItem: () => void;
 }
 
 export interface IEditedItemDataProps {
