@@ -29,18 +29,6 @@ export class Input extends React.PureComponent<IProps, IState> {
     });
   }
 
-  private _focusGained = (): void => {
-    this.setState({
-      isFocused: true,
-    });
-  };
-
-  private _focusLost = (): void => {
-    this.setState({
-      isFocused: false,
-    });
-  };
-
   render(): JSX.Element {
     return (
       <div
@@ -63,4 +51,16 @@ export class Input extends React.PureComponent<IProps, IState> {
       </div>
     );
   }
+
+  private _focusGained = (): void => {
+    this.setState({
+      isFocused: true,
+    });
+  };
+
+  private _focusLost = (): void => {
+    this.setState({
+      isFocused: false,
+    });
+  };
 }
