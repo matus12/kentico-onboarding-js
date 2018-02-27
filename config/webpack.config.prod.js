@@ -185,6 +185,11 @@ module.exports = {
     ];
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_URL': JSON.stringify('https://matusb-todoapp.azurewebsites.net/api/'),
+      }
+    }),
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
@@ -218,20 +223,6 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     // Try to dedupe duplicated modules, if any:
     new webpack.optimize.DedupePlugin(),
-    // Minify the code.
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true, // React doesn't support IE8
-        warnings: false
-      },
-      mangle: {
-        screw_ie8: true
-      },
-      output: {
-        comments: false,
-        screw_ie8: true
-      }
-    }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin('static/css/[name].[contenthash:8].css'),
     // Generate a manifest file which contains a mapping of all asset filenames

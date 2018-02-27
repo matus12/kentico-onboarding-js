@@ -81,6 +81,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "deploy": "surge --project ./build --domain matusb.surge.sh",
     "test": "node scripts/test.js --env=jsdom --no-cache"
   },
   "jest": {
