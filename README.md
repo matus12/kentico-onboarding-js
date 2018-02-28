@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/l1pbffww1jdnny84?svg=true)](https://ci.appveyor.com/api/projects/status/l1pbffww1jdnny84?svg=true)
+[![Build Status](https://ci.appveyor.com/api/projects/status/l1pbffww1jdnny84/branch/feature/task-5?svg=true)](https://ci.appveyor.com/api/projects/status/l1pbffww1jdnny84/branch/feature/task-5?svg=true)
 
 # kentico-onboarding-js
 Simple step-by-step task for Kentico Academy to learn the basics of JS, React, Redux.
