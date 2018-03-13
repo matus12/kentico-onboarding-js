@@ -22,6 +22,7 @@ import { IAction } from './IAction';
 interface ErrorActionArgs {
   id: Uuid;
   message: string;
+  text?: string;
 }
 
 export const insertItem =
@@ -49,7 +50,8 @@ export const postError = (args: ErrorActionArgs): IAction => ({
   type: POST_ITEM_ERROR,
   payload: {
     id: args.id,
-    message: args.message
+    message: args.message,
+    text: args.text
   }
 });
 

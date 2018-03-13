@@ -1,9 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { IAction } from '../../actions/IAction';
 
 interface OwnProps {
   readonly errorMessage: string;
-  readonly onCloseError: () => any;
+  readonly onCloseError: () => IAction;
+  readonly onRefresh: () => Promise<IAction> | void;
 }
 
 const Error: React.SFC<OwnProps> = (props: OwnProps): JSX.Element =>
@@ -20,6 +22,12 @@ const Error: React.SFC<OwnProps> = (props: OwnProps): JSX.Element =>
     >&times;</button>
     <strong> ERROR: </strong>
     {props.errorMessage}
+    <button
+      className="close"
+      onClick={props.onRefresh}
+    >
+      &#8634;
+    </button>
   </div>;
 
 Error.propTypes = {
@@ -27,4 +35,4 @@ Error.propTypes = {
   onCloseError: PropTypes.func.isRequired,
 };
 
-export { Error }
+export { Error };

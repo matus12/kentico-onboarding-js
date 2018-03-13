@@ -7,7 +7,8 @@ export const postStatus = (previousState: PostStatus = new PostStatus(), action:
     case POST_ITEM_ERROR: {
       const updatedStatus = {
         hasError: true,
-        message: action.payload.message
+        message: action.payload.message,
+        text: action.payload.text
       };
 
       return previousState.with(updatedStatus);

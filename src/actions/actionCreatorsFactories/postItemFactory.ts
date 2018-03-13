@@ -17,7 +17,7 @@ interface PostSuccessArguments extends InsertItemArguments {
 
 interface IPostDependencies {
   readonly postSuccess: (args: PostSuccessArguments) => IAction;
-  readonly postError: (args: { id: Uuid, message: string }) => IAction;
+  readonly postError: (args: { id: Uuid, message: string, text: string }) => IAction;
   readonly insertItem: (args: InsertItemArguments) => IAction;
   readonly generateId: () => Uuid;
   readonly axiosPost: (data: { text: string }) => Promise<AxiosResponse>;
@@ -50,6 +50,6 @@ export const postItemFactory =
               ? NO_CONNECTION
               : `${errorResponse.status} ${errorResponse.statusText}`;
 
-          return dispatch(postError({id: tempId, message}));
+          return dispatch(postError({id: tempId, message, text}));
         }
       };

@@ -1,6 +1,7 @@
 import {
   CLOSE_FETCH_ERROR,
-  FETCH_ITEMS_ERROR, FETCH_ITEMS_SUCCESS
+  FETCH_ITEMS_ERROR,
+  FETCH_ITEMS_SUCCESS
 } from '../constants/actionTypes';
 import { IAction } from '../actions/IAction';
 import { FetchStatus } from '../models/FetchStatus';

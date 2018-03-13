@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { List } from '../../containers/todo-list/List';
-import { Error } from './Error';
 import { IAction } from '../../actions/IAction';
+import { Error } from './Error';
 
 export interface IFetchDataProps {
   fetchFailed: boolean;
@@ -32,6 +32,7 @@ export class FetchedItems extends React.PureComponent<IFetchDataProps & IFetchCa
               <Error
                 errorMessage={this.props.errorMessage}
                 onCloseError={this.props.onFetchErrorClose}
+                onRefresh={this.props.onFetchItems}
               />
           </div>
         }

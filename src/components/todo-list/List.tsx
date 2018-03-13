@@ -15,9 +15,10 @@ export interface IListDataProps {
 
 export interface IListCallbackProps {
   onPostErrorClose: () => IAction;
+  addItem: (text: string) => Promise<IAction>;
 }
 
-export class List extends React.PureComponent<IListDataProps & IListCallbackProps> {
+export class List extends React.PureComponent<IListDataProps & IListCallbackProps & any> {
   static propTypes = {
     ids: PropTypes.instanceOf(Seq).isRequired,
   };
@@ -48,6 +49,7 @@ export class List extends React.PureComponent<IListDataProps & IListCallbackProp
               ? <Error
                 errorMessage={this.props.message}
                 onCloseError={this.props.onPostErrorClose}
+                onRefresh={this.props.onRR}
               />
               : <span />
             }
