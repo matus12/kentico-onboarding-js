@@ -58,7 +58,6 @@ export const item = (previousState: ListItem, action: IAction): ListItem => {
     case PUT_ITEM_ERROR: {
       const updatedItem = {
         isSynchronized: true,
-        text: previousState.backupText,
         errorMessage: action.payload.message
       };
 
@@ -85,6 +84,7 @@ export const item = (previousState: ListItem, action: IAction): ListItem => {
 
     case CLOSE_PUT_DELETE_ERROR: {
       const updatedItem = {
+        text: previousState.backupText,
         errorMessage: ''
       };
 

@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 
 interface IProps {
   errorMessage: string;
+  onRetry: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onCloseError: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -20,11 +21,18 @@ const ItemError: React.SFC<IProps> = (props: IProps): JSX.Element =>
         aria-label="close"
         onClick={props.onCloseError}
       >&times;</button>
+      <button
+        className="close"
+        onClick={props.onRetry}
+      >
+        &#8634;
+      </button>
     </span>
     : <span />;
 
 ItemError.propTypes = {
   errorMessage: PropTypes.string,
+  onRetry: PropTypes.func,
   onCloseError: PropTypes.func.isRequired
 };
 

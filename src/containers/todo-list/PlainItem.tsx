@@ -11,6 +11,7 @@ import {
 import { IAppState } from '../../models/IAppState';
 import { IndexedItem } from '../../models/IndexedItem';
 import { IAction } from '../../actions/IAction';
+import { putItem } from '../../actions';
 
 interface IProps {
   readonly item: IndexedItem;
@@ -18,6 +19,7 @@ interface IProps {
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>, ownProps: IProps): IPlainItemCallbackProps => ({
   onEditStart: (): IAction => dispatch(editItem(ownProps.item.id)),
+  onRetry: (): Promise<IAction> => dispatch(putItem({id: ownProps.item.id, text: ownProps.item.text})),
   onCloseError: (): IAction => dispatch(closeItemError(ownProps.item.id))
 });
 

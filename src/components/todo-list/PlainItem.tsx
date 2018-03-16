@@ -9,6 +9,7 @@ interface IPlainItemDataProps {
 
 export interface IPlainItemCallbackProps {
   readonly onEditStart: () => void;
+  readonly onRetry: () => void;
   readonly onCloseError: () => void;
 }
 
@@ -33,6 +34,7 @@ export class PlainItem extends React.PureComponent<IPlainItemCallbackProps & IPl
           {this.props.item.index + '. ' + this.props.item.text}
           <ItemError
               errorMessage={this.props.item.errorMessage}
+              onRetry={this._onRetry}
               onCloseError={this._onCloseError}
           />
         </div>
@@ -48,6 +50,10 @@ export class PlainItem extends React.PureComponent<IPlainItemCallbackProps & IPl
     );
   }
 
+  private _onRetry = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    this.props.onRetry();
+  };
   private _onCloseError = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     this.props.onCloseError();

@@ -41,7 +41,7 @@ export class Input extends React.PureComponent<IProps, IState> {
         }
       >
         <input
-          className="form-control"
+          className="form-control text-danger"
           value={this.props.value}
           onChange={this.props.onChange}
           onFocus={this._focusGained}
