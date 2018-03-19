@@ -47,15 +47,19 @@ export class Input extends React.PureComponent<IProps, IState> {
           onFocus={this._focusGained}
           onBlur={this._focusLost}
           title={this.props.title}
+          autoFocus
         />
       </div>
     );
   }
 
-  private _focusGained = (): void => {
+  private _focusGained = (e: any): void => {
     this.setState({
       isFocused: true,
     });
+    const val = e.target.value;
+    e.target.value = '';
+    e.target.value = val;
   };
 
   private _focusLost = (): void => {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
+import { HotKeys } from 'react-hotkeys';
 
 interface IState {
   readonly inputText: string;
@@ -15,6 +16,16 @@ export interface IAddedItemCallbackProps {
 export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, IState> {
   static propTypes = {
     onAddItem: PropTypes.func.isRequired,
+  };
+
+  map = {
+    'addItem': 'enter',
+    'clearInput': 'esc'
+  };
+
+  handlers = {
+    'addItem': (_event: any) => this._addItem(),
+    'clearInput': (_event: any) => this._clearInput()
   };
 
   constructor(props: IAddedItemCallbackProps) {
@@ -34,12 +45,17 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
     return (
       <li className="list-group-item">
         <div className="col-xs-4">
-          <Input
-            value={this.state.inputText}
-            isValid={this.state.isInputValid}
-            onChange={this._changeItemText}
-            title={invalidTextTitle}
-          />
+          <HotKeys
+            keyMap={this.map}
+            handlers={this.handlers}
+          >
+            <Input
+              value={this.state.inputText}
+              isValid={this.state.isInputValid}
+              onChange={this._changeItemText}
+              title={invalidTextTitle}
+            />
+          </HotKeys>
         </div>
         <button
           type="button"
@@ -69,4 +85,8 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
       isInputValid: false,
     });
   };
+
+  private _clearInput = (): void => {
+    this.setState(() => ({inputText: ''}));
+  }
 }

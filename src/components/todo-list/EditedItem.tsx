@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import { validateText } from '../../utils/validateText';
 import { Input } from './Input';
 import { IndexedItem } from '../../models/IndexedItem';
+import { HotKeys } from 'react-hotkeys';
 
 export interface IEditedItemCallbackProps {
   readonly onUpdateItem: (text: string) => void;
@@ -30,6 +31,16 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
     onEditStop: PropTypes.func.isRequired,
   };
 
+  map = {
+    'saveItem': 'enter',
+    'cancelEdit': 'esc'
+  };
+
+  handlers = {
+    'saveItem': (_event: any) => this._saveItem(),
+    'cancelEdit': (_event: any) => this.props.onEditStop()
+  };
+
   constructor(props: IEditedItemCallbackProps & IEditedItemDataProps) {
     super(props);
 
@@ -45,44 +56,49 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
       : 'Empty item cannot be stored.\nTip: Use delete button to remove an item';
 
     return (
-      <div className="row">
-        <div className="col-xs-4">
-          <div className="input-group">
-            <span className="input-group-addon">
-              {this.props.item.index}.
-            </span>
-            <Input
-              value={this.state.editedText}
-              isValid={this.state.isInputValid}
-              onChange={this._changeItemText}
-              title={invalidTextTitle}
-            />
+      <HotKeys
+        keyMap={this.map}
+        handlers={this.handlers}
+      >
+        <div className="row">
+          <div className="col-xs-4">
+            <div className="input-group">
+              <span className="input-group-addon">
+                {this.props.item.index}.
+              </span>
+              <Input
+                value={this.state.editedText}
+                isValid={this.state.isInputValid}
+                onChange={this._changeItemText}
+                title={invalidTextTitle}
+              />
+            </div>
           </div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this._saveItem}
+            title={invalidTextTitle}
+            disabled={!this.state.isInputValid}
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={this.props.onEditStop}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={this._deleteItem}
+          >
+            Delete
+          </button>
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this._saveItem}
-          title={invalidTextTitle}
-          disabled={!this.state.isInputValid}
-        >
-          Save
-        </button>
-        <button
-          type="button"
-          className="btn btn-light"
-          onClick={this.props.onEditStop}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={this._deleteItem}
-        >
-          Delete
-        </button>
-      </div>
+      </HotKeys>
     );
   }
 
@@ -101,5 +117,5 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
 
   private _deleteItem = (): void => {
     this.props.onDeleteItem();
-  }
+  };
 }

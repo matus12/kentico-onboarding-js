@@ -1,4 +1,3 @@
-/*
 import { PostStatus } from '../models/PostStatus';
 import { postStatus } from './postStatus';
 import { closePostError, postError, postSuccess } from '../actions/actionCreators';
@@ -24,7 +23,8 @@ describe('postStatus reducer', () => {
     const errorAction = postError({id, message});
     const expectedState = new PostStatus({
       hasError: true,
-      message
+      message,
+      text: undefined
     });
 
     const newState = postStatus(expectedState, errorAction);
@@ -64,4 +64,3 @@ describe('postStatus reducer', () => {
     expect(newState).toEqual(expectedState);
   });
 });
-*/
