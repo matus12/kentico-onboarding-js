@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { validateText } from '../../utils/validateText';
-import { Input } from './Input';
 import { IndexedItem } from '../../models/IndexedItem';
 import { HotKeys } from 'react-hotkeys';
+import Form from './Form';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
 
 export interface IEditedItemCallbackProps {
   readonly onUpdateItem: (text: string) => void;
@@ -32,12 +33,10 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
   };
 
   map = {
-    'saveItem': 'enter',
     'cancelEdit': 'esc'
   };
 
   handlers = {
-    'saveItem': (_event: any) => this._saveItem(),
     'cancelEdit': (_event: any) => this.props.onEditStop()
   };
 
@@ -51,10 +50,10 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
   }
 
   render(): JSX.Element {
-    const invalidTextTitle = (this.state.isInputValid)
+    /*const invalidTextTitle = (this.state.isInputValid)
       ? undefined
       : 'Empty item cannot be stored.\nTip: Use delete button to remove an item';
-
+*/
     return (
       <HotKeys
         keyMap={this.map}
@@ -63,18 +62,21 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
         <div className="row">
           <div className="col-xs-4">
             <div className="input-group">
-              <span className="input-group-addon">
-                {this.props.item.index}.
-              </span>
-              <Input
+              {this.props.item.index}.
+              {/*<Input
                 value={this.state.editedText}
                 isValid={this.state.isInputValid}
                 onChange={this._changeItemText}
                 title={invalidTextTitle}
+              />*/}
+              <Form
+                form={this.props.item.id.toString()}
+                initialValues={{text: this.props.item.text}}
+                onSubmit={this._saveItem}
               />
             </div>
           </div>
-          <button
+          {/*          <button
             type="button"
             className="btn btn-primary"
             onClick={this._saveItem}
@@ -82,36 +84,37 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
             disabled={!this.state.isInputValid}
           >
             Save
-          </button>
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={this.props.onEditStop}
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={this._deleteItem}
-          >
-            Delete
-          </button>
+          </button>*/}
+          <MuiThemeProvider>
+            <FlatButton
+              onClick={this.props.onEditStop}
+            >
+              CANCEL
+            </FlatButton>
+          </MuiThemeProvider>
+          <MuiThemeProvider>
+            <FlatButton
+              secondary={true}
+              onClick={this._deleteItem}
+            >
+              DELETE
+            </FlatButton>
+          </MuiThemeProvider>
         </div>
       </HotKeys>
     );
   }
 
-  private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
+  /*private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       editedText: value,
       isInputValid: validateText(value),
     });
-  };
+  };*/
 
-  private _saveItem = (): void => {
+  private _saveItem = (values: any): void => {
     this.props.onUpdateItem(
-      this.state.editedText,
+      values.todo
     );
   };
 
