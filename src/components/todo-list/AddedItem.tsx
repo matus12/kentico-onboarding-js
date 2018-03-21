@@ -30,7 +30,12 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
       <div className="col-xs-6">
         <Form
           form="addForm"
-          initialValues={{text: 'TO DO'}}
+          initialValues={
+            {
+              text: 'TO DO',
+              newItem: true
+            }
+          }
           onSubmit={this._addItem} />
       </div>
     );

@@ -3,6 +3,8 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { FetchedItems } from '../containers/todo-list/FetchedItems';
 import { PulseLoader } from 'react-spinners';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Snackbar from 'material-ui/Snackbar';
 
 export interface IAppDataProps {
   readonly isFetching: boolean;
@@ -48,6 +50,15 @@ export class App extends React.PureComponent<IAppDataProps> {
               <PulseLoader loading={this.props.isFetching}/>
             </div>
             <FetchedItems />
+            <MuiThemeProvider>
+              <Snackbar
+                message={
+                  'Hello ' + window.history.state.state.values.todo + '!'
+                }
+                open={!this.props.isFetching}
+                autoHideDuration={3000}
+              />
+            </MuiThemeProvider>
           </section>
         </div>
         <footer className="footer">

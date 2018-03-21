@@ -39,26 +39,41 @@ const renderTextField =
 const renderButton =
   ({
      _input,
-     _label,
+     label,
      meta: {_touched, _error},
      ...custom
-  }: any) => (
+   }: any) => (
     <MuiThemeProvider>
       <FlatButton
         type={onsubmit}
-        label="ADD"
+        label={label}
         primary={true}
         {...custom}
       />
     </MuiThemeProvider>
-);
+  );
 
 let InputForm = (props: any) => {
   const {handleSubmit, initialValues} = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    initialValues.newItem
+      ? <form onSubmit={handleSubmit}>
         <Field
+          name="todo"
+          component={renderTextField}
+          label={initialValues.text}
+        />
+        {initialValues.text === 'LOGIN'
+          ? <span />
+          : <Field
+            name="addButton"
+            component={renderButton}
+            label="ADD"
+          />}
+      </form>
+      : <form onSubmit={handleSubmit}>
+        <Field
+          style={{width: 300}}
           name="todo"
           component={renderTextField}
           label={initialValues.text}
@@ -66,9 +81,24 @@ let InputForm = (props: any) => {
         <Field
           name="addButton"
           component={renderButton}
+          label="SAVE"
         />
-      </div>
-    </form>
+        <MuiThemeProvider>
+          <FlatButton
+            onClick={initialValues.cancel}
+          >
+            CANCEL
+          </FlatButton>
+        </MuiThemeProvider>
+        <MuiThemeProvider>
+          <FlatButton
+            onClick={initialValues.delete}
+            secondary={true}
+          >
+            DELETE
+          </FlatButton>
+        </MuiThemeProvider>
+      </form>
   );
 };
 
