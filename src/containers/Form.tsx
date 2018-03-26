@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form';
 import { validateText } from '../utils/validateText';
-import { InputForm } from '../components/Form';
+import { InputForm } from '../components/InputForm';
 import { Dispatch } from 'redux';
 import { IAppState } from '../models/IAppState';
 import { deleteFromServer } from '../actions';
