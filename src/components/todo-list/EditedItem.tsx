@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { IndexedItem } from '../../models/IndexedItem';
 import { HotKeys } from 'react-hotkeys';
-import Form from './Form';
+import Form from '../../containers/Form';
 
 export interface IEditedItemCallbackProps {
   readonly onUpdateItem: (text: string) => void;
@@ -62,9 +62,6 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
                 initialValues={
                   {
                     text: this.props.item.text,
-                    newItem: false,
-                    cancel: this.props.onEditStop,
-                    delete: this.props.onDeleteItem
                   }
                 }
                 onSubmit={this._saveItem}

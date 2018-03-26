@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Form from './Form';
+import Form from '../../containers/Form';
 
 interface IState {
   readonly inputText: string;
@@ -33,7 +33,6 @@ export class AddedItem extends React.PureComponent<IAddedItemCallbackProps, ISta
           initialValues={
             {
               text: 'TO DO',
-              newItem: true
             }
           }
           onSubmit={this._addItem} />
