@@ -1,8 +1,8 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { Button } from './Button';
 import { IAction } from '../actions/IAction';
 import { InputField } from './InputField';
-import { PropTypes } from 'react';
 
 interface IProps {
   handleSubmit: () => void;

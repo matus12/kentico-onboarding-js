@@ -35,7 +35,7 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
   };
 
   handlers = {
-    'cancelEdit': (_event: any) => this.props.onEditStop()
+    'cancelEdit': (_event: KeyboardEvent) => this.props.onEditStop()
   };
 
   constructor(props: IEditedItemCallbackProps & IEditedItemDataProps) {
@@ -73,7 +73,7 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
     );
   }
 
-  private _saveItem = (values: any): void => {
+  private _saveItem = (values: {todo: string}): void => {
     this.props.onUpdateItem(
       values.todo
     );

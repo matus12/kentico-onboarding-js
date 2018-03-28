@@ -1,8 +1,9 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { Field } from 'redux-form';
+import { WrappedFieldProps } from 'redux-form/lib/Field';
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { PropTypes } from 'react';
 
 interface IProps {
   width: number;
@@ -15,7 +16,7 @@ const renderTextField =
      label,
      meta: {touched, error},
      ...custom
-   }: any) => (
+   }: WrappedFieldProps) => (
     <MuiThemeProvider>
       <TextField
         hintText={label}
