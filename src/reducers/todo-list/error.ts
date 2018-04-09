@@ -17,13 +17,17 @@ export const error =
       case ITEM_INSERT_SUCCEEDED:
       case ITEM_UPDATE_SUCCEEDED:
       case ITEM_DELETION_SUCCEEDED:
-        return previousState.delete(action.payload.id);
+        return previousState.delete(action.payload.errorId);
 
       case ITEM_INSERT_FAILED:
       case ITEM_UPDATE_FAILED:
       case ITEM_DELETION_FAILED:
-        return previousState
-          .update(action.payload.id, _previousItem => new Error(action.payload)
+        return previousState.set(
+          action.payload.errorId,
+          new Error({
+            id: action.payload.errorId,
+            errorMessage: action.payload.errorMessage
+          })
         );
       default:
         return previousState;
