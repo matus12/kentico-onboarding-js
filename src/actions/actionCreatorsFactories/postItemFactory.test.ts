@@ -14,7 +14,7 @@ describe('post item tests', () => {
   };
   const generateId = jest.fn(() => postTestItem.id);
 
-  it('dispatches TODO_LIST_ITEM_INSERT, ITEM_INSERT_SUCCEEDED on correct POST request', async () => {
+  it('dispatches TODO_LIST_ITEM_INSERT, ITEM_INSERT_SUCCEEDED on correct POST request', async done => {
     const fetchedTestItem = {
       id: 'e1f5c5e4-7f5e-4aa0-9e52-117cc8267f13',
       text: 'item'
@@ -47,13 +47,16 @@ describe('post item tests', () => {
       }
     };
 
-    await postItem(postTestItem.text)(dispatch);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(insertItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(postItemSucceeded);
+    postItem(postTestItem.text)(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(insertItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(postItemSucceeded);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 
-  it('dispatches TODO_LIST_ITEM_INSERT, ITEM_INSERT_FAILED on POST request failure', async () => {
+  it('dispatches TODO_LIST_ITEM_INSERT, ITEM_INSERT_FAILED on POST request failure', async done => {
     const axiosPost = (_text: string) =>
       Promise.reject({
         response: {
@@ -85,9 +88,12 @@ describe('post item tests', () => {
       }
     };
 
-    await postItem(postTestItem.text)(dispatch);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(insertItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(postItemFailed);
+    postItem(postTestItem.text)(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(insertItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(postItemFailed);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 });

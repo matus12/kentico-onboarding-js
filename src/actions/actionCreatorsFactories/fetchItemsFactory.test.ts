@@ -19,7 +19,7 @@ describe('fetch items tests', () => {
     isSynchronized: true
   };
 
-  it('dispatches ITEMS_FETCH_SUCCEEDED on correct GET request', async () => {
+  it('dispatches ITEMS_FETCH_SUCCEEDED on correct GET request', async done => {
     const items = [{
       Id: fetchedTestItem0.id,
       Text: fetchedTestItem0.text
@@ -46,12 +46,15 @@ describe('fetch items tests', () => {
       }
     };
 
-    await fetchItems()(dispatch);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(expectedAction);
+    fetchItems()(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(expectedAction);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 
-  it('dispatches ITEMS_FETCH_FAILED after GET request failure', async () => {
+  it('dispatches ITEMS_FETCH_FAILED after GET request failure', async done => {
     const axiosFetch = () =>
       Promise.reject({
         response: {
@@ -72,8 +75,11 @@ describe('fetch items tests', () => {
       }
     };
 
-    await fetchItems()(dispatch);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(fetchFailed);
+    fetchItems()(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(fetchFailed);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 });

@@ -20,7 +20,7 @@ beforeEach(() => {
 });
 
 describe('delete item tests', () => {
-  it('dispatches TODO_LIST_ITEM_DELETE, ITEM_DELETION_SUCCEEDED after successful DELETE request', async () => {
+  it('dispatches TODO_LIST_ITEM_DELETE, ITEM_DELETION_SUCCEEDED after successful DELETE request', async done => {
     const axiosDelete = (_id: string) =>
       Promise.resolve({
         data: undefined,
@@ -62,13 +62,16 @@ describe('delete item tests', () => {
       }
     };
 
-    await deleteFromServer(id)(dispatch, () => mockStore);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(deleteItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(deletionSucceeded);
+    deleteFromServer(id)(dispatch, () => mockStore)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(deleteItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(deletionSucceeded);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 
-  it('dispatches TODO_LIST_ITEM_DELETE, ITEM_DELETION_FAILED after unsuccessful DELETE request', async () => {
+  it('dispatches TODO_LIST_ITEM_DELETE, ITEM_DELETION_FAILED after unsuccessful DELETE request', async done => {
     const axiosDelete = (_id: string) =>
       Promise.reject({
         response: {
@@ -114,9 +117,12 @@ describe('delete item tests', () => {
       }
     };
 
-    await deleteFromServer(id)(dispatch, () => mockStore);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(deleteItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(deletionFailed);
+    deleteFromServer(id)(dispatch, () => mockStore)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(deleteItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(deletionFailed);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 });

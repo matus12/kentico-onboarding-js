@@ -19,7 +19,7 @@ beforeEach(() => {
 });
 
 describe('put item tests', () => {
-  it('dispatches TODO_LIST_ITEM_UPDATE, ITEM_UPDATE_SUCCEEDED after successful PUT request', async () => {
+  it('dispatches TODO_LIST_ITEM_UPDATE, ITEM_UPDATE_SUCCEEDED after successful PUT request', async done => {
     const updatedItem = {
       id: '9a0b391a-2a57-4be1-8179-7271b5e8cdc3',
       text: 'updatedText',
@@ -60,13 +60,20 @@ describe('put item tests', () => {
       }
     };
 
-    await putItem({id: updatedItem.id, text: updatedItem.text, isSynchronized: true})(dispatch, () => mockStore);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(updateItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(putSucceeded);
+    putItem({
+      id: updatedItem.id,
+      text: updatedItem.text,
+      isSynchronized: true
+    })(dispatch, () => mockStore)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(updateItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(putSucceeded);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 
-  it('dispatches TODO_LIST_ITEM_UPDATE, ITEM_UPDATE_FAILED after unsuccessful PUT request', async () => {
+  it('dispatches TODO_LIST_ITEM_UPDATE, ITEM_UPDATE_FAILED after unsuccessful PUT request', async done => {
     const errorMessage = 'Bad Request';
     const updatedItem = {
       id: '9a0b391a-2a57-4be1-8179-7271b5e8cdc3',
@@ -113,9 +120,12 @@ describe('put item tests', () => {
       }
     };
 
-    await putItem(updatedItem)(dispatch, () => mockStore);
-
-    expect(dispatch.mock.calls[0][0]).toEqual(updateItem);
-    expect(dispatch.mock.calls[1][0]).toEqual(putFailed);
+    putItem(updatedItem)(dispatch, () => mockStore)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0]).toEqual(updateItem);
+        expect(dispatch.mock.calls[1][0]).toEqual(putFailed);
+        done();
+      })
+      .catch(error => done.fail(new Error(error)));
   });
 });
