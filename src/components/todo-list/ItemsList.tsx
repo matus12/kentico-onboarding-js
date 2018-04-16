@@ -11,7 +11,7 @@ export interface IListDataProps {
 
 export class ItemsList extends React.PureComponent<IListDataProps> {
   static propTypes = {
-    ids: PropTypes.instanceOf(Seq).isRequired,
+    ids: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   constructor(props: IListDataProps) {
