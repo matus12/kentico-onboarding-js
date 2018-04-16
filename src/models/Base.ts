@@ -6,7 +6,7 @@ export const Base = <TClass>(defaultValues: TClass) =>
       params ? super(params) : super();
     }
 
-    with(values: Partial<TClass>) {
-      return this.merge(values) as this;
+    with(values: Partial<TClass>): TClass & this {
+      return this.merge(values) as any;
     }
   };
