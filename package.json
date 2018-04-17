@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/redux-form": "^7.2.3",
     "@types/redux-thunk": "^2.1.0",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
@@ -75,6 +76,7 @@
     "react-redux": "^5.0.6",
     "react-spinners": "^0.2.6",
     "redux": "^3.7.2",
+    "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0",
     "ts-jest": "^19.0.14"
   },

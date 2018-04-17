@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { validateText } from '../../../utils/validateText';
-import { Input } from '../Input';
 import { IndexedItem } from '../../../models/IndexedItem';
 import { IAction } from '../../../actions/IAction';
+import Form from '../../../containers/Form';
 
 export interface IEditedItemCallbackProps {
   readonly onUpdateItem: (text: string) => Promise<IAction>;
@@ -52,11 +51,8 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
             <span className="input-group-addon">
               {this.props.item.index}.
             </span>
-            <Input
-              value={this.state.editedText}
-              isValid={this.state.isInputValid}
-              onChange={this._changeItemText}
-              title={invalidTextTitle}
+            <Form
+              onSubmit={(values: {text: string, inputForm: string}) => console.log(values.inputForm)}
             />
           </div>
         </div>
@@ -87,12 +83,12 @@ export class EditedItem extends React.PureComponent<IEditedItemCallbackProps & I
     );
   }
 
-  private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
+  /*private _changeItemText = ({currentTarget: {value}}: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       editedText: value,
       isInputValid: validateText(value),
     });
-  };
+  };*/
 
   private _saveItem = (): void => {
     this.props.onUpdateItem(
