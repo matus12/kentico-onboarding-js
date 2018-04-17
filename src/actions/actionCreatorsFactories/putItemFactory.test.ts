@@ -11,8 +11,6 @@ import { IAppState } from '../../models/IAppState';
 import { ListItem } from '../../models/ListItem';
 
 const dispatch = jest.fn(input => input);
-const errorId = 'a378ffaa-75fa-4117-a57b-84da0a3c9732';
-const generateId = () => errorId;
 
 beforeEach(() => {
   dispatch.mock.calls.length = 0;
@@ -46,7 +44,6 @@ describe('put item tests', () => {
         config: {}
       });
     const putItem = putItemFactory({
-      generateId,
       axiosPut
     });
     const updateItem = {
@@ -74,7 +71,7 @@ describe('put item tests', () => {
   });
 
   it('dispatches TODO_LIST_ITEM_UPDATE, ITEM_UPDATE_FAILED after unsuccessful PUT request', async done => {
-    const errorMessage = 'Bad Request';
+    const errorMessage = 'Server connection problem';
     const updatedItem = {
       id: '9a0b391a-2a57-4be1-8179-7271b5e8cdc3',
       text: 'updatedText',
@@ -103,7 +100,6 @@ describe('put item tests', () => {
         }
       });
     const putItem = putItemFactory({
-      generateId,
       axiosPut
     });
     const updateItem = {
@@ -113,10 +109,8 @@ describe('put item tests', () => {
     const putFailed = {
       type: ITEM_UPDATE_FAILED,
       payload: {
-        id: updatedItem.id,
-        errorId: generateId(),
+        item: new ListItem({...updatedItem}),
         message: errorMessage,
-        backupText: updatedItem.text
       }
     };
 

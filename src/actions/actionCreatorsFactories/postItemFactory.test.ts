@@ -57,6 +57,7 @@ describe('post item tests', () => {
   });
 
   it('dispatches TODO_LIST_ITEM_INSERT, ITEM_INSERT_FAILED on POST request failure', async done => {
+    const errorMessage = 'Server connection problem';
     const axiosPost = (_text: string) =>
       Promise.reject({
         response: {
@@ -82,9 +83,8 @@ describe('post item tests', () => {
     const postItemFailed = {
       type: ITEM_INSERT_FAILED,
       payload: {
-        id: postTestItem.id,
-        errorId: postTestItem.id,
-        message: '400 Bad Request'
+        item: { id: postTestItem.id, text: postTestItem.text},
+        message: errorMessage
       }
     };
 
